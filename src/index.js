@@ -1,9 +1,13 @@
+import dotenv from 'dotenv';
 import angular from 'angular';
 import app from './app';
-import './styles/main.scss';
 import http from './config-http';
 // import router from './router';
 // import auth from './auth';
+
+import './styles/main.scss';
+
+dotenv.config();
 
 app.config(http);
 // app.config(router);
