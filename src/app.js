@@ -9,12 +9,12 @@ import 'ng-dialog/css/ngDialog-theme-default.css';
 import 'angular-ui-router/release/stateEvents';
 
 const app = angular.module('app', [
-  components, 
-  services, 
-  router, 
-  ngAnimate, 
-  ngDialog, 
-  angular.module( 'ui.router.state.events' ).name
+  components,
+  services,
+  router,
+  ngAnimate,
+  ngDialog,
+  angular.module('ui.router.state.events').name,
 ]);
 
 export default app;

@@ -1,22 +1,28 @@
+const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: './dist',
-    filename: 'bundle.js'
+    filename: 'scripts/bundle.js',
   },
   devtool: 'source-map',
   plugins: [
+    new EnvironmentPlugin([
+      'API_URL',
+    ]),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
+    new ExtractTextPlugin('styles/bundle.css'),
   ],
   module: {
     preLoaders: [
       {
         test: /\.js$/,
-        loader: 'eslint-loader?{rules:{semi:0}}',
+        loader: 'eslint-loader',
         exclude: /node_modules/,
       },
     ],
@@ -26,29 +32,29 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015'],
-          cacheDirectory: true
-        }
+          presets: ['airbnb'],
+          cacheDirectory: true,
+        },
       },
       {
         test: /\.scss$/,
-        loader: 'style!css?sourceMap!sass?sourceMap'
+        loader: 'style!css?sourceMap!sass?sourceMap',
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        loader: 'style!css',
       },
       {
         test: /\.html$/,
-        loader: 'html'
+        loader: 'html',
       },
-      { 
-        test: /\.(jpg|png|gif|svg)$/i, 
-        loader: 'url-loader?limit=10000' 
-      }
-    ]
+      {
+        test: /\.(jpg|png|gif|svg)$/i,
+        loader: 'url-loader?limit=10000',
+      },
+    ],
   },
   sassLoader: {
-    includePaths: ['./src/scss/includes']
-  } 
+    includePaths: ['./src/styles'],
+  },
 };
