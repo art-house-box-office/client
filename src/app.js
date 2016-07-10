@@ -17,4 +17,6 @@ const app = angular.module('app', [
   angular.module('ui.router.state.events').name,
 ]);
 
+app.constant('apiUrl', process.env.API_URL);
+
 export default app;

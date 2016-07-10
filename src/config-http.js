@@ -1,10 +1,10 @@
 configHttp.$inject = ['$httpProvider'];
 
 export default function configHttp($httpProvider) {
-  // $httpProvider.interceptors.push(interceptor);
+  $httpProvider.interceptors.push(interceptor);
 }
 
-// interceptor.$inject = ['tokenService', '$state'];
+interceptor.$inject = ['tokenService', '$state'];
 
 function interceptor(tokenSvc, $state) {
 
@@ -24,6 +24,6 @@ function interceptor(tokenSvc, $state) {
         $state.go('landing');
       }
       return Promise.reject(response);
-    }
+    },
   };
 }
