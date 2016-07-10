@@ -8,10 +8,10 @@ const reqContext = require.context(
   /^\.\/(?!index).+?\.js$/
 );
 
-const components = angular.module( 'components', [] );
-reqContext.keys().forEach( key => {
-  const name = camelcase( path.basename( key, '.js' ) );
-  components.component( name, reqContext( key ).default );
+const components = angular.module('components', []);
+reqContext.keys().forEach(key => {
+  const name = camelcase(path.basename(key, '.js'));
+  components.component(name, reqContext(key).default);
 });
 
 export default components.name;

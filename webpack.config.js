@@ -1,6 +1,7 @@
-const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
+// const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -10,9 +11,9 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
-    new EnvironmentPlugin([
-      'API_URL',
-    ]),
+    new DotenvPlugin({
+      sample: './.env',
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
