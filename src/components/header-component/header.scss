@@ -1,0 +1,50 @@
+$nav-color: #cfcfcf;
+$nav-hover-color: #fff;
+
+:local(.header) {
+  // background: none;
+  background: #414141;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  z-index: 2;
+
+  a {
+    color: $nav-color;
+  }
+
+  h1 {
+    padding: 4px 20px;
+    margin: 0;
+    font-size: 1.5em;
+  }
+  nav {
+    
+    ul {
+      font-size: 0.8em;
+
+      li {
+        display: inline;
+        padding: 0 10px;
+
+        a:hover {
+          color: $nav-hover-color;
+        }
+      }
+    }
+  }
+}
+
+div.buffer-header {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  top: -8px;
+}
