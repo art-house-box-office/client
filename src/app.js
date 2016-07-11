@@ -17,5 +17,9 @@ const app = angular.module('app', [
 ]);
 
 app.constant('apiUrl', process.env.API_URL);
+app.constant('tokenName', process.env.TOKEN_NAME);
+
+console.log(process.env.API_URL);
+console.log(process.env.TOKEN_NAME);
 
 export default app;

@@ -1,17 +1,15 @@
-tokenService.$inject = ['$window'];
+tokenService.$inject = ['$window', 'tokenName'];
 
-const TOKEN_NAME = 'token';
-
-export default function tokenService($window) {
+export default function tokenService($window, tokenName) {
   return {
     get() {
-      return $window.localStorage.getItem(TOKEN_NAME);
+      return $window.localStorage.getItem(tokenName);
     },
     destroy() {
-      $window.localStorage.removeItem(TOKEN_NAME);
+      $window.localStorage.removeItem(tokenName);
     },
     set(token) {
-      $window.localStorage.setItem(TOKEN_NAME, token);
+      $window.localStorage.setItem(tokenName, token);
     },
   };
 }
