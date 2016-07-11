@@ -11,7 +11,7 @@ function interceptor(tokenSvc, $state) {
   return {
     request(config) {
       config.headers = config.headers || {};
-      const token = tokenSvc.retrieve();
+      const token = tokenSvc.get();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }	   
