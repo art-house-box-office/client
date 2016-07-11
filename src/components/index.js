@@ -3,8 +3,8 @@ import camelcase from 'camelcase';
 import path from 'path';
 
 const reqContext = require.context(
-  './', 
-  true, 
+  './',
+  true,
   /^\.\/(?!index).+?\.js$/
 );
 

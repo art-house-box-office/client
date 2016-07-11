@@ -6,7 +6,6 @@ import http from './config-http';
 import router from './router';
 import auth from './authentication';
 
-
 app.config(http);
 app.config(router);
 app.run(auth);
