@@ -1,9 +1,9 @@
-// const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const DotenvPlugin = require('webpack-dotenv-plugin');
+// import { EnvironmentPlugin } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import DotenvPlugin from 'webpack-dotenv-plugin';
 
-module.exports = {
+export default {
   entry: './src/index.js',
   output: {
     path: './dist',
