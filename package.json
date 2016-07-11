@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.babel.js",
-    "deploy": "git checkout master && npm run build && firebase login && firebase deploy && firebase logout && git checkout dev",
+    "deploy": "git checkout dev && npm run build && firebase login && firebase deploy && firebase logout && git checkout dev",
     "start": "firebase serve",
     "start:watch": "webpack-dev-server --inline --config webpack.config.babel.js",
     "test": "karma start --no-auto-watch",
