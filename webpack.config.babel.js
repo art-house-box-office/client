@@ -5,6 +5,8 @@ import DotenvPlugin from 'webpack-dotenv-plugin';
 
 const dotenvFile = process.env.NODE_ENV === 'production' ? './.env' : './.env-local';
 
+console.log(process.env.NODE_ENV);
+
 export default {
   entry: './src/index.js',
   output: {

@@ -7,12 +7,12 @@
     "test": "test"
   },
   "scripts": {
-    "build": "set NODE_ENV=production && webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "deploy": "git checkout master && npm run build && firebase login && firebase deploy && firebase logout && git checkout dev",
     "start": "firebase serve",
-    "start:watch": "set NODE_ENV=local && webpack-dev-server --inline",
-    "test": "set NODE_ENV=local && karma start --no-auto-watch",
-    "test:watch": "set NODE_ENV=local && karma start --auto-watch"
+    "start:watch": "cross-env NODE_ENV=production webpack-dev-server --inline",
+    "test": "cross-env NODE_ENV=local karma start --no-auto-watch",
+    "test:watch": "cross-env NODE_ENV=local karma start --auto-watch"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "babel-preset-airbnb": "^2.0.0",
     "camelcase": "^3.0.0",
     "chai": "^3.5.0",
+    "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "eslint": "^3.0.1",
     "eslint-config-airbnb": "^9.0.1",
