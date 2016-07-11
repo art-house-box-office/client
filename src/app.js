@@ -4,8 +4,8 @@ import services from './services';
 import router from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import ngDialog from 'ng-dialog';
-// import 'ng-dialog/css/ngDialog.css';   // These two are not working, See issue #1 
-// import 'ng-dialog/css/ngDialog-theme-default.css';
+import 'ng-dialog/css/ngDialog.css';
+import 'ng-dialog/css/ngDialog-theme-default.css';
 import 'angular-ui-router/release/stateEvents';
 
 const app = angular.module('app', [

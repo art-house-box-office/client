@@ -1,0 +1,35 @@
+<section class="credentials">
+  <p>Login</p>
+
+  <p class="error">{{$ctrl.error}}</p>
+
+  <form ng-submit="$ctrl.tryLogin()">
+    <input ng-model="$ctrl.loginForm.username"
+          placeholder="Username" />
+    <br>
+    <input ng-model="$ctrl.loginForm.password"
+          placeholder="Password" />
+    <br>
+    <input type="submit" value="Submit" />
+  </form>
+</section>
+
+<section class="credentials">
+  <p>Register</p>
+
+  <form ng-submit="$ctrl.tryRegister()">
+    <input ng-model="$ctrl.registerForm.email"
+          placeholder="Email" />
+    <br>
+    <input ng-model="$ctrl.registerForm.username"
+          placeholder="Username" />
+    <br>
+    <input ng-model="$ctrl.registerForm.password"
+          placeholder="Password" />
+    <br>
+    <input ng-model="$ctrl.registerForm.confirmPassword"
+          placeholder="Confirm Password" />
+    <br>
+    <input type="submit" value="Submit" />
+  </form>
+</section>
