@@ -11,8 +11,8 @@
     "deploy": "git checkout master && npm run build && firebase login && firebase deploy && firebase logout && git checkout dev",
     "start": "firebase serve",
     "start:watch": "cross-env NODE_ENV=development webpack-dev-server --inline",
-    "test": "cross-env NODE_ENV=local karma start --no-auto-watch",
-    "test:watch": "cross-env NODE_ENV=local karma start --auto-watch"
+    "test": "cross-env NODE_ENV=development karma start --no-auto-watch",
+    "test:watch": "cross-env NODE_ENV=development karma start --auto-watch"
   },
   "repository": {
     "type": "git",
