@@ -4,7 +4,7 @@ export default function userService(tokenSvc, $http, apiUrl) {
 
   const current = tokenSvc.get();
   if (current) {
-    $http.get(`${apiUrl}/auth/verify`)
+    $http.get(`${apiUrl}/verify`)
       .catch(() => tokenSvc.destroy());
   }
 
@@ -19,16 +19,17 @@ export default function userService(tokenSvc, $http, apiUrl) {
     },
 
     login(credentials) {
-      return $http.post(`${apiUrl}/auth/login`, credentials)
+      console.log('apiURL:', apiUrl);
+      return $http.post(`${apiUrl}/signin`, credentials)
         .then(result => {
-          tokenSvc.set(result.data.token);
+          tokenSvc.set(result.data.returnedToken);
         });
     },
 
     signup(credentials) {
-      return $http.post(`${apiUrl}/auth/signup`, credentials)
+      return $http.post(`${apiUrl}/signup`, credentials)
         .then(result => {
-          tokenSvc.set(result.data.token);
+          tokenSvc.set(result.data.returnedToken);
         });
     },
 

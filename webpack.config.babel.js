@@ -4,6 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import DotenvPlugin from 'webpack-dotenv-plugin';
 
 const dotenvFile = process.env.NODE_ENV === 'production' ? './.env' : './.env-dev';
+console.log('using env file:', dotenvFile);
 
 export default {
   entry: './src/index.js',
