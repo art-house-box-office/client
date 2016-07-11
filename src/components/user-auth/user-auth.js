@@ -12,23 +12,26 @@ export default {
     this.registerForm = {};
 
     this.tryLogin = () => {
-
-      userService.login(this.loginForm)
+      if (!this.loginForm.username || !this.loginForm.password) {
+        return this.error = 'Please Fill Out Both Fields';
+      }
+      return userService.login(this.loginForm)
         .then(() => this.success())
-// Make sure this is consistent with server error <<---<<---<<---<<---<<
-        .catch(err => this.error = err.data.message);
+// Make sure this is consistent with server error <<
+        .catch(err => this.error = err.data.error);
     };
 
     this.tryRegister = () => {
-      if (Object.keys(this.registerForm).length !== 4) {
+      if (!this.registerForm.email || !this.registerForm.username ||
+          !this.registerForm.password || !this.registerForm.confirmPassword) {
         return this.error = 'Please Fill Out All Fields';
       } else if (this.registerForm.password !== this.registerForm.confirmPassword) {
         return this.error = 'Passwords Do Not Match';
       } else {
         return userService.signup(this.registerForm)
           .then(() => this.success())
-  // Make sure this is consistent with server error <<---<<---<<---<<---<<
-          .catch(err => this.error = err.data.message);
+  // Make sure this is consistent with server error <<
+          .catch(err => this.error = err.data.error.message);
       } 
     };
   },

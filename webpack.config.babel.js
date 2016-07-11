@@ -3,6 +3,8 @@ import HtmlPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import DotenvPlugin from 'webpack-dotenv-plugin';
 
+const dotenvFile = process.env.NODE_ENV === 'production' ? './.env' : './.env-dev';
+
 export default {
   entry: './src/index.js',
   output: {
@@ -11,8 +13,8 @@ export default {
   },
   devtool: 'source-map',
   plugins: [
-    new DotenvPlugin({ sample: './.env' }),
-    new EnvironmentPlugin(['API_URL']),
+    new DotenvPlugin({ sample: dotenvFile, path: dotenvFile }),
+    new EnvironmentPlugin(['API_URL', 'TOKEN_NAME']),
     new ExtractTextPlugin('/styles/bundle.css'),
     new HtmlPlugin({ template: './src/index.html' }),
   ],
