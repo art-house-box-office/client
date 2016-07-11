@@ -1,5 +1,5 @@
-// import { EnvironmentPlugin } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { EnvironmentPlugin } from 'webpack';
+import HtmlPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import DotenvPlugin from 'webpack-dotenv-plugin';
 
@@ -7,17 +7,14 @@ export default {
   entry: './src/index.js',
   output: {
     path: './dist',
-    filename: 'scripts/bundle.js',
+    filename: '/scripts/bundle.js',
   },
   devtool: 'source-map',
   plugins: [
-    new DotenvPlugin({
-      sample: './.env',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-    new ExtractTextPlugin('styles/bundle.css'),
+    new DotenvPlugin({ sample: './.env' }),
+    new EnvironmentPlugin(['API_URL']),
+    new ExtractTextPlugin('/styles/bundle.css'),
+    new HtmlPlugin({ template: './src/index.html' }),
   ],
   module: {
     preLoaders: [
@@ -29,6 +26,14 @@ export default {
     ],
     loaders: [
       {
+        test: /\.html$/,
+        loader: 'html',
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!sass?sourceMap'),
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
@@ -36,14 +41,6 @@ export default {
           cacheDirectory: true,
           presets: ['airbnb'],
         },
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!sass?sourceMap'),
-      },
-      {
-        test: /\.html$/,
-        loader: 'html',
       },
       {
         test: /\.(jpg|png|gif|svg)$/i,
