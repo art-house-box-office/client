@@ -3,9 +3,7 @@ import HtmlPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import DotenvPlugin from 'webpack-dotenv-plugin';
 
-const dotenvFile = process.env.NODE_ENV === 'production' ? './.env' : './.env-local';
-
-console.log(process.env.NODE_ENV);
+const dotenvFile = process.env.NODE_ENV === 'production' ? './.env' : './.env-dev';
 
 export default {
   entry: './src/index.js',
