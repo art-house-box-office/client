@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "deploy": "git checkout master && npm run build && firebase login && firebase deploy && firebase logout",
     "start": "firebase serve",
     "start:watch": "webpack-dev-server --inline",

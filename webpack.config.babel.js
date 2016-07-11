@@ -33,17 +33,13 @@ export default {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['airbnb'],
           cacheDirectory: true,
+          presets: ['airbnb'],
         },
       },
       {
         test: /\.scss$/,
-        loader: 'style!css?sourceMap!sass?sourceMap',
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css',
+        loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!sass?sourceMap'),
       },
       {
         test: /\.html$/,
