@@ -7,12 +7,12 @@
     "test": "test"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack",
+    "build": "set NODE_ENV=production && webpack",
     "deploy": "git checkout master && npm run build && firebase login && firebase deploy && firebase logout && git checkout dev",
     "start": "firebase serve",
-    "start:watch": "NODE_ENV=local webpack-dev-server --inline",
-    "test": "NODE_ENV=local karma start --no-auto-watch",
-    "test:watch": "NODE_ENV=local karma start --auto-watch"
+    "start:watch": "set NODE_ENV=local && webpack-dev-server --inline",
+    "test": "set NODE_ENV=local && karma start --no-auto-watch",
+    "test:watch": "set NODE_ENV=local && karma start --auto-watch"
   },
   "repository": {
     "type": "git",
