@@ -1,4 +1,7 @@
-<main ng-class="$ctrl.style.account">
+<main ng-class="account.style.account">
   <h4>Please enter a new Company</h4>
-  Company Name: <input type="text" ng-model="$crtl.newAcct.companyName">
+  <form name="form" ng-submit="account.submit($event)">
+    Company Name: <input ng-model="account.newAcct.companyName" placeholder="Company Name">
+    <button type="submit">Add Company</button>
+  </form>
 </main>

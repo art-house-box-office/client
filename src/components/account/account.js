@@ -4,17 +4,16 @@ import style from './account.scss';
 export default {
   template,
   controllerAs: 'account',
-  bindings: {
-    add: '&',
-  },
   controller,
 };
 
-function controller() {
+controller.$inject = ['accountService'];
+
+function controller(accountService) {
   this.style = style;
-  this.submit = () => {
-    const company = this.company;
-    this.add({ company });
-    this.company = {};
+  this.submit = ($event) => {
+    const company = this.newAcct;
+    accountService.add(company);
+    $event.target.reset();
   };
 }
