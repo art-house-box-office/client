@@ -7,17 +7,17 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       url: '/',
       data: { requiresAuth: false },
       views: {
-        header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebar' },
+        header: { component: 'headerLoggedOut' },
+        sidebar: { component: 'sidebarTrends' },
         main: { component: 'landing' },
       },
     })
-    .state('dashboard', {
+    .state('trends', {
       url: '/dash',
       data: { requiresAuth: true },
       views: {
-        header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebar' },
+        header: { component: 'headerLoggedIn' },
+        sidebar: { component: 'sidebarTrends' },
         main: { template: '<h1>Neo said that he got in or something</h1>' },
       },
     });
