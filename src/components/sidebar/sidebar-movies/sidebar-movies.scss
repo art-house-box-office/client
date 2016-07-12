@@ -1,0 +1,27 @@
+:local(.sidebar) {
+  position: fixed;
+  top: 35px;
+  left: -15px;
+  font-size: 0.8em;
+  background: #6e6e6e;
+  width: 100px;
+  height: 105%;
+  padding: 5px 15px 5px 25px;
+  color: #fff;
+  z-index: 1;
+
+  section {
+
+    ul {
+      li {
+        padding: 5px 0;
+      }
+    }
+  }
+}
+
+div.buffer-sidebar {
+  width: 130px;
+  height: 92vh;
+  float: left;
+}

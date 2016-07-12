@@ -7,26 +7,35 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       url: '/',
       data: { requiresAuth: false },
       views: {
-        header: { component: 'headerLoggedIn' },
+        header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarTrends' },
         main: { component: 'landing' },
       },
     })
     .state('trends', {
       url: '/trends',
-      data: { requiresAuth: true },
+      data: { requiresAuth: false },
       views: {
-        header: { component: 'headerLoggedIn' },
+        header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarTrends' },
-        main: { template: '<h1>Neo said that he got in or something</h1>' },
+        main: { template: '<h1>Trends (Public)</h1>' },
       },
     })
     .state('account', {
       url: '/account',
       data: { requiresAuth: true },
       views: {
-        header: { component: 'headerLoggedIn' },
+        header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarTrends' },
+        main: { component: 'account' },
+      },
+    })
+    .state('my-movies', {
+      url: '/mymovies',
+      data: { requiresAuth: true },
+      views: {
+        header: { component: 'headerComponent' },
+        sidebar: { component: 'sidebarMovies' },
         main: { component: 'account' },
       },
     });
