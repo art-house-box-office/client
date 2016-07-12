@@ -3,8 +3,10 @@ import style from './header-logged-in.scss';
 
 export default {
   template,
-  controller($state) {
+  controller($state, userService) {
     this.style = style;
     this.$state = $state;
+
+    this.logout = () => userService.logout();
   }, 
 };
