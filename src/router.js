@@ -7,13 +7,13 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       url: '/',
       data: { requiresAuth: false },
       views: {
-        header: { component: 'headerLoggedOut' },
+        header: { component: 'headerLoggedIn' },
         sidebar: { component: 'sidebarTrends' },
         main: { component: 'landing' },
       },
     })
     .state('trends', {
-      url: '/dash',
+      url: '/trends',
       data: { requiresAuth: true },
       views: {
         header: { component: 'headerLoggedIn' },
