@@ -1,5 +1,5 @@
-import template from './header.html';
-import style from './header.scss';
+import template from './header-logged-out.html';
+import style from './header-logged-out.scss';
 
 export default {
   template,
