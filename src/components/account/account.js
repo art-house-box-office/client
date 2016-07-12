@@ -3,7 +3,18 @@ import style from './account.scss';
 
 export default {
   template,
-  controller() {
-    this.style = style;
+  controllerAs: 'account',
+  bindings: {
+    add: '&',
   },
+  controller,
 };
+
+function controller() {
+  this.style = style;
+  this.submit = () => {
+    const company = this.company;
+    this.add({ company });
+    this.company = {};
+  };
+}
