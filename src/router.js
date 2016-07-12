@@ -18,7 +18,16 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarTrends' },
-        main: { template: '<h1>Trends (Public)</h1>' },
+        main: { component: 'trends' },
+      },
+    })
+    .state('query', {
+      url: '/query',
+      data: { requiresAuth: false },
+      views: {
+        header: { component: 'headerComponent' },
+        sidebar: { component: 'sidebarQuery' },
+        main: { component: 'query' },
       },
     })
     .state('account', {
@@ -36,7 +45,7 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarMovies' },
-        main: { component: 'account' },
+        main: { component: 'myMovies' },
       },
     });
 

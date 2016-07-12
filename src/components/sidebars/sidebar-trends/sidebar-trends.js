@@ -1,5 +1,5 @@
 import template from './sidebar-trends.html';
-import style from './sidebar-trends.scss';
+import style from '../sidebar.scss';
 
 export default {
   template,

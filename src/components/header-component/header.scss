@@ -37,6 +37,10 @@ $nav-hover-color: #fff;
         a:hover {
           color: $nav-hover-color;
         }
+        a.active {
+          color: $nav-hover-color;
+          border-bottom: 2px solid $nav-hover-color;
+        }
       }
     }
   }

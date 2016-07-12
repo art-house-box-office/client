@@ -1,5 +1,5 @@
 import template from './sidebar-movies.html';
-import style from './sidebar-movies.scss';
+import style from '../sidebar.scss';
 
 export default {
   template,
