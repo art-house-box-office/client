@@ -16,15 +16,13 @@ export default {
       this.tryLogin = (loginData) => {
         userService.login(loginData)
           .then(() => this.success())
-          // TODO: Make sure this is consistent with server error <<
-          .catch(err => this.loginServerError = err.data.error);
+          .catch(err => this.loginServerError = err.data.msg);
       };
 
       this.tryRegister = (registerData) => {
         userService.signup(registerData)
           .then(() => this.success())
-          // TODO: Make sure this is consistent with server error <<
-          .catch(err => this.registerServerError = err.data.error);
+          .catch(err => this.registerServerError = err.data.msg);
       };
     },
   ],
