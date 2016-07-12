@@ -1,9 +1,11 @@
 <main ng-class="account.style.account">
-  <h4>Please enter a new Company</h4>
-  <form name="companyForm" ng-submit="account.submit($event)">
-    Company Name: <input ng-model="account.newAcct.companyName" placeholder="Company Name">
-    <button type="submit">Add Company</button>
-  </form>
+  <div>
+    <h4>Please enter a new Company</h4>
+    <form name="companyForm" ng-submit="account.submit($event)">
+      Company Name: <input ng-model="account.newAcct.companyName" placeholder="Company Name">
+      <button type="submit">Add Company</button>
+    </form>
+  </div>
     <h6>Enter your location</h6>
   <form name="locationForm" ng-submit="account.submitLoc($event)">
     Name: <input ng-model="account.newAcct.locationName" placeholder="Location Name"><br>
