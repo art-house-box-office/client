@@ -7,8 +7,8 @@ export default function auth($rootScope, userSvc, ngDialog, $state) {
     if (toState.data && toState.data.requiresAuth && !userSvc.isAuthenticated()) {
 
       event.preventDefault();
-        
-      const dialog = ngDialog.open({ 
+
+      const dialog = ngDialog.open({
         template: '<user-auth success="success()"></user-auth>',
         plain: true,
         controller($scope) {
@@ -18,7 +18,7 @@ export default function auth($rootScope, userSvc, ngDialog, $state) {
           };
         },
       });
-      
+
       dialog.closePromise
         .catch(err => console.log(`failure!\n\n ${err}`));
     }
