@@ -20,6 +20,15 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         sidebar: { component: 'sidebarTrends' },
         main: { template: '<h1>Neo said that he got in or something</h1>' },
       },
+    })
+    .state('account', {
+      url: '/account',
+      data: { requiresAuth: true },
+      views: {
+        header: { component: 'headerLoggedIn' },
+        sidebar: { component: 'sidebarTrends' },
+        main: { component: 'account' },
+      },
     });
 
   $urlRouterProvider.otherwise('/');
