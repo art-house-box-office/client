@@ -16,4 +16,9 @@ function controller(accountService) {
     accountService.add(company);
     $event.target.reset();
   };
+  this.submitLoc = ($event) => {
+    const location = this.newAcct;
+    accountService.addLoc(location);
+    $event.target.reset();
+  };
 }

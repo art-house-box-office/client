@@ -33,5 +33,11 @@ export default function accountService($http, apiUrl) {
       .delete(`${apiUrl}/companies/${companyId}`)
       .then(r => r.data);
     },
+    // add Location
+    addLoc(location) {
+      return $http
+      .post(`${apiUrl}/location`, location)
+      .then(r => r.data);
+    },
   };
 }
