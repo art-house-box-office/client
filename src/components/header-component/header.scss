@@ -1,3 +1,5 @@
+@import 'colors';
+
 $nav-color: #cfcfcf;
 $nav-hover-color: #fff;
 
@@ -38,8 +40,9 @@ $nav-hover-color: #fff;
           color: $nav-hover-color;
         }
         a.active {
-          color: $nav-hover-color;
-          border-bottom: 2px solid $nav-hover-color;
+          color: $accent-color;
+          border-bottom: 1px solid $accent-color;
+          padding-bottom: 3px;
         }
       }
     }

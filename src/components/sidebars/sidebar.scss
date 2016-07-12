@@ -1,3 +1,5 @@
+@import 'colors';
+
 :local(.sidebar) {
   position: fixed;
   top: 35px;
@@ -15,6 +17,14 @@
     ul {
       li {
         padding: 5px 0;
+
+        a {
+          color: $accent-color;
+        }
+        p {
+          margin: 0;
+          font-size: 0.8em;
+        }
       }
     }
   }
