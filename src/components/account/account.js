@@ -18,6 +18,12 @@ function controller(accountService, $window) {
   accountService.getCompanyByUserId(this.currentUserId)
     .then(r => this.companyName = r);
 
+  this.fetchLocations = () => { 
+    return accountService.getLocationsByUserId(this.currentUserId)
+      .then(r => this.locations = r)
+      
+  };
+
   this.locationEditing = false;
 
   this.submit = ($event) => {
@@ -29,7 +35,8 @@ function controller(accountService, $window) {
 
   this.submitLocation = ($event) => {
     const locationData = this.newAcct;
-    event.target.reset();
+    accountService.addLocation(locationData);
+    $event.target.reset();
   };
 
 

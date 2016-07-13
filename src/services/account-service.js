@@ -35,16 +35,10 @@ export default function accountService($http, apiUrl, $window) {
       .then(id => {
         return $http
           .put(`${apiUrl}/users/${userId}`, { company: id })
-          .then(r => console.log('success'));
+          .then(r => r.data);
       });
+    },
 
-    },
-    // update Company
-    update(companyId) {
-      return $http
-      .update(`${apiUrl}/companies/${companyId}`)
-      .then(r => r.data);
-    },
     // delete Company
     delete(companyId) {
       return $http
@@ -52,10 +46,38 @@ export default function accountService($http, apiUrl, $window) {
       .then(r => r.data);
     },
     // add Location
-    addLoc(location) {
+    addLocation(location) { 
+      const userId = $window.localStorage.getItem('userID');
       return $http
-      .post(`${apiUrl}/locations`, location)
-      .then(r => r.data);
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(companyId => {
+          location.company = companyId;
+          return $http
+            .post(`${apiUrl}/locations`, location)
+            .then(r => r.data._id)
+            .then(locId => {
+              return $http 
+                .put(`${apiUrl}/companies/${companyId}`, { locations: locId })
+                .then(r => console.log(r.data));
+            });
+        });
     },
+
+
+    // Get Location by User Id
+    getLocationsByUserId(userId) {
+      console.log('start fetch');
+      return $http
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(companyId => {
+          return $http
+            .get(`${apiUrl}/companies/${companyId}`)
+            .then(r => r.data.locations);
+        });
+
+    },
+
   };
 }

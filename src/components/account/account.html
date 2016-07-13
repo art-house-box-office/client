@@ -1,4 +1,5 @@
-<main ng-class="account.style.account">
+<main ng-class="account.style.account"
+      ng-init="account.fetchLocations()">
   <h3>{{account.currentUser}}</h3>
   <div>
     <p>Company Name: {{account.companyName}}</p>
@@ -12,15 +13,15 @@
           ng-click="account.locationEditing = true">Add New Location</button>
   <div ng-if="account.locationEditing">
     <p>New Location</p>
-    <form name="locationForm" ng-submit="account.submitLoc($event)">
-      Name: <input ng-model="account.newAcct.locationName" placeholder="Location Name"><br>
-      Address: <input ng-model="account.newAcct.locationAddress" placeholder="Address"><br>
-      City: <input ng-model="account.newAcct.locationCity" placeholder="City"><br>
-      State: <input ng-model="account.newAcct.locationState" placeholder="State"><br>
-      Zip: <input ng-model="account.newAcct.locationZip" placeholder="Zip"><br>
-      Country: <input ng-model="account.newAcct.locationCountry" placeholder="Country"><br>
-      Theaters: <input ng-model="account.newAcct.locationTheaters" placeholder="Theaters"><br>
+    <form name="locationForm" ng-submit="account.submitLocation($event)">
+      Name: <input ng-model="account.newAcct.name" placeholder="Location Name"><br>
+      Address: <input ng-model="account.newAcct.address" placeholder="Address"><br>
+      City: <input ng-model="account.newAcct.city" placeholder="City"><br>
+      State: <input ng-model="account.newAcct.state" placeholder="State"><br>
+      Zip: <input ng-model="account.newAcct.zip" placeholder="Zip"><br>
+      Country: <input ng-model="account.newAcct.country" placeholder="Country"><br>
       <button type="submit">Add Location</button>
     </form>
   </div>
+  {{account.locations}}
 </main>
