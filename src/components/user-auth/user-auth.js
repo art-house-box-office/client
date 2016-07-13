@@ -6,33 +6,24 @@ export default {
   bindings: {
     success: '&',
   },
-  controller(userService) {
-    this.style = style;
-    this.loginForm = {};
-    this.registerForm = {};
+  controller: [
+    'userService',
+    function controller(userService) {
+      this.style = style;
+      this.loginServerError = '';
+      this.registerServerError = '';
 
-    this.tryLogin = () => {
-      if (!this.loginForm.username || !this.loginForm.password) {
-        return this.error = 'Please Fill Out Both Fields';
-      }
-      return userService.login(this.loginForm)
-        .then(() => this.success())
-// Make sure this is consistent with server error <<
-        .catch(err => this.error = err.data.error);
-    };
-
-    this.tryRegister = () => {
-      if (!this.registerForm.email || !this.registerForm.username ||
-          !this.registerForm.password || !this.registerForm.confirmPassword) {
-        return this.error = 'Please Fill Out All Fields';
-      } else if (this.registerForm.password !== this.registerForm.confirmPassword) {
-        return this.error = 'Passwords Do Not Match';
-      } else {
-        return userService.signup(this.registerForm)
+      this.tryLogin = (loginData) => {
+        userService.login(loginData)
           .then(() => this.success())
-  // Make sure this is consistent with server error <<
-          .catch(err => this.error = err.data.error.message);
-      } 
-    };
-  },
+          .catch(err => this.loginServerError = err.data.msg);
+      };
+
+      this.tryRegister = (registerData) => {
+        userService.signup(registerData)
+          .then(() => this.success())
+          .catch(err => this.registerServerError = err.data.msg);
+      };
+    },
+  ],
 };
