@@ -25,7 +25,7 @@
   </div>
   <ul>
     <li ng-repeat="location in account.locations">
-      <div ng-if="!account.locationEditing" ng-init="account.locationEditing = false">
+      <div ng-if="!account.isActive($index)">
         {{$index}}
         <p>{{location.name}}</p>
         <p>{{location.address}}</p>
@@ -33,7 +33,7 @@
         <p>{{location.state}}</p>
         <p>{{location.zip}}</p>
       </div>
-      <form ng-if="account.locationEditing" ng-submit="account.editLocation($index)">
+      <form ng-if="account.isActive($index)" ng-submit="account.editLocation($index)">
         <input ng-model="location.name"><br>
         <input ng-model="location.address"><br>
         <input ng-model="location.city"><br>
@@ -41,7 +41,7 @@
         <input ng-model="location.zip"><br>
         <button type="submit">Submit This</button>
       </form>
-      <button ng-if="!account.locationEditing" ng-click="account.locationEditing = true">Edit</button>
+      <button ng-if="!account.isActive($index)" ng-click="account.activateEdit($index)">Edit</button>
       <hr>
     </li>
   </ul>

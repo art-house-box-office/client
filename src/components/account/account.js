@@ -55,10 +55,17 @@ function controller(accountService, $window) {
       country: loc.country,
     };
     accountService.editLocation(putData, loc._id);
-    this.locationEditing = false;
+    this.activeIndex = null;
 
 
   };
 
+  this.activateEdit = (index) => {
+    this.activeIndex = index;
+  };
+
+  this.isActive = (index) => {
+    return this.activeIndex === index;
+  };
 
 }
