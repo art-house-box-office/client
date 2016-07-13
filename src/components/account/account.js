@@ -26,7 +26,7 @@ function controller(accountService, $window) {
 
   };
 
-  this.locationEditing = false;
+  this.locationAdding = false;
 
   this.submit = ($event) => {
     const company = this.companyInput;
@@ -40,6 +40,7 @@ function controller(accountService, $window) {
     accountService.addLocation(locationData);
     this.locations.push(locationData);
     $event.target.reset();
+    this.locationAdding = false;
   };
 
 

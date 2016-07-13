@@ -3,15 +3,15 @@
   <h3>{{account.currentUser}}</h3>
   <div>
     <p>Company Name: {{account.companyName}}</p>
-    <form ng-if="!account.companyName" name="companyForm" 
+    <form ng-if="!account.companyName" name="companyForm"
           ng-submit="account.submit($event)">
       <input ng-model="account.companyInput" placeholder="Company Name">
       <button type="submit">Add Company</button>
     </form>
   </div>
-  <button ng-if="!account.locationEditing"
-          ng-click="account.locationEditing = true">Add New Location</button>
-  <div ng-if="account.locationEditing">
+  <button ng-if="!account.locationAdding"
+          ng-click="account.locationAdding = true">Add New Location</button>
+  <div ng-if="account.locationAdding">
     <p>New Location</p>
     <form name="locationForm" ng-submit="account.submitLocation($event)">
       Name: <input ng-model="account.newAcct.name" placeholder="Location Name"><br>
@@ -25,6 +25,7 @@
   </div>
   <ul>
     <li ng-repeat="location in account.locations">
+      <button type="submit">Edit</button>
       <p>{{location.name}}</p>
       <p>{{location.address}}</p>
       <p>{{location.city}}</p>
