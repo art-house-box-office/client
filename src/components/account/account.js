@@ -43,11 +43,21 @@ function controller(accountService, $window) {
     this.locationAdding = false;
   };
 
-  this.editLocation = ($event) => {
-    const locationData = this.newAcct;
-    // accountService.editLocation()
-    console.log('I got here!');
+  this.editLocation = (index) => {
+    console.dir(this.locations[index]);
+    const loc = this.locations[index];
+    const putData = {
+      name: loc.name,
+      address: loc.address,
+      city: loc.city,
+      state: loc.state,
+      zip: loc.zip,
+      country: loc.country,
+    };
+    accountService.editLocation(putData, loc._id);
     this.locationEditing = false;
+
+
   };
 
 

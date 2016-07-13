@@ -65,9 +65,10 @@ export default function accountService($http, apiUrl, $window) {
     },
 
     // edit Location
-    editLocation(location) {
-      return $http.put(`${apiUrl}/locations/${locationId}`, location)
-        .then(r => r.data);
+    editLocation(locationData, locationId) {
+      // return $http.put(`${apiUrl}/locations/${locationId}`, locationData)
+      //   .then(r => r.data);
+      console.log(locationData, locationId);
 
     },
 
