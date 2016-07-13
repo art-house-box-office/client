@@ -54,7 +54,7 @@ function controller(accountService, $window) {
       country: loc.country,
     };
     accountService.editLocation(putData, loc._id);
-    this.activeIndex = null;
+    this.activeIndex = -1;
 
 
   };
