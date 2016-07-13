@@ -24,6 +24,7 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
     .state('query', {
       url: '/query',
       data: { requiresAuth: false },
+      resolve: { info: ['screeningService', screeningService => screeningService.agg()] },
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarQuery' },
