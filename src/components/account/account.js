@@ -20,7 +20,7 @@ function controller(accountService, $window) {
 
   this.fetchLocations = () => { 
     return accountService.getLocationsByUserId(this.currentUserId)
-      .then(r => this.locations = r)
+      .then(r => this.locations = r);
       
   };
 
@@ -36,6 +36,7 @@ function controller(accountService, $window) {
   this.submitLocation = ($event) => {
     const locationData = this.newAcct;
     accountService.addLocation(locationData);
+    this.locations.push(locationData);
     $event.target.reset();
   };
 

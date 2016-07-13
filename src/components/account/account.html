@@ -23,5 +23,14 @@
       <button type="submit">Add Location</button>
     </form>
   </div>
-  {{account.locations}}
+  <ul>
+    <li ng-repeat="location in account.locations">
+      <p>{{location.name}}</p>
+      <p>{{location.address}}</p>
+      <p>{{location.city}}</p>
+      <p>{{location.state}}</p>
+      <p>{{location.zip}}</p>
+      <hr>
+    </li>
+  </ul>
 </main>

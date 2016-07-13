@@ -59,7 +59,7 @@ export default function accountService($http, apiUrl, $window) {
             .then(locId => {
               return $http 
                 .put(`${apiUrl}/companies/${companyId}`, { locations: locId })
-                .then(r => console.log(r.data));
+                .then(r => r.data);
             });
         });
     },
@@ -73,8 +73,8 @@ export default function accountService($http, apiUrl, $window) {
         .then(r => r.data.company._id)
         .then(companyId => {
           return $http
-            .get(`${apiUrl}/companies/${companyId}`)
-            .then(r => r.data.locations);
+            .get(`${apiUrl}/locations/bycompany/${companyId}`)
+            .then(r => r.data);
         });
 
     },
