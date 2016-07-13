@@ -44,7 +44,6 @@ function controller(accountService, $window) {
   };
 
   this.editLocation = (index) => {
-    console.dir(this.locations[index]);
     const loc = this.locations[index];
     const putData = {
       name: loc.name,
@@ -66,6 +65,14 @@ function controller(accountService, $window) {
 
   this.isActive = (index) => {
     return this.activeIndex === index;
+  };
+
+  this.deleteLocation = (index) => {
+    console.log(index, this.locations[index], 'This is me!');
+    const loc = this.locations[index];
+    accountService.deleteLocation(loc._id);
+    const found = this.locations[index];
+    this.locations.splice(index, 1);
   };
 
 }

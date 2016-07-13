@@ -72,6 +72,11 @@ export default function accountService($http, apiUrl, $window) {
 
     },
 
+    // delete Location
+    deleteLocation(locationId) {
+      return $http.delete(`${apiUrl}/locations/${locationId}`)
+        .then(r => r.data);
+    },
 
     // Get Location by User Id
     getLocationsByUserId(userId) {

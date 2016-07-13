@@ -40,6 +40,7 @@
         <input ng-model="location.state"><br>
         <input ng-model="location.zip"><br>
         <button type="submit">Submit This</button>
+        <button ng-click="account.deleteLocation($index)">Delete This</button>
       </form>
       <button ng-if="!account.isActive($index)" ng-click="account.activateEdit($index)">Edit</button>
       <hr>
