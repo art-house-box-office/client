@@ -2,47 +2,48 @@
       ng-init="account.fetchLocations()">
   <h3>{{account.currentUser}}</h3>
   <div>
-    <p>Company Name: {{account.companyName}}</p>
+    <p>Company: {{account.companyName}}</p>
     <form ng-if="!account.companyName" name="companyForm"
-          ng-submit="account.submit($event)">
+          ng-submit="account.submitCompany($event)">
       <input ng-model="account.companyInput" placeholder="Company Name">
       <button type="submit">Add Company</button>
     </form>
   </div>
-  <button ng-if="!account.locationAdding"
+  <button ng-init="account.locationAdding = false"
+          ng-if="!account.locationAdding"
           ng-click="account.locationAdding = true">Add New Location</button>
   <div ng-if="account.locationAdding">
     <p>New Location</p>
     <form name="locationForm" ng-submit="account.submitLocation($event)">
-      Name: <input ng-model="account.newAcct.name" placeholder="Location Name"><br>
-      Address: <input ng-model="account.newAcct.address" placeholder="Address"><br>
-      City: <input ng-model="account.newAcct.city" placeholder="City"><br>
-      State: <input ng-model="account.newAcct.state" placeholder="State"><br>
-      Zip: <input ng-model="account.newAcct.zip" placeholder="Zip"><br>
-      Country: <input ng-model="account.newAcct.country" placeholder="Country"><br>
+      Name: <input ng-model="account.newLocation.name" placeholder="Location Name"><br>
+      Address: <input ng-model="account.newLocation.address" placeholder="Address"><br>
+      City: <input ng-model="account.newLocation.city" placeholder="City"><br>
+      State: <input ng-model="account.newLocation.state" placeholder="State"><br>
+      Zip: <input ng-model="account.newLocation.zip" placeholder="Zip"><br>
+      Country: <input ng-model="account.newLocation.country" placeholder="Country"><br>
       <button type="submit">Add Location</button>
     </form>
   </div>
   <ul>
     <li ng-repeat="location in account.locations">
       <div ng-if="!account.isActive($index)">
-        {{$index}}
         <p>{{location.name}}</p>
         <p>{{location.address}}</p>
         <p>{{location.city}}</p>
         <p>{{location.state}}</p>
         <p>{{location.zip}}</p>
       </div>
-      <form ng-if="account.isActive($index)" ng-submit="account.editLocation($index)">
-        <input ng-model="location.name"><br>
-        <input ng-model="location.address"><br>
-        <input ng-model="location.city"><br>
-        <input ng-model="location.state"><br>
-        <input ng-model="location.zip"><br>
-        <button type="submit">Submit This</button>
-        <button ng-click="account.deleteLocation($index); account.activateEdit(-1)">Delete This</button>
+      <form ng-if="account.isActive($index)" 
+            ng-submit="account.editLocation($index, $event)">
+        <label>Name</label><input ng-model="location.name"><br>
+        <label>Address</label><input ng-model="location.address"><br>
+        <label>City</label><input ng-model="location.city"><br>
+        <label>State</label><input ng-model="location.state"><br>
+        <label>Zip</label><input ng-model="location.zip"><br>
+        <button type="submit">Done</button>
+        <button ng-click="account.deleteLocation($index); account.changeActive(-1)">Delete Location</button>
       </form>
-      <button ng-if="!account.isActive($index)" ng-click="account.activateEdit($index)">Edit</button>
+      <button ng-if="!account.isActive($index)" ng-click="account.changeActive($index)">Edit</button>
       <hr>
     </li>
   </ul>

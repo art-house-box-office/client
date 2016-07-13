@@ -16,19 +16,16 @@ function controller(accountService, $window) {
 
   this.currentUser = $window.localStorage.getItem('user');
   this.currentUserId = $window.localStorage.getItem('userID');
-
+  // Fetches company by current user on load
   accountService.getCompanyByUserId(this.currentUserId)
     .then(r => this.companyName = r);
 
   this.fetchLocations = () => {
     return accountService.getLocationsByUserId(this.currentUserId)
       .then(r => this.locations = r);
-
   };
 
-  this.locationAdding = false;
-
-  this.submit = ($event) => {
+  this.submitCompany = ($event) => {
     const company = this.companyInput;
     accountService.add(company);
     this.companyName = company;
@@ -36,14 +33,15 @@ function controller(accountService, $window) {
   };
 
   this.submitLocation = ($event) => {
-    const locationData = this.newAcct;
+    const locationData = this.newLocation;
     accountService.addLocation(locationData);
     this.locations.push(locationData);
+    this.newLocation = {};
     $event.target.reset();
     this.locationAdding = false;
   };
 
-  this.editLocation = (index) => {
+  this.editLocation = (index, $event) => {
     const loc = this.locations[index];
     const putData = {
       name: loc.name,
@@ -54,12 +52,10 @@ function controller(accountService, $window) {
       country: loc.country,
     };
     accountService.editLocation(putData, loc._id);
-    this.activeIndex = -1;
-
-
+    $event.target.reset();
   };
 
-  this.activateEdit = (index) => {
+  this.changeActive = (index) => {
     this.activeIndex = index;
   };
 
@@ -68,10 +64,8 @@ function controller(accountService, $window) {
   };
 
   this.deleteLocation = (index) => {
-    console.log(index, this.locations[index], 'This is me!');
     const loc = this.locations[index];
     accountService.deleteLocation(loc._id);
-    const found = this.locations[index];
     this.locations.splice(index, 1);
   };
 
