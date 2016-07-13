@@ -1,6 +1,6 @@
-accountService.$inject = ['$http', 'apiUrl'];
+accountService.$inject = ['$http', 'apiUrl', '$window'];
 
-export default function accountService($http, apiUrl) {
+export default function accountService($http, apiUrl, $window) {
 
   return {
     // all Companies
@@ -15,18 +15,30 @@ export default function accountService($http, apiUrl) {
       .get(`${apiUrl}/companies/${companyId}`)
       .then(r => r.data);
     },
-    // add Company
+    // get company by user ID
+    getCompanyByUserId(userId) {
+      return $http
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(company => {
+          return $http
+            .get(`${apiUrl}/companies/${company}`)
+            .then(r => r.data.name);
+        });
+    },
+    // add Company and updates current User field: company
     add(company) {
+      const userId = $window.localStorage.getItem('userID');
       return $http
-      .post(`${apiUrl}/company`, company)
-      .then(r => r.data);
+      .post(`${apiUrl}/companies`, { name: company })
+      .then(r => r.data._id)
+      .then(id => {
+        return $http
+          .put(`${apiUrl}/users/${userId}`, { company: id })
+          .then(r => r.data);
+      });
     },
-    // update Company
-    update(companyId) {
-      return $http
-      .update(`${apiUrl}/companies/${companyId}`)
-      .then(r => r.data);
-    },
+
     // delete Company
     delete(companyId) {
       return $http
@@ -34,10 +46,38 @@ export default function accountService($http, apiUrl) {
       .then(r => r.data);
     },
     // add Location
-    addLoc(location) {
+    addLocation(location) { 
+      const userId = $window.localStorage.getItem('userID');
       return $http
-      .post(`${apiUrl}/location`, location)
-      .then(r => r.data);
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(companyId => {
+          location.company = companyId;
+          return $http
+            .post(`${apiUrl}/locations`, location)
+            .then(r => r.data._id)
+            .then(locId => {
+              return $http 
+                .put(`${apiUrl}/companies/${companyId}`, { locations: locId })
+                .then(r => r.data);
+            });
+        });
     },
+
+
+    // Get Location by User Id
+    getLocationsByUserId(userId) {
+      console.log('start fetch');
+      return $http
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(companyId => {
+          return $http
+            .get(`${apiUrl}/locations/bycompany/${companyId}`)
+            .then(r => r.data);
+        });
+
+    },
+
   };
 }
