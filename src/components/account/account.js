@@ -43,5 +43,12 @@ function controller(accountService, $window) {
     this.locationAdding = false;
   };
 
+  this.editLocation = ($event) => {
+    const locationData = this.newAcct;
+    // accountService.editLocation()
+    console.log('I got here!');
+    this.locationEditing = false;
+  };
+
 
 }

@@ -25,12 +25,22 @@
   </div>
   <ul>
     <li ng-repeat="location in account.locations">
-      <button type="submit">Edit</button>
-      <p>{{location.name}}</p>
-      <p>{{location.address}}</p>
-      <p>{{location.city}}</p>
-      <p>{{location.state}}</p>
-      <p>{{location.zip}}</p>
+      <div ng-if="!account.locationEditing" ng-init="account.locationEditing = false">
+        <p>{{location.name}}</p>
+        <p>{{location.address}}</p>
+        <p>{{location.city}}</p>
+        <p>{{location.state}}</p>
+        <p>{{location.zip}}</p>
+      </div>
+      <form ng-if="account.locationEditing" ng-submit="account.editLocation()">
+        <input ng-model="location.name"><br>
+        <input ng-model="location.address"><br>
+        <input ng-model="location.city"><br>
+        <input ng-model="location.state"><br>
+        <input ng-model="location.zip"><br>
+        <button type="submit">Submit This</button>
+      </form>
+      <button ng-click="account.locationEditing = true">Edit</button>
       <hr>
     </li>
   </ul>
