@@ -4,7 +4,7 @@ import style from './query.scss';
 export default {
   template,
   bindings: {
-    data: '<',
+    info: '<',
   },
   controller() {
     this.style = style;

@@ -36,8 +36,11 @@ export default function screeningService($http, apiUrl) {
     // aggregated results
     agg() {
       return $http
-      .get(`${apiUrl}/screeings/agg`)
-      .then(r => r.data);
+      .get(`${apiUrl}/screenings/agg`)
+      .then(r => {
+        // console.log(r.data);
+        return r.data;
+      });
     },
   };
 }
