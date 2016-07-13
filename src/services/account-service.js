@@ -63,8 +63,6 @@ export default function accountService($http, apiUrl, $window) {
     editLocation(locationData, locationId) {
       return $http.put(`${apiUrl}/locations/${locationId}`, locationData)
         .then(r => r.data);
-
-
     },
 
     // delete Location
@@ -75,7 +73,6 @@ export default function accountService($http, apiUrl, $window) {
 
     // Get Location by User Id
     getLocationsByUserId(userId) {
-      console.log('start fetch');
       return $http
         .get(`${apiUrl}/users/${userId}`)
         .then(r => r.data.company._id)
@@ -84,7 +81,18 @@ export default function accountService($http, apiUrl, $window) {
             .get(`${apiUrl}/locations/bycompany/${companyId}`)
             .then(r => r.data);
         });
+    },
 
+    addRoom(room) {
+      return $http
+        .post(`${apiUrl}/theaters`, room)
+        .then(r => r.data);
+    },
+
+    getRooms(locId) {
+      return $http
+        .get(`${apiUrl}/theaters/bylocation/${locId}`)
+        .then(r => r.data);
     },
 
   };

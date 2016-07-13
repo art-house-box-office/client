@@ -32,6 +32,26 @@
         <p>{{location.city}}</p>
         <p>{{location.state}}</p>
         <p>{{location.zip}}</p>
+        <button ng-if="!account.isActive($index)"
+                ng-click="account.changeActive($index)">Edit</button>
+        <p>Rooms:  
+          <button ng-if="!location.rooms"
+                  ng-click="account.fetchRooms($index)">Show Rooms
+          </button>
+        </p>
+        <div ng-repeat="room in location.rooms">
+          <p>Name: {{room.name}} - Total Seats: {{room.seats}}</p>
+        </div>
+        <form ng-if="account.isActiveRoom($index)"
+              ng-submit="account.submitRoom($index)">
+          <input ng-model="account.newRoom.name"
+                 placeholder="Room Name (i.e. Auditorium 8)">
+          <input ng-model="account.newRoom.seats"
+                 placeholder="Number of Available Seats">
+          <button type="submit">Add Room</button>       
+        </form>
+        <button ng-click="account.changeActiveRoom($index)"
+                ng-if="!account.isActiveRoom($index)">Add New Room</button>
       </div>
       <form ng-if="account.isActive($index)" 
             ng-submit="account.editLocation($index)">
@@ -43,7 +63,7 @@
         <button type="submit">Done</button>
         <button ng-click="account.deleteLocation($index); account.changeActive(-1)">Delete Location</button>
       </form>
-      <button ng-if="!account.isActive($index)" ng-click="account.changeActive($index)">Edit</button>
+      
       <hr>
     </li>
   </ul>
