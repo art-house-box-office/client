@@ -5,6 +5,8 @@ export default {
   template,
   controller: ['movieService', 'screeningService', function (movieService, screeningService) {
     this.style = style;
-    this.foo = 'foo';
+    movieService.getAll()
+      .then(movies => this.movies = movies);
+      
   }],
 };
