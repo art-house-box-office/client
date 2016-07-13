@@ -34,11 +34,10 @@ export default function screeningService($http, apiUrl) {
       .then(r => r.data);
     },
     // aggregated results
-    agg() {
+    agg(params) {
       return $http
-      .get(`${apiUrl}/screenings/agg`)
+      .get(`${apiUrl}/screenings/agg`, params)
       .then(r => {
-        // console.log(r.data);
         return r.data;
       });
     },

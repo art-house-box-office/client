@@ -1,9 +1,8 @@
 <main ng-class="$ctrl.style.query">
   <h3>Here is some useful information</h3>
-  <p>
-
-  </p>
-  <summary info="$ctrl.info"></summary>
+  <button ng-click="$ctrl.addquery()">New Query</button>
+  <query-row ng-repeat="query in $ctrl.arrayOfQueries" queryitem="query" remove="$ctrl.removequery(query)"></query-row>
+  <summary ng-repeat="sum in $ctrl.arrayOfQueries" info="sum"></summary>
 
   <chart info="$ctrl.info"><chart>
 </main>

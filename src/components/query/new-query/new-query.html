@@ -1,0 +1,71 @@
+<div class={{$ctrl.styles.newquery}}>
+  New query
+  <form name="newq" ng-submit="$ctrl.addq(qobj)">
+    <div>
+      <div>
+        <label>
+          Query Name: <input ng-model="$ctrl.item.name">
+        </label>
+      </div>
+      <div>
+        <label>
+          Minimum start date (yyyy-mm-dd): <input ng-model="$ctrl.item.datemin">
+        </label>
+      </div>
+      <div>
+        <label>
+          Maximum start date (yyyy-mm-dd): <input ng-model="$ctrl.item.datemax">
+        </label>
+      </div>
+      <div>
+        <label>
+          Minimum start time (1-24): <input ng-model="$ctrl.item.timemin">
+        </label>
+      </div>
+      <div>
+        <label>
+          Maximum start time (1-24): <input ng-model="$ctrl.item.timemax">
+        </label>
+      </div>
+      <div>
+        <label>
+          Day of Week (1=Sun, 2=Mon, etc): <input ng-model="$ctrl.item.day">
+        </label>
+      </div>
+      <div>
+        <label>
+          Miniumum Rating<br> (scale of 1-100): <input ng-model="$ctrl.item.mincritic">
+        </label>
+      </div>
+      <div>
+        <label>
+          Maxiumum Rating<br> (scale of 1-100): <input ng-model="$ctrl.item.maxcritic">
+        </label>
+      </div>
+      <div>
+        <label>
+          Title: <input ng-model="$ctrl.item.title">
+        </label>
+      </div>
+      <label>
+        Country: <input ng-model="$ctrl.item.country">
+      </label>
+    </div>
+    <div>
+      <label>
+        Director: <input ng-model="$ctrl.item.director">
+      </label>
+    </div>
+    <div>
+      <label>
+        Genre: <input ng-model="$ctrl.item.genre">
+      </label>
+    </div>
+    <div>
+      <label>
+        Release Year: <input ng-model="$ctrl.item.release">
+      </label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
