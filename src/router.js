@@ -47,6 +47,27 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         sidebar: { component: 'sidebarMovies' },
         main: { component: 'myMovies' },
       },
+    })
+    .state('my-movies.list-all', {
+      url: '/listall',
+      data: { requiresAuth: true },
+      views: {
+        movies: { component: 'listAll' },
+      },
+    })
+    .state('my-movies.list-upcoming', {
+      url: '/listupcoming',
+      data: { requiresAuth: true },
+      views: {
+        movies: { component: 'listUpcoming' },
+      },
+    })
+    .state('my-movies.list-recent', {
+      url: '/listrecent',
+      data: { requiresAuth: true },
+      views: {
+        movies: { component: 'listRecent' },
+      },
     });
 
   $urlRouterProvider.otherwise('/');
