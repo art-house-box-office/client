@@ -46,7 +46,7 @@ export default function accountService($http, apiUrl, $window) {
       .then(r => r.data);
     },
     // add Location
-    addLocation(location) { 
+    addLocation(location) {
       const userId = $window.localStorage.getItem('userID');
       return $http
         .get(`${apiUrl}/users/${userId}`)
@@ -57,13 +57,26 @@ export default function accountService($http, apiUrl, $window) {
             .post(`${apiUrl}/locations`, location)
             .then(r => r.data._id)
             .then(locId => {
-              return $http 
+              return $http
                 .put(`${apiUrl}/companies/${companyId}`, { locations: locId })
                 .then(r => r.data);
             });
         });
     },
 
+    // edit Location
+    editLocation(locationData, locationId) {
+      return $http.put(`${apiUrl}/locations/${locationId}`, locationData)
+        .then(r => r.data);
+
+
+    },
+
+    // delete Location
+    deleteLocation(locationId) {
+      return $http.delete(`${apiUrl}/locations/${locationId}`)
+        .then(r => r.data);
+    },
 
     // Get Location by User Id
     getLocationsByUserId(userId) {

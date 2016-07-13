@@ -43,5 +43,36 @@ function controller(accountService, $window) {
     this.locationAdding = false;
   };
 
+  this.editLocation = (index) => {
+    const loc = this.locations[index];
+    const putData = {
+      name: loc.name,
+      address: loc.address,
+      city: loc.city,
+      state: loc.state,
+      zip: loc.zip,
+      country: loc.country,
+    };
+    accountService.editLocation(putData, loc._id);
+    this.activeIndex = -1;
+
+
+  };
+
+  this.activateEdit = (index) => {
+    this.activeIndex = index;
+  };
+
+  this.isActive = (index) => {
+    return this.activeIndex === index;
+  };
+
+  this.deleteLocation = (index) => {
+    console.log(index, this.locations[index], 'This is me!');
+    const loc = this.locations[index];
+    accountService.deleteLocation(loc._id);
+    const found = this.locations[index];
+    this.locations.splice(index, 1);
+  };
 
 }
