@@ -25,6 +25,12 @@ function controller(accountService, $window) {
       .then(r => this.locations = r);
   };
 
+  this.fetchRooms = (index) => {
+    const location = this.locations[index];
+    accountService.getRooms(location._id)
+      .then(r => this.locations[index].rooms = r);
+  };
+
   this.submitCompany = ($event) => {
     const company = this.companyInput;
     accountService.add(company);
@@ -56,10 +62,27 @@ function controller(accountService, $window) {
     this.changeActive(-1);
   };
 
+  this.submitRoom = (index) => {
+    const inputRoom = this.newRoom;
+    const location = this.locations[index];
+    inputRoom.location = location._id;
+    accountService.addRoom(inputRoom)
+      .then(r => console.log(r));
+    this.changeActiveRoom(-1);
+  };
+
+  // Adding Room
+  this.changeActiveRoom = (index) => {
+    this.activeRoomIndex = index;
+  };
+  this.isActiveRoom = (index) => {
+    return this.activeRoomIndex === index;
+  };
+
+  // Editing location
   this.changeActive = (index) => {
     this.activeIndex = index;
   };
-
   this.isActive = (index) => {
     return this.activeIndex === index;
   };
