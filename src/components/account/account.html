@@ -34,7 +34,7 @@
         <p>{{location.zip}}</p>
       </div>
       <form ng-if="account.isActive($index)" 
-            ng-submit="account.editLocation($index, $event)">
+            ng-submit="account.editLocation($index)">
         <label>Name</label><input ng-model="location.name"><br>
         <label>Address</label><input ng-model="location.address"><br>
         <label>City</label><input ng-model="location.city"><br>

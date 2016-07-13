@@ -34,14 +34,15 @@ function controller(accountService, $window) {
 
   this.submitLocation = ($event) => {
     const locationData = this.newLocation;
-    accountService.addLocation(locationData);
+    accountService.addLocation(locationData)
+      .then(returnedLocId => locationData._id = returnedLocId);
     this.locations.push(locationData);
     this.newLocation = {};
     $event.target.reset();
     this.locationAdding = false;
   };
 
-  this.editLocation = (index, $event) => {
+  this.editLocation = (index) => {
     const loc = this.locations[index];
     const putData = {
       name: loc.name,
@@ -52,7 +53,7 @@ function controller(accountService, $window) {
       country: loc.country,
     };
     accountService.editLocation(putData, loc._id);
-    $event.target.reset();
+    this.changeActive(-1);
   };
 
   this.changeActive = (index) => {

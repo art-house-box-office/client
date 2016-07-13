@@ -55,12 +55,7 @@ export default function accountService($http, apiUrl, $window) {
           location.company = companyId;
           return $http
             .post(`${apiUrl}/locations`, location)
-            .then(r => r.data._id)
-            .then(locId => {
-              return $http
-                .put(`${apiUrl}/companies/${companyId}`, { locations: locId })
-                .then(r => r.data);
-            });
+            .then(r => r.data._id);
         });
     },
 
