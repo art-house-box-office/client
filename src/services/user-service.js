@@ -1,6 +1,6 @@
-userService.$inject = ['tokenService', '$http', 'apiUrl'];
+userService.$inject = ['tokenService', '$http', 'apiUrl', '$window'];
 
-export default function userService(tokenSvc, $http, apiUrl) {
+export default function userService(tokenSvc, $http, apiUrl, $window) {
 
   const current = tokenSvc.get();
   if (current) {
@@ -19,9 +19,10 @@ export default function userService(tokenSvc, $http, apiUrl) {
     },
 
     login(credentials) {
-      console.log('apiURL:', apiUrl);
       return $http.post(`${apiUrl}/signin`, credentials)
         .then(result => {
+          $window.localStorage.setItem('user', result.data.username);
+          $window.localStorage.setItem('userID', result.data.id);
           tokenSvc.set(result.data.returnedToken);
         });
     },
@@ -29,6 +30,8 @@ export default function userService(tokenSvc, $http, apiUrl) {
     signup(credentials) {
       return $http.post(`${apiUrl}/signup`, credentials)
         .then(result => {
+          $window.localStorage.setItem('userID', result.data.id);
+          $window.localStorage.setItem('user', result.data.username);
           tokenSvc.set(result.data.returnedToken);
         });
     },

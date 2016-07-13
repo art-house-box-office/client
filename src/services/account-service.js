@@ -1,6 +1,6 @@
-accountService.$inject = ['$http', 'apiUrl'];
+accountService.$inject = ['$http', 'apiUrl', '$window'];
 
-export default function accountService($http, apiUrl) {
+export default function accountService($http, apiUrl, $window) {
 
   return {
     // all Companies
@@ -15,11 +15,29 @@ export default function accountService($http, apiUrl) {
       .get(`${apiUrl}/companies/${companyId}`)
       .then(r => r.data);
     },
-    // add Company
-    add(company) {
+    // get company by user ID
+    getCompanyByUserId(userId) {
       return $http
-      .post(`${apiUrl}/company`, company)
-      .then(r => r.data);
+        .get(`${apiUrl}/users/${userId}`)
+        .then(r => r.data.company._id)
+        .then(company => {
+          return $http
+            .get(`${apiUrl}/companies/${company}`)
+            .then(r => r.data.name);
+        });
+    },
+    // add Company and updates current User field: company
+    add(company) {
+      const userId = $window.localStorage.getItem('userID');
+      return $http
+      .post(`${apiUrl}/companies`, { name: company })
+      .then(r => r.data._id)
+      .then(id => {
+        return $http
+          .put(`${apiUrl}/users/${userId}`, { company: id })
+          .then(r => console.log('success'));
+      });
+
     },
     // update Company
     update(companyId) {
@@ -36,7 +54,7 @@ export default function accountService($http, apiUrl) {
     // add Location
     addLoc(location) {
       return $http
-      .post(`${apiUrl}/location`, location)
+      .post(`${apiUrl}/locations`, location)
       .then(r => r.data);
     },
   };

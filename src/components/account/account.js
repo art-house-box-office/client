@@ -7,18 +7,30 @@ export default {
   controller,
 };
 
-controller.$inject = ['accountService'];
+controller.$inject = ['accountService', '$window'];
 
-function controller(accountService) {
+function controller(accountService, $window) {
   this.style = style;
+
+  this.currentUser = $window.localStorage.getItem('user');
+  this.currentUserId = $window.localStorage.getItem('userID');
+
+  accountService.getCompanyByUserId(this.currentUserId)
+    .then(r => this.companyName = r);
+
+  this.locationEditing = false;
+
   this.submit = ($event) => {
-    const company = this.newAcct;
+    const company = this.companyInput;
     accountService.add(company);
+    this.companyName = company;
     $event.target.reset();
   };
-  this.submitLoc = ($event) => {
-    const location = this.newAcct;
-    accountService.addLoc(location);
-    $event.target.reset();
+
+  this.submitLocation = ($event) => {
+    const locationData = this.newAcct;
+    event.target.reset();
   };
+
+
 }

@@ -1,20 +1,26 @@
 <main ng-class="account.style.account">
-  <div ng-if="">
-    <h4>Please enter a new Company</h4>
-    <form name="companyForm" ng-submit="account.submit($event)">
-      Company Name: <input ng-model="account.newAcct.companyName" placeholder="Company Name">
+  <h3>{{account.currentUser}}</h3>
+  <div>
+    <p>Company Name: {{account.companyName}}</p>
+    <form ng-if="!account.companyName" name="companyForm" 
+          ng-submit="account.submit($event)">
+      <input ng-model="account.companyInput" placeholder="Company Name">
       <button type="submit">Add Company</button>
     </form>
   </div>
-    <h6>Enter your location</h6>
-  <form name="locationForm" ng-submit="account.submitLoc($event)">
-    Name: <input ng-model="account.newAcct.locationName" placeholder="Location Name"><br>
-    Address: <input ng-model="account.newAcct.locationAddress" placeholder="Address"><br>
-    City: <input ng-model="account.newAcct.locationCity" placeholder="City"><br>
-    State: <input ng-model="account.newAcct.locationState" placeholder="State"><br>
-    Zip: <input ng-model="account.newAcct.locationZip" placeholder="Zip"><br>
-    Country: <input ng-model="account.newAcct.locationCountry" placeholder="Country"><br>
-    Theaters: <input ng-model="account.newAcct.locationTheaters" placeholder="Theaters"><br>
-    <button type="submit">Add Location</button>
-  </form>
+  <button ng-if="!account.locationEditing"
+          ng-click="account.locationEditing = true">Add New Location</button>
+  <div ng-if="account.locationEditing">
+    <p>New Location</p>
+    <form name="locationForm" ng-submit="account.submitLoc($event)">
+      Name: <input ng-model="account.newAcct.locationName" placeholder="Location Name"><br>
+      Address: <input ng-model="account.newAcct.locationAddress" placeholder="Address"><br>
+      City: <input ng-model="account.newAcct.locationCity" placeholder="City"><br>
+      State: <input ng-model="account.newAcct.locationState" placeholder="State"><br>
+      Zip: <input ng-model="account.newAcct.locationZip" placeholder="Zip"><br>
+      Country: <input ng-model="account.newAcct.locationCountry" placeholder="Country"><br>
+      Theaters: <input ng-model="account.newAcct.locationTheaters" placeholder="Theaters"><br>
+      <button type="submit">Add Location</button>
+    </form>
+  </div>
 </main>
