@@ -54,15 +54,15 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _configHttp = __webpack_require__(42);
+	var _configHttp = __webpack_require__(63);
 	
 	var _configHttp2 = _interopRequireDefault(_configHttp);
 	
-	var _router = __webpack_require__(43);
+	var _router = __webpack_require__(64);
 	
 	var _router2 = _interopRequireDefault(_router);
 	
-	var _authentication = __webpack_require__(44);
+	var _authentication = __webpack_require__(65);
 	
 	var _authentication2 = _interopRequireDefault(_authentication);
 	
@@ -31589,19 +31589,19 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _services = __webpack_require__(34);
+	var _services = __webpack_require__(54);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
-	var _angularUiRouter = __webpack_require__(38);
+	var _angularUiRouter = __webpack_require__(59);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularAnimate = __webpack_require__(39);
+	var _angularAnimate = __webpack_require__(60);
 	
 	var _angularAnimate2 = _interopRequireDefault(_angularAnimate);
 	
-	var _ngDialog = __webpack_require__(41);
+	var _ngDialog = __webpack_require__(62);
 	
 	var _ngDialog2 = _interopRequireDefault(_ngDialog);
 	
@@ -32380,11 +32380,17 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./header-component/header-component.js": 16,
-		"./landing/landing.js": 20,
-		"./master/master.js": 24,
-		"./sidebar/sidebar.js": 26,
-		"./user-auth/user-auth.js": 30
+		"./account/account.js": 16,
+		"./header-component/header-component.js": 20,
+		"./landing/landing.js": 24,
+		"./master/master.js": 28,
+		"./my-movies/my-movies.js": 30,
+		"./query/query.js": 34,
+		"./sidebars/sidebar-movies/sidebar-movies.js": 38,
+		"./sidebars/sidebar-query/sidebar-query.js": 42,
+		"./sidebars/sidebar-trends/sidebar-trends.js": 44,
+		"./trends/trends.js": 46,
+		"./user-auth/user-auth.js": 50
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -32408,40 +32414,52 @@
 	  value: true
 	});
 	
-	var _header = __webpack_require__(17);
+	var _account = __webpack_require__(17);
 	
-	var _header2 = _interopRequireDefault(_header);
+	var _account2 = _interopRequireDefault(_account);
 	
-	var _header3 = __webpack_require__(18);
+	var _account3 = __webpack_require__(18);
 	
-	var _header4 = _interopRequireDefault(_header3);
+	var _account4 = _interopRequireDefault(_account3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	exports['default'] = {
-	  template: _header2['default'],
-	  controller: function () {
-	    function controller($state) {
-	      this.style = _header4['default'];
-	      this.$state = $state;
-	    }
-	
-	    return controller;
-	  }()
+	  template: _account2['default'],
+	  controllerAs: 'account',
+	  controller: controller
 	};
+	
+	
+	controller.$inject = ['accountService'];
+	
+	function controller(accountService) {
+	  var _this = this;
+	
+	  this.style = _account4['default'];
+	  this.submit = function ($event) {
+	    var company = _this.newAcct;
+	    accountService.add(company);
+	    $event.target.reset();
+	  };
+	  this.submitLoc = function ($event) {
+	    var location = _this.newAcct;
+	    accountService.addLoc(location);
+	    $event.target.reset();
+	  };
+	}
 
 /***/ },
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<header ng-class=\"$ctrl.style.header\">\n  <h1><a ui-sref=\"landing\" ui-sref-active=\"active\">Art House Box Office</a></h1>\n  <nav>\n    <ul>\n      <li><a ui-sref=\"landing\" ui-sref-active=\"active\">Home</a></li>\n      <li><a ui-sref=\"dashboard\" ui-sref-active=\"active\">Sign In</a></li>\n    </ul>\n  </nav>\n</header>\n<div class=\"buffer-header\"></div>\n";
+	module.exports = "<main ng-class=\"account.style.account\">\n  <div ng-if=\"\">\n    <h4>Please enter a new Company</h4>\n    <form name=\"companyForm\" ng-submit=\"account.submit($event)\">\n      Company Name: <input ng-model=\"account.newAcct.companyName\" placeholder=\"Company Name\">\n      <button type=\"submit\">Add Company</button>\n    </form>\n  </div>\n    <h6>Enter your location</h6>\n  <form name=\"locationForm\" ng-submit=\"account.submitLoc($event)\">\n    Name: <input ng-model=\"account.newAcct.locationName\" placeholder=\"Location Name\"><br>\n    Address: <input ng-model=\"account.newAcct.locationAddress\" placeholder=\"Address\"><br>\n    City: <input ng-model=\"account.newAcct.locationCity\" placeholder=\"City\"><br>\n    State: <input ng-model=\"account.newAcct.locationState\" placeholder=\"State\"><br>\n    Zip: <input ng-model=\"account.newAcct.locationZip\" placeholder=\"Zip\"><br>\n    Country: <input ng-model=\"account.newAcct.locationCountry\" placeholder=\"Country\"><br>\n    Theaters: <input ng-model=\"account.newAcct.locationTheaters\" placeholder=\"Theaters\"><br>\n    <button type=\"submit\">Add Location</button>\n  </form>\n</main>\n";
 
 /***/ },
 /* 18 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"header":"_1AGG9kFxNK7GcTyBjlY-GE"};
 
 /***/ },
 /* 19 */,
@@ -32452,11 +32470,102 @@
 	  value: true
 	});
 	
-	var _landing = __webpack_require__(21);
+	var _header = __webpack_require__(21);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	var _header3 = __webpack_require__(22);
+	
+	var _header4 = _interopRequireDefault(_header3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _header2['default'],
+	  controller: function () {
+	    function controller($state, userService) {
+	      var _this = this;
+	
+	      this.style = _header4['default'];
+	      this.$state = $state;
+	
+	      this.isLoggedIn = function () {
+	        return userService.isAuthenticated();
+	      };
+	
+	      this.logout = function () {
+	        return userService.logout();
+	      };
+	
+	      if (this.isLoggedIn()) {
+	        this.navItems = [{
+	          sref: 'trends',
+	          name: 'Trends'
+	        }, {
+	          sref: 'query',
+	          name: 'Query'
+	        }, {
+	          sref: 'my-movies',
+	          name: 'My Movies'
+	        }, {
+	          sref: 'account',
+	          name: 'Account'
+	        }, {
+	          sref: 'landing',
+	          name: 'Log Out',
+	          click: function () {
+	            function click() {
+	              return _this.logout();
+	            }
+	
+	            return click;
+	          }()
+	        }];
+	      } else {
+	        this.navItems = [{
+	          sref: 'trends',
+	          name: 'Trends'
+	        }, {
+	          sref: 'query',
+	          name: 'Query'
+	        }, {
+	          sref: 'account', // or trends?
+	          name: 'Log In'
+	        }];
+	      }
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "<header ng-class=\"$ctrl.style.header\">\n  <h1><a ui-sref=\"landing\" ui-sref-active=\"active\">Art House Box Office</a></h1>\n  <nav>\n    <ul>\n      <!--<li><a ui-sref=\"trends\" ui-sref-active=\"active\">Trends</a></li>\n      <li><a ui-sref=\"trends\" ui-sref-active=\"active\">Query</a></li>\n      <li><a ui-sref=\"my-movies\" ui-sref-active=\"active\">My Movies</a></li>\n      <li><a ui-sref=\"account\" ui-sref-active=\"active\">Account</a></li>\n      <li><a ng-click=\"$ctrl.logout()\" \n             ui-sref-active=\"active\"\n             ui-sref=\"landing\">\n             Log Out</a></li>-->\n\n      <li ng-repeat=\"item in $ctrl.navItems\">\n        <a ui-sref-active=\"active\"\n           ui-sref=\"{{item.sref}}\"\n           ng-click=\"item.click()\">\n           {{item.name}}\n        </a>\n      </li>\n\n    </ul>\n  </nav>\n</header>\n<div class=\"buffer-header\"></div>\n";
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"header":"_1AGG9kFxNK7GcTyBjlY-GE"};
+
+/***/ },
+/* 23 */,
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _landing = __webpack_require__(25);
 	
 	var _landing2 = _interopRequireDefault(_landing);
 	
-	var _landing3 = __webpack_require__(22);
+	var _landing3 = __webpack_require__(26);
 	
 	var _landing4 = _interopRequireDefault(_landing3);
 	
@@ -32474,27 +32583,27 @@
 	};
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = "<main ng-class=\"$ctrl.style.landing\">\n  <h3>Welcome!</h3>\n</main>\n\n";
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 23 */,
-/* 24 */
+/* 27 */,
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _master = __webpack_require__(25);
+	var _master = __webpack_require__(29);
 	
 	var _master2 = _interopRequireDefault(_master);
 	
@@ -32510,55 +32619,12 @@
 	};
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = "\n";
 
 /***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _sidebar = __webpack_require__(27);
-	
-	var _sidebar2 = _interopRequireDefault(_sidebar);
-	
-	var _sidebar3 = __webpack_require__(28);
-	
-	var _sidebar4 = _interopRequireDefault(_sidebar3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	exports['default'] = {
-	  template: _sidebar2['default'],
-	  controller: function () {
-	    function controller() {
-	      this.style = _sidebar4['default'];
-	    }
-	
-	    return controller;
-	  }()
-	};
-
-/***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-	module.exports = "<main ng-class=\"$ctrl.style.sidebar\">\n  <section>\n    <h3>New Query</h3>\n    <ul>\n      <li>Movie Title</li>\n      <li>My Movies</li>\n      <li>All Movies</li>\n    </ul>\n  </section>\n\n  <section>\n    <h3>Filter</h3>\n    <ul>\n      <li>Date Range</li>\n      <li>Time of Day</li>\n      <li>Day of Week</li>\n      <li>Location</li>\n      <li>Critic Rating</li>\n      <li>Genre</li>\n      <li>Director</li>\n      <li>Country</li>\n    </ul>\n  </section>\n\n  <section>\n    <h3>Comparison</h3>\n    <ul>\n    </ul>\n  </section>\n</main>\n\n<div class=\"buffer-sidebar\"></div>\n";
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"sidebar":"_2FDKXVtoJiv1F66IWrGt00"};
-
-/***/ },
-/* 29 */,
 /* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32566,57 +32632,21 @@
 	  value: true
 	});
 	
-	var _userAuth = __webpack_require__(31);
+	var _myMovies = __webpack_require__(31);
 	
-	var _userAuth2 = _interopRequireDefault(_userAuth);
+	var _myMovies2 = _interopRequireDefault(_myMovies);
 	
-	var _userAuth3 = __webpack_require__(32);
+	var _myMovies3 = __webpack_require__(32);
 	
-	var _userAuth4 = _interopRequireDefault(_userAuth3);
+	var _myMovies4 = _interopRequireDefault(_myMovies3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	exports['default'] = {
-	  template: _userAuth2['default'],
-	  bindings: {
-	    success: '&'
-	  },
+	  template: _myMovies2['default'],
 	  controller: function () {
-	    function controller(userService) {
-	      var _this = this;
-	
-	      this.style = _userAuth4['default'];
-	      this.loginForm = {};
-	      this.registerForm = {};
-	
-	      this.tryLogin = function () {
-	        if (!_this.loginForm.username || !_this.loginForm.password) {
-	          return _this.error = 'Please Fill Out Both Fields';
-	        }
-	        return userService.login(_this.loginForm).then(function () {
-	          return _this.success();
-	        })
-	        // Make sure this is consistent with server error <<
-	        ['catch'](function (err) {
-	          return _this.error = err.data.error;
-	        });
-	      };
-	
-	      this.tryRegister = function () {
-	        if (!_this.registerForm.email || !_this.registerForm.username || !_this.registerForm.password || !_this.registerForm.confirmPassword) {
-	          return _this.error = 'Please Fill Out All Fields';
-	        } else if (_this.registerForm.password !== _this.registerForm.confirmPassword) {
-	          return _this.error = 'Passwords Do Not Match';
-	        } else {
-	          return userService.signup(_this.registerForm).then(function () {
-	            return _this.success();
-	          })
-	          // Make sure this is consistent with server error <<
-	          ['catch'](function (err) {
-	            return _this.error = err.data.error.message;
-	          });
-	        }
-	      };
+	    function controller() {
+	      this.style = _myMovies4['default'];
 	    }
 	
 	    return controller;
@@ -32627,7 +32657,7 @@
 /* 31 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"credentials\">\n  <p>Login</p>\n\n  <p class=\"error\">{{$ctrl.error}}</p>\n\n  <form ng-submit=\"$ctrl.tryLogin()\">\n    <input ng-model=\"$ctrl.loginForm.username\"\n          placeholder=\"Username\" />\n    <br>\n    <input ng-model=\"$ctrl.loginForm.password\"\n          placeholder=\"Password\" />\n    <br>\n    <input type=\"submit\" value=\"Submit\" />\n  </form>\n</section>\n\n<section class=\"credentials\">\n  <p>Register</p>\n  <form ng-submit=\"$ctrl.tryRegister()\">\n    <input ng-model=\"$ctrl.registerForm.email\"\n          placeholder=\"Email\" />\n    <br>\n    <input ng-model=\"$ctrl.registerForm.username\"\n          placeholder=\"Username\" />\n    <br>\n    <input ng-model=\"$ctrl.registerForm.password\"\n          placeholder=\"Password\" />\n    <br>\n    <input ng-model=\"$ctrl.registerForm.confirmPassword\"\n          placeholder=\"Confirm Password\" />\n    <br>\n    <input type=\"submit\" value=\"Submit\" />\n  </form>\n</section>";
+	module.exports = "<main ng-class=\"$ctrl.style.movies\">\n  <h3>My Movies</h3>\n</main>\n\n";
 
 /***/ },
 /* 32 */
@@ -32638,6 +32668,268 @@
 /***/ },
 /* 33 */,
 /* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _query = __webpack_require__(35);
+	
+	var _query2 = _interopRequireDefault(_query);
+	
+	var _query3 = __webpack_require__(36);
+	
+	var _query4 = _interopRequireDefault(_query3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _query2['default'],
+	  controller: function () {
+	    function controller() {
+	      this.style = _query4['default'];
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.style.query\">\n  <h3>Query</h3>\n</main>\n\n";
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 37 */,
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _sidebarMovies = __webpack_require__(39);
+	
+	var _sidebarMovies2 = _interopRequireDefault(_sidebarMovies);
+	
+	var _sidebar = __webpack_require__(40);
+	
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _sidebarMovies2['default'],
+	  controller: function () {
+	    function controller() {
+	      this.style = _sidebar2['default'];
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.style.sidebar\">\n  <section>\n    <h3>My Movies</h3>\n    <ul>\n      <li>\n        <a>List All</a>\n      </li>\n      <li>\n        <a>List Upcoming</a>\n      </li>\n      <li>\n        <a>List Recent</a>\n      </li>\n      <li>\n        <a>Add</a>\n        <p>New Movie Run</p>\n      </li>\n    </ul>\n  </section>\n\n  <section>\n    <h3>About</h3>\n    <ul>\n      <li>\n        <a>Info</a>\n      </li>\n      <li>\n        <a>Team</a>\n      </li>\n    </ul>\n  </section>\n\n</main>\n\n<div class=\"buffer-sidebar\"></div>\n";
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"sidebar":"_3lOmJJAejAt6dwznXAflQV"};
+
+/***/ },
+/* 41 */,
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _sidebarQuery = __webpack_require__(43);
+	
+	var _sidebarQuery2 = _interopRequireDefault(_sidebarQuery);
+	
+	var _sidebar = __webpack_require__(40);
+	
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _sidebarQuery2['default'],
+	  controller: function () {
+	    function controller() {
+	      this.style = _sidebar2['default'];
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.style.sidebar\">\n  <section>\n    <h3>New Query</h3>\n    <ul>\n      <li>\n        <a>All</a>\n        <p>Movie Screenings</p>\n      </li>\n      <li>\n        <a>My</a>\n        <p>Movie Screenings</p>\n      </li>\n      <li>\n        <a>Other</a>\n        <p>All Screenings Except My Movies</p>\n      </li>\n    </ul>\n  </section>\n\n  <section>\n    <h3>About</h3>\n    <ul>\n      <li>\n        <a>Info</a>\n      </li>\n      <li>\n        <a>Team</a>\n      </li>\n    </ul>\n  </section>\n\n</main>\n\n<div class=\"buffer-sidebar\"></div>\n";
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _sidebarTrends = __webpack_require__(45);
+	
+	var _sidebarTrends2 = _interopRequireDefault(_sidebarTrends);
+	
+	var _sidebar = __webpack_require__(40);
+	
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _sidebarTrends2['default'],
+	  controller: function () {
+	    function controller() {
+	      this.style = _sidebar2['default'];
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.style.sidebar\">\n  <section>\n    <h3>Trends</h3>\n    <ul>\n      <li>\n        <a>Current</a>\n        <p>This Week</p>\n      </li>\n      <li>\n        <a>Archive</a>\n        <p>Select a Week</p>\n      </li>\n    </ul>\n  </section>\n\n  <section>\n    <h3>About</h3>\n    <ul>\n      <li>\n        <a>Info</a>\n      </li>\n      <li>\n        <a>Team</a>\n      </li>\n    </ul>\n  </section>\n\n</main>\n\n<div class=\"buffer-sidebar\"></div>\n";
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _trends = __webpack_require__(47);
+	
+	var _trends2 = _interopRequireDefault(_trends);
+	
+	var _trends3 = __webpack_require__(48);
+	
+	var _trends4 = _interopRequireDefault(_trends3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _trends2['default'],
+	  controller: function () {
+	    function controller() {
+	      this.style = _trends4['default'];
+	    }
+	
+	    return controller;
+	  }()
+	};
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.style.trends\">\n  <h3>Trends</h3>\n</main>\n\n";
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 49 */,
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _userAuth = __webpack_require__(51);
+	
+	var _userAuth2 = _interopRequireDefault(_userAuth);
+	
+	var _userAuth3 = __webpack_require__(52);
+	
+	var _userAuth4 = _interopRequireDefault(_userAuth3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports['default'] = {
+	  template: _userAuth2['default'],
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: ['userService', function () {
+	    function controller(userService) {
+	      var _this = this;
+	
+	      this.style = _userAuth4['default'];
+	      this.loginServerError = '';
+	      this.registerServerError = '';
+	
+	      this.tryLogin = function (loginData) {
+	        userService.login(loginData).then(function () {
+	          return _this.success();
+	        })['catch'](function (err) {
+	          return _this.loginServerError = err.data.msg;
+	        });
+	      };
+	
+	      this.tryRegister = function (registerData) {
+	        userService.signup(registerData).then(function () {
+	          return _this.success();
+	        })['catch'](function (err) {
+	          return _this.registerServerError = err.data.msg;
+	        });
+	      };
+	    }
+	
+	    return controller;
+	  }()]
+	};
+
+/***/ },
+/* 51 */
+/***/ function(module, exports) {
+
+	module.exports = "<section class=\"credentials\">\n  <h2>Login</h2>\n  <p ng-if=\"$ctrl.loginServerError\" class=\"error\">{{$ctrl.loginServerError}}</p>\n  <form ng-submit=\"loginForm.$valid && $ctrl.tryLogin(loginData)\" name=\"loginForm\" novalidate>\n    <div class=\"form-group\">\n      <input ng-model=\"loginData.username\" type=\"text\" name=\"username\" placeholder=\"Username\" autocomplete=\"off\" required>\n      <p ng-if=\"loginForm.$submitted && loginForm.username.$error.required\" class=\"error\">The username field is required.</p>\n    </div>\n    <div class=\"form-group\">\n      <input ng-model=\"loginData.password\" type=\"password\" name=\"password\" placeholder=\"Password\" autocomplete=\"off\" required>\n      <p ng-if=\"loginForm.$submitted && loginForm.password.$error.required\" class=\"error\">The password field is required.</p>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"submit\" value=\"Log In\">\n    </div>\n  </form>\n</section>\n\n<section class=\"credentials\">\n  <h2>Register</h2>\n  <p ng-if=\"$ctrl.registerServerError\" class=\"error\">{{$ctrl.registerServerError}}</p>\n  <form ng-submit=\"registerForm.$valid && $ctrl.tryRegister(registerData)\" name=\"registerForm\" novalidate>\n    <div class=\"form-group\">\n      <input ng-model=\"registerData.email\" type=\"email\" name=\"email\" placeholder=\"Email\" autocomplete=\"off\" required>\n      <p ng-if=\"registerForm.$submitted && registerForm.email.$error.required\" class=\"error\">The email field is required.</p>\n      <p ng-if=\"registerForm.$submitted && registerForm.email.$error.email\" class=\"error\">The email is not valid.</p>\n    </div>\n    <div class=\"form-group\">\n      <input ng-model=\"registerData.username\" type=\"text\" name=\"username\" placeholder=\"Username\" autocomplete=\"off\" required>\n      <p ng-if=\"registerForm.$submitted && registerForm.username.$error.required\" class=\"error\">The username field is required.</p>\n    </div>\n    <div class=\"form-group\">\n      <input ng-model=\"registerData.password\" type=\"password\" name=\"password\" placeholder=\"Password\" autocomplete=\"off\" required>\n      <p ng-if=\"registerForm.$submitted && registerForm.password.$error.required\" class=\"error\">The password field is required.</p>\n    </div>\n    <div class=\"form-group\">\n      <input ng-model=\"registerData.confirmPassword\" ng-pattern=\"registerData.password\" type=\"password\" name=\"confirmPassword\" placeholder=\"Confirm Password\" autocomplete=\"off\" required>\n      <p ng-if=\"registerForm.$submitted && registerForm.confirmPassword.$error.required\" class=\"error\">The confirm password field is required.</p>\n      <p ng-if=\"registerForm.$submitted && registerForm.confirmPassword.$error.pattern\" class=\"error\">The confirm password field does not match the password field.</p>\n    </div>\n    <div class=\"form-group\">\n      <input type=\"submit\" value=\"Register\">\n    </div>\n  </form>\n</section>\n";
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 53 */,
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32658,7 +32950,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var reqContext = __webpack_require__(35);
+	var reqContext = __webpack_require__(55);
 	
 	var services = _angular2['default'].module('services', []);
 	
@@ -32670,12 +32962,13 @@
 	exports['default'] = services.name;
 
 /***/ },
-/* 35 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./token-service.js": 36,
-		"./user-service.js": 37
+		"./account-service.js": 56,
+		"./token-service.js": 57,
+		"./user-service.js": 58
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -32688,11 +32981,93 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 35;
+	webpackContext.id = 55;
 
 
 /***/ },
-/* 36 */
+/* 56 */
+/***/ function(module, exports) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = accountService;
+	accountService.$inject = ['$http', 'apiUrl'];
+	
+	function accountService($http, apiUrl) {
+	
+	  return {
+	    // all Companies
+	
+	    get: function () {
+	      function get() {
+	        return $http.get(String(apiUrl) + '/companies').then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return get;
+	    }(),
+	
+	    // specific Company
+	    getCompany: function () {
+	      function getCompany(companyId) {
+	        return $http.get(String(apiUrl) + '/companies/' + String(companyId)).then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return getCompany;
+	    }(),
+	
+	    // add Company
+	    add: function () {
+	      function add(company) {
+	        return $http.post(String(apiUrl) + '/company', company).then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return add;
+	    }(),
+	
+	    // update Company
+	    update: function () {
+	      function update(companyId) {
+	        return $http.update(String(apiUrl) + '/companies/' + String(companyId)).then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return update;
+	    }(),
+	
+	    // delete Company
+	    'delete': function () {
+	      function _delete(companyId) {
+	        return $http['delete'](String(apiUrl) + '/companies/' + String(companyId)).then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return _delete;
+	    }(),
+	
+	    // add Location
+	    addLoc: function () {
+	      function addLoc(location) {
+	        return $http.post(String(apiUrl) + '/location', location).then(function (r) {
+	          return r.data;
+	        });
+	      }
+	
+	      return addLoc;
+	    }()
+	  };
+	}
+
+/***/ },
+/* 57 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32728,7 +33103,7 @@
 	}
 
 /***/ },
-/* 37 */
+/* 58 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -32784,7 +33159,7 @@
 	}
 
 /***/ },
-/* 38 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -40779,15 +41154,15 @@
 	//# sourceMappingURL=angular-ui-router.js.map
 
 /***/ },
-/* 39 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(40);
+	__webpack_require__(61);
 	module.exports = 'ngAnimate';
 
 
 /***/ },
-/* 40 */
+/* 61 */
 /***/ function(module, exports) {
 
 	/**
@@ -44939,7 +45314,7 @@
 
 
 /***/ },
-/* 41 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -45819,7 +46194,7 @@
 
 
 /***/ },
-/* 42 */
+/* 63 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -45864,7 +46239,7 @@
 	}
 
 /***/ },
-/* 43 */
+/* 64 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -45880,16 +46255,40 @@
 	    data: { requiresAuth: false },
 	    views: {
 	      header: { component: 'headerComponent' },
-	      sidebar: { component: 'sidebar' },
+	      sidebar: { component: 'sidebarTrends' },
 	      main: { component: 'landing' }
 	    }
-	  }).state('dashboard', {
-	    url: '/dash',
+	  }).state('trends', {
+	    url: '/trends',
+	    data: { requiresAuth: false },
+	    views: {
+	      header: { component: 'headerComponent' },
+	      sidebar: { component: 'sidebarTrends' },
+	      main: { component: 'trends' }
+	    }
+	  }).state('query', {
+	    url: '/query',
+	    data: { requiresAuth: false },
+	    views: {
+	      header: { component: 'headerComponent' },
+	      sidebar: { component: 'sidebarQuery' },
+	      main: { component: 'query' }
+	    }
+	  }).state('account', {
+	    url: '/account',
 	    data: { requiresAuth: true },
 	    views: {
 	      header: { component: 'headerComponent' },
-	      sidebar: { component: 'sidebar' },
-	      main: { template: '<h1>Neo said that he got in or something</h1>' }
+	      sidebar: { component: 'sidebarTrends' },
+	      main: { component: 'account' }
+	    }
+	  }).state('my-movies', {
+	    url: '/mymovies',
+	    data: { requiresAuth: true },
+	    views: {
+	      header: { component: 'headerComponent' },
+	      sidebar: { component: 'sidebarMovies' },
+	      main: { component: 'myMovies' }
 	    }
 	  });
 	
@@ -45897,7 +46296,7 @@
 	}
 
 /***/ },
-/* 44 */
+/* 65 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
