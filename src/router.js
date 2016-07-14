@@ -80,14 +80,14 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
     })
     .state('about.info', {
-      url: '/about/info',
+      url: '/info',
       data: { requiresAuth: false },
       views: {
         about: { component: 'aboutInfo' },
       },
     })
     .state('about.team', {
-      url: '/about/team',
+      url: '/team',
       data: { requiresAuth: false },
       views: {
         about: { component: 'aboutTeam' },
