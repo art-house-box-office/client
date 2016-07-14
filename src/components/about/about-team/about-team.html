@@ -1,1 +1,12 @@
-<p>About the team</p>
+<h2>About the team</h2>
+
+<p>
+This project was created as the final project of our <a href="http://codefellows.org">Code Fellows</a> <a href="http://www.codefellows.org/courses/code-401">Code 401</a> class.  The following team developed this app:
+</p>
+<ul>
+  <li ng-repeat="member in $ctrl.team">
+    <strong>{{member.name}}</strong><br>
+    <a href="{{member.github}}">github</a>&nbsp;<a href="{{member.linkedIn}}">LinkedIn</a><br>
+    <p>{{member.bio}}</p>
+  </li>
+</ul>
