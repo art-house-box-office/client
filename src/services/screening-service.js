@@ -33,5 +33,13 @@ export default function screeningService($http, apiUrl) {
       .delete(`${apiUrl}/screenings/${screeningId}`)
       .then(r => r.data);
     },
+    // aggregated results
+    agg(params) {
+      return $http
+      .get(`${apiUrl}/screenings/agg`, params)
+      .then(r => {
+        return r.data;
+      });
+    },
   };
 }
