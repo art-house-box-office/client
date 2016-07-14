@@ -8,6 +8,7 @@ import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
 import ngDialog from 'ng-dialog';
 import ngMaterial from 'angular-material';
+import ngMessages from 'angular-messages';
 
 const app = angular.module('app', [
   components,
@@ -17,6 +18,7 @@ const app = angular.module('app', [
   ngAria,
   ngDialog,
   ngMaterial,
+  ngMessages,
   angular.module('ui.router.state.events').name,
 ]);
 
