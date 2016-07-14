@@ -21,5 +21,21 @@
     float: right;
   }
 
+  .titletext{
+    display: inline;
+    margin-bottom: 0em;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: hsla(10, 20%, 20%, 1);
+  }
+
+  .bodytext {
+    font-size: 65%;
+    margin-top: .25em;
+    margin-bottom: 0em;
+    margin-left: 2em;
+    margin-right: 1em;
+  }
+
 }
 // background-color: rgba(255 - 0 * 30, 159, 100 + 0 * 30, 0.5);

@@ -4,7 +4,7 @@ import style from './query.scss';
 export default {
   template,
   bindings: {
-    arrayOfQueries: '<',
+    arrayOfQueries: '=',
   },
   controller: ['$state', 'ngDialog', 'queryService', controller],
 };
@@ -12,23 +12,32 @@ export default {
 function controller($state, ngDialog, queryService) {
   this.style = style;
   this.qobj = null;
-  // if (!this.arrayOfQueries) this.arrayOfQueries = [];
+  this.displayType = 'chart';
   this.count = 0;
+
+  if (!this.arrayOfQueries) this.arrayOfQueries = [];
 
   this.addquery = function addquery() {
     const dialog = ngDialog.open({
-      template: '<new-query newq="newq(qobj)"></new-query>',
+      template: '<new-query newq="newq(qobj)" empty-return="empty"></new-query>',
       plain: true,
       controller: ['$scope', 'screeningService', ($scope, screeningService) => {
+        $scope.empty = false;
         $scope.newq = (qobj) => {
-          dialog.close();
           screeningService.agg({ params: qobj })
           .then(data => {
-            data.name = qobj.name;
-            this.arrayOfQueries.push(data);
-            queryService.set(JSON.stringify(this.arrayOfQueries));
-            this.count = this.arrayOfQueries.length;
-            // return this.info = data;
+            if (data.totals && data.totals.count < 1) {
+              $scope.empty = true;
+            } else {
+              data.name = qobj.name;
+              data.queries = qobj;
+              // console.log(qobj);
+              if (!this.arrayOfQueries) this.arrayOfQueries = [];
+              this.arrayOfQueries.push(data);
+              queryService.set(JSON.stringify(this.arrayOfQueries));
+              this.count = this.arrayOfQueries.length;
+              dialog.close();
+            }
           });
         };
       }],

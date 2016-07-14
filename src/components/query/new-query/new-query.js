@@ -5,11 +5,13 @@ export default {
   template,
   bindings: {
     newq: '&',
+    emptyReturn: '<',
   },
   controller,
 };
 
 function controller() {
+  this.emptyReturn = false;
   this.styles = styles;
   this.item = {};
   this.item.name = `query${Math.round(Math.random() * 10000)}`;

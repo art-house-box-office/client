@@ -1,8 +1,8 @@
 <div class={{$ctrl.styles.chart}}>
-  <h3>Average Box Office Grosses per Screen for 2016</h3>
+  <h3 ng-show="$ctrl.array.length > 0">Average Box Office Grosses per Screen for 2016</h3>
   <canvas ng-show="$ctrl.array.length > 0" ng-bind="mychart" id="myChart"></canvas>
 
-  <form>
+  <form ng-show="$ctrl.array.length > 0">
     <input ng-model="$ctrl.chartType" type="radio" name="type" value="line">Line</input>
     <input ng-model="$ctrl.chartType" type="radio" name="type" value="bar" checked>Bar</input>
   </form>

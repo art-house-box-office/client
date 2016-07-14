@@ -1,10 +1,30 @@
 <main ng-class="$ctrl.style.query">
   <button ng-click="$ctrl.addquery()">New Query</button>
-  <query-row ng-repeat="query in $ctrl.arrayOfQueries"
-  queryitem="query"
-  remove="$ctrl.removequery(query)"
-  colorbg="'color-' + $index"></query-row>
-  <!-- <summary ng-repeat="sum in $ctrl.arrayOfQueries" info="sum"></summary> -->
 
-  <chart array="$ctrl.arrayOfQueries" info="$ctrl.info" count="$ctrl.count"><chart>
+  <div ng-hide="$ctrl.arrayOfQueries.length < 1">
+
+    <query-row ng-repeat="query in $ctrl.arrayOfQueries"
+    queryitem="query"
+    remove="$ctrl.removequery(query)"
+    colorbg="'color-' + $index"></query-row>
+
+    <form>
+      <input ng-model="$ctrl.displayType" type="radio" name="type" value="summary">Summary</input>
+      <input ng-model="$ctrl.displayType" type="radio" name="type" value="chart" checked>Chart</input>
+    </form>
+
+    <summary ng-repeat="sum in $ctrl.arrayOfQueries"
+    info="sum" name="sum.name"
+    ng-show="$ctrl.displayType === 'summary'"></summary>
+
+  </div>
+
+  <chart array="$ctrl.arrayOfQueries"
+  info="$ctrl.info" count="$ctrl.count"
+  ng-show="$ctrl.displayType === 'chart'"></chart>
+
+  <div ng-show="$ctrl.arrayOfQueries.length < 1">
+    <p>Enter a query. You can create more than one.</p>
+  </div>
+
 </main>
