@@ -30,7 +30,10 @@ export default function accountService($http, apiUrl, $window) {
       .then(id => {
         return $http
           .put(`${apiUrl}/users/${userId}`, { company: id })
-          .then(r => r.data);
+          .then(r => {
+            $window.localStorage.setItem('companyID', r.data.company);
+            return r.data;
+          });
       });
     },
     // delete Company
@@ -40,7 +43,7 @@ export default function accountService($http, apiUrl, $window) {
       .then(r => r.data);
     },
 
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
     // add Location
     addLocation(location) {
@@ -80,8 +83,8 @@ export default function accountService($http, apiUrl, $window) {
         });
     },
 
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-    // Get All Rooms by Location 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+    // Get All Rooms by Location
     getRooms(locId) {
       return $http
         .get(`${apiUrl}/theaters/bylocation/${locId}`)
