@@ -5,7 +5,7 @@
       <p ng-if="$ctrl.loginServerError" class="error">{{$ctrl.loginServerError}}</p>
       <form ng-submit="loginForm.$valid && $ctrl.tryLogin(loginData)" name="loginForm" novalidate>
         <md-input-container md-no-float class="md-block">
-           <input ng-model="loginData.username" type="text" name="username" placeholder="Username" autocomplete="off" required>
+           <input ng-model="loginData.username" md-autofocus type="text" name="username" placeholder="Username" autocomplete="off" required>
            <ng-messages for="loginForm.username.$error" role="alert">
              <ng-message when="required">This field is required.</ng-message>
            </ng-messages>
