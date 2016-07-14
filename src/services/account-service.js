@@ -99,6 +99,12 @@ export default function accountService($http, apiUrl, $window) {
         .put(`${apiUrl}/theaters/${roomId}`, roomData)
         .then(r => r.data);
     },
+     // Delete Room (Theater)
+    deleteRoom(roomId) {
+      return $http
+        .delete(`${apiUrl}/theaters/${roomId}`)
+        .then(r => r.data);
+    },
 
   };
 }

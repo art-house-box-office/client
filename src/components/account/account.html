@@ -53,6 +53,10 @@
                     ng-click="account.changeActiveRoomEdit($index)">
               Edit
             </button>
+            <button ng-if="!account.isActiveRoomEdit($index)"
+                    ng-click="account.deleteRoom($index, $parent.$parent.$parent.$index)">
+              Delete
+            </button>
           </p>
           <div ng-if="account.isActiveRoomEdit($index)">
             <input ng-model="room.name">
