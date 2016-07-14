@@ -1,17 +1,23 @@
 <main ng-class="account.style.account"
       ng-init="account.fetchLocations()">
-  <h3>{{account.currentUser}}</h3>
+  <div class="head"> 
+    <h3>{{account.currentUser}}</h3>
+      <p>{{account.companyName}}</p>
+      <button ng-init="account.locationAdding = false"
+          ng-if="!account.locationAdding"
+          ng-click="account.locationAdding = true">
+          Add New Location
+      </button>
+
+  </div>
   <div>
-    <p>Company: {{account.companyName}}</p>
     <form ng-if="!account.companyName" name="companyForm"
           ng-submit="account.submitCompany($event)">
-      <input ng-model="account.companyInput" placeholder="Company Name">
+      Company Name: <input ng-model="account.companyInput" placeholder="Company Name">
       <button type="submit">Add Company</button>
     </form>
   </div>
-  <button ng-init="account.locationAdding = false"
-          ng-if="!account.locationAdding"
-          ng-click="account.locationAdding = true">Add New Location</button>
+  
   <div ng-if="account.locationAdding">
     <p>New Location</p>
     <form name="locationForm" ng-submit="account.submitLocation($event)">
@@ -24,16 +30,17 @@
       <button type="submit">Add Location</button>
     </form>
   </div>
-  <ul>
+  <ul class="location-list">
     <li ng-repeat="location in account.locations">
 
       <div ng-if="!account.isActive($index)">
-
-        <p>{{location.name}}</p>
-        <p>{{location.address}}</p>
-        <p>{{location.city}}</p>
-        <p>{{location.state}}</p>
-        <p>{{location.zip}}</p>
+        <ul>
+          <li>{{location.name}}</li>
+          <li>{{location.address}}</li>
+          <li>{{location.city}}</li>
+          <li>{{location.state}}</li>
+          <li>{{location.zip}}</li>
+        </ul>
         <button ng-if="!account.isActive($index)"
                 ng-click="account.changeActive($index)">
                 Edit
@@ -54,7 +61,8 @@
               Edit
             </button>
             <button ng-if="!account.isActiveRoomEdit($index)"
-                    ng-click="account.deleteRoom($index, $parent.$parent.$parent.$index)">
+                    ng-click="account.deleteRoom($index, $parent.$parent.$parent.$index)"
+                    class="delete">
               Delete
             </button>
           </p>
@@ -92,7 +100,10 @@
         <label>State</label><input ng-model="location.state"><br>
         <label>Zip</label><input ng-model="location.zip"><br>
         <button type="submit">Done</button>
-        <button ng-click="account.deleteLocation($index); account.changeActive(-1)">Delete Location</button>
+        <button ng-click="account.deleteLocation($index); account.changeActive(-1)"
+                class="delete">
+          Delete Location
+        </button>
       </form>
       
       <hr>
