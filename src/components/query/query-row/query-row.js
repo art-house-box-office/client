@@ -6,6 +6,7 @@ export default {
   bindings: {
     queryitem: '<',
     remove: '&',
+    colorbg: '<',
   },
   controller,
 };
@@ -16,5 +17,4 @@ function controller() {
   this.removeme = function removeme() {
     this.remove(this.queryitem.name);
   };
-
 }

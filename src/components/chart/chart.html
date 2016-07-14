@@ -1,4 +1,10 @@
 <div class={{$ctrl.styles.chart}}>
-  <h2>Chart of Query</h2>
-  <canvas ng-bind="mychart" id="myChart"></canvas>
+  <h3>Average Box Office Grosses per Screen for 2016</h3>
+  <canvas ng-show="$ctrl.array.length > 0" ng-bind="mychart" id="myChart"></canvas>
+
+  <form>
+    <input ng-model="$ctrl.chartType" type="radio" name="type" value="line">Line</input>
+    <input ng-model="$ctrl.chartType" type="radio" name="type" value="bar" checked>Bar</input>
+  </form>
+
 </div>

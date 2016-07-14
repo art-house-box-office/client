@@ -12,7 +12,7 @@ export default {
 function controller() {
   this.styles = styles;
   this.item = {};
-  this.item.name = `query  ${Math.round(Math.random() * 1000)}`;
+  this.item.name = `query${Math.round(Math.random() * 10000)}`;
 
   this.addq = function addq() {
     const item = this.item;

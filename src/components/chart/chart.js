@@ -7,6 +7,8 @@ export default {
   template,
   bindings: {
     info: '<',
+    array: '<',
+    count: '<',
   },
   controller: ['$scope', controllerFunc],
 };
@@ -14,77 +16,26 @@ export default {
 function controllerFunc($scope) {
   this.template = template;
   this.styles = styles;
-  this.myChart = null;
+  this.chartType = 'bar';
 
-  $scope.$watch('$ctrl.info', () => {
-    const params = (this.info && this.info.sequence) ? this.info.sequence : null;
-    if (params) {
-      const ctx = document.getElementById('myChart');
-      createChart(params, ctx);
-    }
+  $scope.$watch('$ctrl.count', () => {
+    const params = (this.array[0] && this.array[0].sequence) ? this.array[0].sequence : null;
+    if (params) this.createChart();
   });
 
-  function createChart(series, ctx) {
-    this.myChart = new Chart(ctx, {
-      type: 'bar',
+  $scope.$watch('$ctrl.chartType', () => {
+    if ($scope.myChart) this.createChart();
+  });
+
+  this.createChart = () => {
+    if ($scope.myChart) $scope.myChart.destroy();
+    const ctx = document.getElementById('myChart');
+    const datasets = createDataSets(this.array);
+    $scope.myChart = new Chart(ctx, {
+      type: this.chartType,
       data: {
         labels: ['Feb', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-          label: 'Average Box Office Gross per Screen',
-          data: [
-            series[1].avgAdm,
-            series[2].avgAdm,
-            series[3].avgAdm,
-            series[4].avgAdm,
-            series[5].avgAdm,
-            series[6].avgAdm,
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
-          borderWidth: 1,
-        },
-        {
-          label: 'Average Box Office Gross per Screen',
-          data: [
-            series[4].avgAdm,
-            series[5].avgAdm,
-            series[6].avgAdm,
-            series[1].avgAdm,
-            series[2].avgAdm,
-            series[3].avgAdm,
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
-          borderWidth: 1,
-        }],
+        datasets,
       },
       options: {
         scales: {
@@ -98,6 +49,45 @@ function controllerFunc($scope) {
         maintainAspectRatio: true,
       },
     });
+  };
+
+  function createDataSets(myarray) {
+    const sets = [];
+    myarray.forEach((e, index) => {
+      sets.push(
+        {
+          label: `${e.name} `,
+          data: [
+            e.sequence[1].avgAdm,
+            e.sequence[2].avgAdm,
+            e.sequence[3].avgAdm,
+            e.sequence[4].avgAdm,
+            e.sequence[5].avgAdm,
+            e.sequence[6].avgAdm,
+          ],
+          backgroundColor: [
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
+            // 'hsla(50, 70%, 50%, 1)',
+          ],
+          borderColor: [
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+          ],
+          borderWidth: 1,
+        }
+      );
+    }, this);
+
+    return sets;
   }
 
 }

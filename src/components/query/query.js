@@ -4,15 +4,16 @@ import style from './query.scss';
 export default {
   template,
   bindings: {
-    info: '<',
+    arrayOfQueries: '<',
   },
-  controller: ['$state', 'ngDialog', controller],
+  controller: ['$state', 'ngDialog', 'queryService', controller],
 };
 
-function controller($state, ngDialog) {
+function controller($state, ngDialog, queryService) {
   this.style = style;
   this.qobj = null;
-  this.arrayOfQueries = [];
+  // if (!this.arrayOfQueries) this.arrayOfQueries = [];
+  this.count = 0;
 
   this.addquery = function addquery() {
     const dialog = ngDialog.open({
@@ -23,10 +24,11 @@ function controller($state, ngDialog) {
           dialog.close();
           screeningService.agg({ params: qobj })
           .then(data => {
-            console.log(qobj.name);
             data.name = qobj.name;
             this.arrayOfQueries.push(data);
-            return this.info = data;
+            queryService.set(JSON.stringify(this.arrayOfQueries));
+            this.count = this.arrayOfQueries.length;
+            // return this.info = data;
           });
         };
       }],
@@ -38,7 +40,11 @@ function controller($state, ngDialog) {
 
   this.removequery = function removequery(query) {
     const index = this.arrayOfQueries.findIndex(e => e.name === query.name);
-    if (index !== -1) this.arrayOfQueries.splice(index, 1);
+    if (index !== -1) {
+      this.arrayOfQueries.splice(index, 1);
+      queryService.set(JSON.stringify(this.arrayOfQueries));
+      this.count = this.arrayOfQueries.length;
+    }
   };
 
 }
