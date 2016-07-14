@@ -69,6 +69,29 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       views: {
         movies: { component: 'listRecent' },
       },
+    })
+    .state('about', {
+      url: '/about',
+      data: { requiresAuth: false },
+      views: {
+        header: { component: 'headerComponent' },
+        main: { component: 'about' },
+        sidebar: { component: 'sidebarAbout' },
+      },
+    })
+    .state('about.info', {
+      url: '/about/info',
+      data: { requiresAuth: false },
+      views: {
+        about: { component: 'aboutInfo' },
+      },
+    })
+    .state('about.team', {
+      url: '/about/team',
+      data: { requiresAuth: false },
+      views: {
+        about: { component: 'aboutTeam' },
+      },
     });
 
   $urlRouterProvider.otherwise('/');
