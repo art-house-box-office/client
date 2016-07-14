@@ -10,7 +10,8 @@ export default {
         name: 'David Goodwin',
         github: 'https://github.com/goodwid/',
         linkedIn: 'https://www.linkedin.com/in/david-goodwin-35921b4',
-        bio: 'I traded in my 15 year IT career on a chance at turning my programming hobby into a new career.',
+        bio: 'I traded in my 15 year IT career on a chance at\
+         turning my programming hobby into a new career.',
       },
       {
         name: 'team',
