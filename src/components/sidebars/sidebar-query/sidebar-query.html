@@ -6,11 +6,11 @@
         <a ui-sref="query.all">All</a>
         <p>Movie Screenings</p>
       </li>
-      <li>
+      <li ng-show="$ctrl.companyID">
         <a ui-sref="query.my">My</a>
         <p>Movie Screenings</p>
       </li>
-      <li>
+      <li ng-show="$ctrl.companyID">
         <a ui-sref="query.other">Other</a>
         <p>All Screenings Except My Movies</p>
       </li>

@@ -3,6 +3,9 @@ import style from '../sidebar.scss';
 
 export default {
   template,
+  bindings: {
+    companyID: '=',
+  },
   controller() {
     this.style = style;
   },
