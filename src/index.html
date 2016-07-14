@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title>Art House Box Office</title>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto|Material+Icons">
   </head>
-  <body>
-    <header ui-view="header"></header>
-    <aside ui-view="sidebar"></aside>
-    <main ui-view="main" class="main"></main>
+  <body layout="column">
+    <ui-view name="header"></ui-view>
+    <div layout="row" flex>
+      <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" class="site-sidenav md-sidenav-left md-padding">
+        <ui-view name="sidebar"></ui-view>
+      </md-sidenav>
+      <md-content class="md-padding">
+        <ui-view name="main"></ui-view>
+      </md-content>
+    </div>
   </body>
 </html>

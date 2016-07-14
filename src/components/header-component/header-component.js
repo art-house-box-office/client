@@ -3,54 +3,62 @@ import style from './header.scss';
 
 export default {
   template,
-  controller($state, userService) {
-    this.style = style;
-    this.$state = $state;
+  controller: [
+    '$state',
+    '$mdSidenav',
+    'userService',
+    function controller($state, $mdSidenav, userService) {
+      this.style = style;
+      this.$state = $state;
 
-    this.isLoggedIn = () => userService.isAuthenticated();
+      this.isLoggedIn = () => userService.isAuthenticated();
 
-    this.logout = () => userService.logout();
+      this.logout = () => userService.logout();
 
-    if (this.isLoggedIn()) {
-      this.navItems = [
-        {
-          sref: 'trends',
-          name: 'Trends',
-        },
-        {
-          sref: 'query',
-          name: 'Query',
-        },
-        {
-          sref: 'my-movies',
-          name: 'My Movies',
-        },
-        {
-          sref: 'account',
-          name: 'Account',
-        },
-        {
-          sref: 'landing',
-          name: 'Log Out',
-          click: () => this.logout(),
-        },
-      ];
-    } else {
-      this.navItems = [
-        {
-          sref: 'trends',
-          name: 'Trends',
-        },
-        {
-          sref: 'query',
-          name: 'Query',
-        },
-        {
-          sref: 'account', // or trends?
-          name: 'Log In',
-        },
-      ];
-    }
-    
-  }, 
+      this.openLeftSidenav = () => {
+        $mdSidenav('left').toggle();
+      };
+
+      if (this.isLoggedIn()) {
+        this.navItems = [
+          {
+            sref: 'trends',
+            name: 'Trends',
+          },
+          {
+            sref: 'query',
+            name: 'Query',
+          },
+          {
+            sref: 'my-movies',
+            name: 'My Movies',
+          },
+          {
+            sref: 'account',
+            name: 'Account',
+          },
+          {
+            sref: 'landing',
+            name: 'Log Out',
+            click: () => this.logout(),
+          },
+        ];
+      } else {
+        this.navItems = [
+          {
+            sref: 'trends',
+            name: 'Trends',
+          },
+          {
+            sref: 'query',
+            name: 'Query',
+          },
+          {
+            sref: 'account', // or trends?
+            name: 'Log In',
+          },
+        ];
+      }
+    },
+  ],
 };

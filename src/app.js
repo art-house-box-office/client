@@ -5,14 +5,18 @@ import components from './components';
 import services from './services';
 import router from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
+import ngAria from 'angular-aria';
 import ngDialog from 'ng-dialog';
+import ngMaterial from 'angular-material';
 
 const app = angular.module('app', [
   components,
   services,
   router,
   ngAnimate,
+  ngAria,
   ngDialog,
+  ngMaterial,
   angular.module('ui.router.state.events').name,
 ]);
 
