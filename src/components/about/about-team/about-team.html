@@ -6,7 +6,8 @@ This project was created as the final project of our <a href="http://codefellows
 <ul>
   <li ng-repeat="member in $ctrl.team">
     <strong>{{member.name}}</strong><br>
-    <a href="{{member.github}}">github</a>&nbsp;<a href="{{member.linkedIn}}">LinkedIn</a><br>
+    <a href="{{member.github}}">github</a>&nbsp;|&nbsp;<a href="{{member.linkedIn}}">LinkedIn</a><br>
     <p>{{member.bio}}</p>
   </li>
 </ul>
+<p ng-class="$ctrl.styles.image"><img src="http://i.imgur.com/1J5Ko4a.png"></p>
