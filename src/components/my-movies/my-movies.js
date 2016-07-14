@@ -5,5 +5,7 @@ export default {
   template,
   controller: ['movieService', 'screeningService', function(movieService, screeningService) {
     this.style = style;
+
+
   }],
 };

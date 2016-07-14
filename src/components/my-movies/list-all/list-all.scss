@@ -1,0 +1,38 @@
+:local(.listAll) {
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    li {
+      margin: 10px 5px;
+
+      span.movie-title {
+
+      }
+      span.movie-year {
+        font-size: 0.7em;
+        font-style: italic;
+      }
+      div.img-wrapper {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+
+        &.placeholder {
+          background: #d6d6d6;
+          // width: 100%;
+          // height: 100%;
+        }
+        &.placeholder::before {
+          content: 'Movie Poster';
+          top: 30px;
+          left: 20px;
+          position: relative;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
