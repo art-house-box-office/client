@@ -62,12 +62,23 @@ function controller(accountService, $window) {
     this.changeActive(-1);
   };
 
+  this.submitRoomEdit = (data, index, parentIndex) => {
+    console.log(index, parentIndex);
+    const putData = {
+      name: data.name,
+      seats: data.seats,
+    };
+    const thisLocation = this.locations[parentIndex];
+    const thisRoom = thisLocation.rooms[index];
+    accountService.editRoom(putData, thisRoom._id);
+    this.changeActiveRoomEdit(-1);
+  };
+
   this.submitRoom = (index) => {
     const inputRoom = this.newRoom;
     const location = this.locations[index];
     inputRoom.location = location._id;
-    accountService.addRoom(inputRoom)
-      .then(r => console.log(r));
+    accountService.addRoom(inputRoom);
     this.changeActiveRoom(-1);
   };
 
@@ -77,6 +88,14 @@ function controller(accountService, $window) {
   };
   this.isActiveRoom = (index) => {
     return this.activeRoomIndex === index;
+  };
+
+  // Editing Room
+  this.changeActiveRoomEdit = (index) => {
+    this.activeRoomEditIndex = index;
+  };
+  this.isActiveRoomEdit = (index) => {
+    return this.activeRoomEditIndex === index;
   };
 
   // Editing location

@@ -3,12 +3,7 @@ accountService.$inject = ['$http', 'apiUrl', '$window'];
 export default function accountService($http, apiUrl, $window) {
 
   return {
-    // all Companies
-    get() {
-      return $http
-      .get(`${apiUrl}/companies`)
-      .then(r => r.data);
-    },
+
     // specific Company
     getCompany(companyId) {
       return $http
@@ -38,13 +33,15 @@ export default function accountService($http, apiUrl, $window) {
           .then(r => r.data);
       });
     },
-
     // delete Company
     delete(companyId) {
       return $http
       .delete(`${apiUrl}/companies/${companyId}`)
       .then(r => r.data);
     },
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
     // add Location
     addLocation(location) {
       const userId = $window.localStorage.getItem('userID');
@@ -83,15 +80,23 @@ export default function accountService($http, apiUrl, $window) {
         });
     },
 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+    // Get All Rooms by Location 
+    getRooms(locId) {
+      return $http
+        .get(`${apiUrl}/theaters/bylocation/${locId}`)
+        .then(r => r.data);
+    },
+    // Post New Room (Theater)
     addRoom(room) {
       return $http
         .post(`${apiUrl}/theaters`, room)
         .then(r => r.data);
     },
-
-    getRooms(locId) {
+    // Update name and room data for Room (Theater)
+    editRoom(roomData, roomId) {
       return $http
-        .get(`${apiUrl}/theaters/bylocation/${locId}`)
+        .put(`${apiUrl}/theaters/${roomId}`, roomData)
         .then(r => r.data);
     },
 
