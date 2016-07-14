@@ -1,6 +1,6 @@
 <main ng-class="account.style.account"
       ng-init="account.fetchLocations()">
-  <div class="head"> 
+  <div class="head">
     <h3>{{account.currentUser}}</h3>
       <p>{{account.companyName}}</p>
       <button ng-init="account.locationAdding = false"
@@ -17,7 +17,7 @@
       <button type="submit">Add Company</button>
     </form>
   </div>
-  
+
   <div ng-if="account.locationAdding">
     <p>New Location</p>
     <form name="locationForm" ng-submit="account.submitLocation($event)">
@@ -40,13 +40,14 @@
           <li>{{location.city}}</li>
           <li>{{location.state}}</li>
           <li>{{location.zip}}</li>
+          <li>{{location.country}}</li>
         </ul>
         <button ng-if="!account.isActive($index)"
                 ng-click="account.changeActive($index)">
                 Edit
         </button>
 
-        <p>Rooms:  
+        <p>Rooms:
           <button ng-if="!location.rooms"
                   ng-click="account.fetchRooms($index)">Show Rooms
           </button>
@@ -82,7 +83,7 @@
                  placeholder="Room Name (i.e. Auditorium 8)">
           <input ng-model="account.newRoom.seats"
                  placeholder="Number of Available Seats">
-          <button type="submit">Add Room</button>       
+          <button type="submit">Add Room</button>
         </form>
 
         <button ng-click="account.changeActiveRoom($index)"
@@ -92,7 +93,7 @@
 
       </div>
 
-      <form ng-if="account.isActive($index)" 
+      <form ng-if="account.isActive($index)"
             ng-submit="account.editLocation($index)">
         <label>Name</label><input ng-model="location.name"><br>
         <label>Address</label><input ng-model="location.address"><br>
@@ -105,7 +106,7 @@
           Delete Location
         </button>
       </form>
-      
+
       <hr>
     </li>
   </ul>
