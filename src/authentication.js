@@ -1,27 +1,26 @@
-auth.$inject = ['$rootScope', 'userService', 'ngDialog', '$state'];
+export default [
+  '$rootScope',
+  '$state',
+  '$mdDialog',
+  'userService',
+  function auth($rootScope, $state, $mdDialog, userSvc) {
+    $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
+      if (toState.data && toState.data.requiresAuth && !userSvc.isAuthenticated()) {
+        event.preventDefault();
 
-export default function auth($rootScope, userSvc, ngDialog, $state) {
-
-  $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
-
-    if (toState.data && toState.data.requiresAuth && !userSvc.isAuthenticated()) {
-
-      event.preventDefault();
-
-      const dialog = ngDialog.open({
-        template: '<user-auth success="success()"></user-auth>',
-        plain: true,
-        controller($scope) {
-          $scope.success = () => {
-            dialog.close();
-            return $state.go(toState.name, toParams);
-          };
-        },
-      });
-
-      dialog.closePromise
-        .catch(err => console.log(`failure!\n\n ${err}`));
-    }
-
-  });
-}
+        $mdDialog.show({
+          autoWrap: false,
+          template: '<user-auth success="success()"></user-auth>',
+          controller: [
+            '$scope',
+            function controller($scope) {
+              $scope.success = () => $mdDialog.hide()
+                .then(() => $state.go(toState.name, toParams));
+            },
+          ],
+          clickOutsideToClose: true,
+        });
+      }
+    });
+  },
+];
