@@ -37,8 +37,10 @@ function controller(accountService, $window) {
   this.submitLocation = ($event) => {
     const locationData = this.newLocation;
     accountService.addLocation(locationData)
-      .then(returnedLocId => locationData._id = returnedLocId);
-    this.locations.push(locationData);
+      .then(returnedLocId => {
+        locationData._id = returnedLocId;
+        this.locations.push(locationData);
+      });
     this.newLocation = {};
     $event.target.reset();
     this.locationAdding = false;
@@ -83,7 +85,8 @@ function controller(accountService, $window) {
     const location = this.locations[index];
     inputRoom.location = location._id;
     accountService.addRoom(inputRoom)
-      .then(() => {
+      .then((r) => {
+        inputRoom._id = r._id;
         this.locations[index].rooms.push(inputRoom);
       });
     this.newRoom = {};
