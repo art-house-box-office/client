@@ -19,7 +19,7 @@ export default function movieService($http, apiUrl) {
     add(movie) {
       return $http
         .post(`${apiUrl}/movies`, movie)
-        .then(r => r.data._id);
+        .then(r => r.data);
     },
     searchOMDb(title) {
       return $http
