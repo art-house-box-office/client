@@ -21,20 +21,20 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         main: { component: 'trends' },
       },
     })
-    .state('trends.current', {
-      url: '/current',
-      data: { requiresAuth: false },
-      views: {
-        trend: { component: 'trendsCurrent' },
-      },
-    })
-    .state('trends.archive', {
-      url: '/archive',
-      data: { requiresAuth: false },
-      views: {
-        trend: { component: 'trendsArchive' },
-      },
-    })
+    // .state('trends.current', {
+    //   url: '/current',
+    //   data: { requiresAuth: false },
+    //   views: {
+    //     trend: { component: 'trendsCurrent' },
+    //   },
+    // })
+    // .state('trends.archive', {
+    //   url: '/archive',
+    //   data: { requiresAuth: false },
+    //   views: {
+    //     trend: { component: 'trendsArchive' },
+    //   },
+    // })
     .state('query', {
       url: '/query?button',
       data: { requiresAuth: false },

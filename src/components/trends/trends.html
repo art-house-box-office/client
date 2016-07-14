@@ -1,9 +1,12 @@
 <main ng-class="$ctrl.style.trends">
   <h3>Trends</h3>
-  <ui-view name="trend"></ui-view>
+  <!-- <ui-view name="trend"></ui-view> -->
+  <div>
+    <poster></poster>
+  </div>
+
 
   <trends-chart array="$ctrl.arrayOfQueries"
-  count="1"
-  ng-show="$ctrl.displayType === 'chart'"></trends-chart>
+  count="2"></trends-chart>
 
 </main>
