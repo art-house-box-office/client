@@ -15,15 +15,13 @@ function controller() {
   this.styles = styles;
   this.querytext = '';
 
-  console.log(this.queryitem);
-
   Object.keys(this.queryitem.queries).forEach((e, index, arr) => {
-    if (e !== 'name') {
+    if (e !== 'name' && e !== 'company') {
       this.querytext += ` ${e}=`;
       this.querytext += `${this.queryitem.queries[e]} | `;
-      if (index === arr.length - 1) {
-        this.querytext = this.querytext.slice(0, this.querytext.length - 2);
-      }
+    }
+    if (index === arr.length - 1) {
+      this.querytext = this.querytext.slice(0, this.querytext.length - 2);
     }
   }, this);
 

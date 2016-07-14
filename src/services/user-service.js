@@ -21,7 +21,6 @@ export default function userService(tokenSvc, $http, apiUrl, $window) {
     login(credentials) {
       return $http.post(`${apiUrl}/signin`, credentials)
         .then(result => {
-          console.log(result.data);
           $window.localStorage.setItem('user', result.data.username);
           $window.localStorage.setItem('userID', result.data.id);
           if (result.data.company) $window.localStorage.setItem('companyID', result.data.company);

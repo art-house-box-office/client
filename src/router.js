@@ -36,9 +36,13 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
     })
     .state('query', {
-      url: '/query',
+      url: '/query?button',
       data: { requiresAuth: false },
-      resolve: { arrayOfQueries: ['queryService', queryService => queryService.get()] },
+      resolve: {
+        arrayOfQueries: ['queryService', queryService => queryService.get()],
+        companyID: ['companyService', companyService => companyService.get()],
+        button: ['$stateParams', (params) => params.button],
+      },
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarQuery' },
