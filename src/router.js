@@ -70,6 +70,13 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         movies: { component: 'listRecent' },
       },
     })
+    .state('my-movies.add-new', {
+      url: '/addnew',
+      data: { requiresAuth: true },
+      views: {
+        movies: { component: 'addNew' },
+      },
+    })
     .state('about', {
       url: '/about',
       data: { requiresAuth: false },
