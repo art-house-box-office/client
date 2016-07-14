@@ -3,8 +3,8 @@ import style from './add-new.scss';
 
 export default {
   template,
-  controller: ['movieService', 'accountService', '$window', 
-    function (movieService, accountService, $window) {
+  controller: ['movieService', 'accountService', '$window', 'screeningService', 
+    function (movieService, accountService, $window, screeningService) {
       this.style = style;
       this.addingMovie = false;
       this.fetchMovies = () => {
@@ -40,8 +40,39 @@ export default {
           .catch(() => this.message = 'Unable to Add Movie');
       };
 
+      this.startTimeIsolated = () => {
+        const fullTime = new Date(this.startTime);
+        const hour = fullTime.getHours();
+        const minute = fullTime.getMinutes();
+        return `${hour}:${minute}`;
+      };
+
+      this.getSeatData = () => {
+        let found;
+        this.theaters.forEach(room => {
+          if (room._id === this.selectedRoom) {
+            found = room.seats;
+          } 
+        });
+        return found;
+      };
+
       this.submitRun = () => {
-        console.log('run submit');
+        const postData = {
+          startDate: this.startDate,
+          endDate: this.endDate,
+          times: [this.startTimeIsolated()],
+          movieId: this.selectedMovie,
+          theaterId: this.selectedRoom,
+          seats: this.seatCount || this.getSeatData(this.selectedRoom),
+        };
+        if (postData.startDate && postData.endDate 
+            && postData.times && postData.movieId 
+            && postData.theaterId && postData.seats) {
+          screeningService.addRun(postData)
+            .then(() => this.message = 'Run Successfully Added');
+        }
+
       };
 
     }],

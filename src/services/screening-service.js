@@ -41,5 +41,11 @@ export default function screeningService($http, apiUrl) {
         return r.data;
       });
     },
+    // Post new Run
+    addRun(run) {
+      return $http
+        .post(`${apiUrl}/runs`, run)
+        .then(r => r.data);
+    },
   };
 }

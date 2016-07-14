@@ -2,6 +2,14 @@
   <h4>Create New Screening Run</h4>
   <p class="message">{{$ctrl.message}}</p>
 
+  <form ng-if="$ctrl.addingMovie"
+        ng-submit="$ctrl.submitMovie()">
+    <input ng-model="$ctrl.newMovie.title"
+           placeholder="Movie Title"
+           ng-blur="$ctrl.addingMovie = false">
+    <button type="submit">Add Movie</button>
+  </form>
+
   <form ng-submit="$ctrl.submitRun()">
     <select ng-init="$ctrl.fetchMovies()"
             ng-options="movie._id as movie.title for movie in $ctrl.movies"
@@ -30,15 +38,34 @@
     </select>
 
     <br>
-    <button type="submit">Submit</button>
+
+    <p>Start Date</p>
+    <md-datepicker ng-model="$ctrl.startDate" md-placeholder="Enter Start Date"></md-datepicker>
+    <p>End Date</p>
+    <md-datepicker ng-model="$ctrl.endDate" md-placeholder="Enter End Date"></md-datepicker>
+
+    <br>
+
+    <p>Start Time For Screenings</p>
+    <input type="time"
+           ng-model="$ctrl.startTime">
+
+    <br>
+
+    <p>Special Seat Count (optional)</p>
+    <input type="number"
+           ng-model="$ctrl.seatCount">
+
+    <br>
+
+    <button type="submit">Submit Screening Run</button>
+
   </form>
-  <form ng-if="$ctrl.addingMovie"
-        ng-submit="$ctrl.submitMovie()">
-    <input ng-model="$ctrl.newMovie.title"
-           placeholder="Movie Title"
-           ng-blur="$ctrl.addingMovie = false">
-    <button type="submit">Add Movie</button>
-  </form>
+
+  <br>
+
+  
+
 
   
 
