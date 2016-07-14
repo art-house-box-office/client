@@ -1,1 +1,11 @@
-<h4>Add a new movie</h4>
+<section ng-class="$ctrl.style.addMovie">
+  <h4>Add a new movie</h4>
+  <form ng-submit="$ctrl.submitMovie()">
+    <input ng-model="$ctrl.newMovie.title">
+    <button type="submit">Submit</button>
+  </form>
+  <p class="message">{{$ctrl.message}}</p>
+
+
+</section>
+
