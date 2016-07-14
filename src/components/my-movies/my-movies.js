@@ -3,7 +3,8 @@ import style from './my-movies.scss';
 
 export default {
   template,
-  controller() {
+  controller: ['movieService', 'screeningService', function(movieService, screeningService) {
     this.style = style;
-  },
+    
+  }],
 };

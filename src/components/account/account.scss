@@ -1,3 +1,22 @@
 :local(.account) {
+  button.delete {
+    background-color: orangered;
+    color: #fff;
+    border: none;
+    padding: 2px 4px;
+  }
+  div.head {
+    text-align: center;
+  }
+  ul.location-list {
+    margin: 25px 0;
 
+    li {
+      
+      div {
+        margin: 35px 0;
+      }
+    }
+  }
+  
 }
