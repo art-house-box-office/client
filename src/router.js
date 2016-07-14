@@ -21,6 +21,20 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         main: { component: 'trends' },
       },
     })
+    .state('trends.current', {
+      url: '/current',
+      data: { requiresAuth: false },
+      views: {
+        trend: { component: 'trendsCurrent' },
+      },
+    })
+    .state('trends.archive', {
+      url: '/archive',
+      data: { requiresAuth: false },
+      views: {
+        trend: { component: 'trendsArchive' },
+      },
+    })
     .state('query', {
       url: '/query',
       data: { requiresAuth: false },
@@ -31,12 +45,33 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         main: { component: 'query' },
       },
     })
+    .state('query.all', {
+      url: '/all',
+      data: { requiresAuth: false },
+      views: {
+        query: { component: 'queryAll' },
+      },
+    })
+    .state('query.my', {
+      url: '/my',
+      data: { requiresAuth: false },
+      views: {
+        query: { component: 'queryMy' },
+      },
+    })
+    .state('query.other', {
+      url: '/other',
+      data: { requiresAuth: false },
+      views: {
+        query: { component: 'queryOther' },
+      },
+    })
     .state('account', {
       url: '/account',
       data: { requiresAuth: true },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarTrends' },
+        // sidebar: { component: 'sidebarTrends' },
         main: { component: 'account' },
       },
     })
