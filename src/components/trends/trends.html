@@ -1,10 +1,17 @@
 <main ng-class="$ctrl.style.trends">
-  <h3>Trends</h3>
-  <!-- <ui-view name="trend"></ui-view> -->
-  <div>
-    <poster></poster>
-  </div>
+  <h3>Top Grossing Movies of 2016</h3>
 
+  <ul>
+    <li ng-repeat="top in $ctrl.topAdm">
+      <span class="movie-title">{{$index + 1}}) {{top.title}}</span>
+      <span class="movie-year">gross: ${{top.admissions}}</span>
+      <div ng-class="{placeholder: !top.poster}"
+      class="img-wrapper">
+
+      <img ng-src="{{top.poster}}">
+    </div>
+  </li>
+  </ul>
 
   <trends-chart array="$ctrl.arrayOfQueries"
   count="$ctrl.count"></trends-chart>

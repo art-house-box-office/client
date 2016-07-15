@@ -3,6 +3,9 @@ import style from './trends.scss';
 
 export default {
   template,
+  bindings: {
+    topAdm: '<',
+  },
   controller: ['$scope', 'screeningService', controller],
 };
 
@@ -22,7 +25,6 @@ function controller($scope, screeningService) {
       if (!this.arrayOfQueries) this.arrayOfQueries = [];
       this.arrayOfQueries.push(data);
       this.count = this.arrayOfQueries.length;
-      // console.log(data);
     }
   });
 }

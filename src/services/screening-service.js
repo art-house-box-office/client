@@ -54,5 +54,12 @@ export default function screeningService($http, apiUrl) {
         .post(`${apiUrl}/runs`, run)
         .then(r => r.data);
     },
+    topTenAdm() {
+      return $http
+      .get(`${apiUrl}/screenings/topadm`)
+      .then(r => {
+        return r.data;
+      });
+    },
   };
 }
