@@ -1,9 +1,11 @@
-<h2><a ui-sref="about">About Art House Box Office</a></h2>
-<ui-view name="about">
-  <p>This application is designed for independent cinema owners to be able to track thier own movie sales, and see trends develop as other cinema owners track their own data.</p>
+<section ng-class="$ctrl.style.about">  
+  <h3><a ui-sref="about">About Art House Box Office</a></h3>
+  <ui-view name="about">
+    <p>This application is designed for independent cinema owners to be able to track thier own movie sales, and see trends develop as other cinema owners track their own data.</p>
 
-  <p>This application was created using <a href="https://angularjs.org">Angular</a>, hosted on <a href="https://firebase.com">Firebase</a>, with the API running on <a href="https://nodejs.org">Node.js</a> hosted by <a href="https://heroku.com">Heroku</a> backed by a <a href="https://mongodb.com">MongoDB</a> database provided by <a href="https://mlab.com">mLab</a>.  Thanks to all the open-source developers that have put in all the effort to make these projects possible so that we can make awesome projects!
-  </p>
+    <p>This application was created using <a href="https://angularjs.org">Angular</a>, hosted on <a href="https://firebase.com">Firebase</a>, with the API running on <a href="https://nodejs.org">Node.js</a> hosted by <a href="https://heroku.com">Heroku</a> backed by a <a href="https://mongodb.com">MongoDB</a> database provided by <a href="https://mlab.com">mLab</a>.  Thanks to all the open-source developers that have put in all the effort to make these projects possible so that we can make awesome projects!
+    </p>
 
-  <p><a ui-sref="about.team">About the development team.</a>
-</ui-view>
+    <p><a ui-sref="about.team">About the development team.</a>
+  </ui-view>
+</section>
