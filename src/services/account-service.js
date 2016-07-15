@@ -26,11 +26,11 @@ export default function accountService($http, apiUrl, $window) {
       const userId = $window.localStorage.getItem('userID');
       return $http
       .post(`${apiUrl}/companies`, { name: company })
-      .then(r => r.data._id)
-      .then(id => {
+      .then(cr => {
         return $http
-          .put(`${apiUrl}/users/${userId}`, { company: id })
+          .put(`${apiUrl}/users/${userId}`, { company: cr.data._id })
           .then(r => {
+            r.data.companyName = cr.data.name;
             $window.localStorage.setItem('companyID', r.data.company);
             return r.data;
           });
