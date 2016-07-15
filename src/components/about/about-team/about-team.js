@@ -23,7 +23,7 @@ export default {
         name: 'Dave Hanagan',
         github: 'https://github.com/',
         linkedIn: 'https://www.linkedin.com/',
-        bio: '',
+        bio: 'I thoroughly enjoy creative endeavors at the intersection of art and technology. ', // eslint-disable-line
       },
       {
         name: 'Don Chatelain',

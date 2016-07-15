@@ -7,7 +7,7 @@
 
   <div ng-hide="$ctrl.arrayOfQueries.length < 1">
 
-    <query-row ng-repeat="query in $ctrl.arrayOfQueries"
+    <query-row ng-repeat="query in $ctrl.arrayOfQueries track by query.uuid"
     queryitem="query"
     remove="$ctrl.removequery(query)"
     colorbg="'color-' + $index"></query-row>
@@ -17,8 +17,8 @@
       <input ng-model="$ctrl.displayType" type="radio" name="type" value="chart" checked>Chart</input>
     </form>
 
-    <summary ng-repeat="sum in $ctrl.arrayOfQueries"
-    info="sum" name="sum.name"
+    <summary ng-repeat="sum in $ctrl.arrayOfQueries track by sum.uuid"
+    info="sum" name="sum.name" index="$index" base="$ctrl.arrayOfQueries[0].totals"
     ng-show="$ctrl.displayType === 'summary'"></summary>
 
   </div>
@@ -28,7 +28,36 @@
   ng-show="$ctrl.displayType === 'chart'"></chart>
 
   <div ng-show="$ctrl.arrayOfQueries.length < 1">
-    <p>Enter a query. You can create more than one.</p>
+    <p>Enter a query. Then enter additional queries to compare two or more results.</p>
+
+      <h3>Step 1 - Choose a query type</h3>
+      <p>
+      <b>All</b><span> : </span>
+      Will return box office data for all screenings in the database<br>
+      <b>My</b><span> : </span>
+      Will return box office data from within your company’s screenings<br>
+      <b>Other</b><span> : </span>
+      Will return box office data for all screenings EXCEPT your company’s screenings<br>
+      </p>
+
+      <h3>Step 2 (Optional) - Choose some filters</h3>
+      <p>
+      After choosing a query type, you will be given several filter options for
+      constraining your query to your desired preference:
+      </p>
+      <h4>Filters</h4>
+      <ul>
+        <li>Movie Title</li>
+        <li>Date Range</li>
+        <li>Time of Day</li>
+        <li>Day of Week</li>
+        <li>Location</li>
+        <li>Critic Rating</li>
+        <li>Genre</li>
+        <li>Director</li>
+        <li>Country</li>
+        <li>Release Year</li>
+      </ul>
   </div>
   <ui-view name="query"></ui-view>
 </main>

@@ -98,20 +98,20 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         movies: { component: 'listAll' },
       },
     })
-    .state('my-movies.list-upcoming', {
-      url: '/listupcoming',
-      data: { requiresAuth: true },
-      views: {
-        movies: { component: 'listUpcoming' },
-      },
-    })
-    .state('my-movies.list-recent', {
-      url: '/listrecent',
-      data: { requiresAuth: true },
-      views: {
-        movies: { component: 'listRecent' },
-      },
-    })
+    // .state('my-movies.list-upcoming', {
+    //   url: '/listupcoming',
+    //   data: { requiresAuth: true },
+    //   views: {
+    //     movies: { component: 'listUpcoming' },
+    //   },
+    // })
+    // .state('my-movies.list-recent', {
+    //   url: '/listrecent',
+    //   data: { requiresAuth: true },
+    //   views: {
+    //     movies: { component: 'listRecent' },
+    //   },
+    // })
     .state('my-movies.add-new', {
       url: '/addnew',
       data: { requiresAuth: true },

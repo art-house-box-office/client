@@ -6,6 +6,7 @@ export default {
   bindings: {
     newq: '&',
     emptyReturn: '<',
+    c: '<',
   },
   controller,
 };
@@ -14,12 +15,14 @@ function controller() {
   this.emptyReturn = false;
   this.styles = styles;
   this.item = {};
-  this.item.name = `query${Math.round(Math.random() * 10000)}`;
+  const name = `query${Math.round(Math.random() * 10000)}`;
+  this.item.name = this.c;
 
   this.addq = function addq() {
     const item = this.item;
     this.newq({ qobj: item });
-    this.item = null;
+    this.item = {};
+    this.item.name = name;
   };
 
 }

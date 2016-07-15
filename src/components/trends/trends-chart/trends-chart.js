@@ -51,7 +51,7 @@ function controllerFunc($scope) {
 
   function createDataSets(myarray) {
     const sets = [];
-    myarray.forEach((e, index) => {
+    myarray.forEach((e) => {
       sets.push(
         {
           label: `${e.name} `,

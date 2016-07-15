@@ -1,0 +1,25 @@
+:local(.summary){
+
+  p {
+    font-size: 80%;
+  }
+
+  h4 {
+    margin-bottom: 0em;
+  }
+
+  .below {
+    color: red;
+    font-weight: bolder;
+  }
+
+  .above {
+    color: hsla(90, 70%, 50%, 1);
+    font-weight: bolder;
+  }
+
+  .querystring {
+    font-size: 75%;
+  }
+
+}
