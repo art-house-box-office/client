@@ -12,7 +12,7 @@ export default {
 };
 
 function controllerFunc($scope) {
-  this.chartType = 'bar';
+  this.chartType = 'line';
 
   $scope.$watch('$ctrl.count', () => {
     const params = (this.array[0] && this.array[0].sequence) ? this.array[0].sequence : null;
@@ -87,6 +87,6 @@ function controllerFunc($scope) {
 
     return sets;
   }
-  
+
   this.createChart();
 }

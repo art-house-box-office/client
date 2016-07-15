@@ -9,6 +9,7 @@ export default {
 function controller($scope, screeningService) {
   this.style = style;
   this.arrayOfQueries = [];
+  this.count = 0;
 
   const qobj = { type: 'all', name: 'Trends' };
   screeningService.agg({ params: qobj })
@@ -20,6 +21,8 @@ function controller($scope, screeningService) {
       data.queries = qobj;
       if (!this.arrayOfQueries) this.arrayOfQueries = [];
       this.arrayOfQueries.push(data);
+      this.count = this.arrayOfQueries.length;
+      // console.log(data);
     }
   });
 }
