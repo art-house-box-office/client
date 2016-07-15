@@ -21,24 +21,28 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         main: { component: 'trends' },
       },
     })
-    .state('trends.current', {
-      url: '/current',
-      data: { requiresAuth: false },
-      views: {
-        trend: { component: 'trendsCurrent' },
-      },
-    })
-    .state('trends.archive', {
-      url: '/archive',
-      data: { requiresAuth: false },
-      views: {
-        trend: { component: 'trendsArchive' },
-      },
-    })
+    // .state('trends.current', {
+    //   url: '/current',
+    //   data: { requiresAuth: false },
+    //   views: {
+    //     trend: { component: 'trendsCurrent' },
+    //   },
+    // })
+    // .state('trends.archive', {
+    //   url: '/archive',
+    //   data: { requiresAuth: false },
+    //   views: {
+    //     trend: { component: 'trendsArchive' },
+    //   },
+    // })
     .state('query', {
-      url: '/query',
+      url: '/query?button',
       data: { requiresAuth: false },
-      resolve: { arrayOfQueries: ['queryService', queryService => queryService.get()] },
+      resolve: {
+        arrayOfQueries: ['queryService', queryService => queryService.get()],
+        companyID: ['companyService', companyService => companyService.get()],
+        button: ['$stateParams', (params) => params.button],
+      },
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarQuery' },

@@ -3,7 +3,10 @@ import style from './query-all.scss';
 
 export default {
   template,
-  controller() {
-    this.style = style;
-  },
+  controller: ['$state', controller],
 };
+
+function controller($state) {
+  this.style = style;
+  $state.go('query', { button: 'all' });
+}

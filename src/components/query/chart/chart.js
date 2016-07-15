@@ -33,6 +33,8 @@ function controllerFunc($scope) {
     const datasets = createDataSets(this.array);
     $scope.myChart = new Chart(ctx, {
       type: this.chartType,
+      lineTension: 0.2,
+      borderWidth: (this.chartType === 'bar') ? 1 : 4,
       data: {
         labels: ['Feb', 'March', 'April', 'May', 'June', 'July'],
         datasets,
@@ -75,14 +77,14 @@ function controllerFunc($scope) {
             // 'hsla(50, 70%, 50%, 1)',
           ],
           borderColor: [
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.2)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
+            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
           ],
-          borderWidth: 1,
+          fill: false,
         }
       );
     }, this);
