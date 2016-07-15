@@ -2,9 +2,11 @@
   <h4>All Screenings</h4>
   <ul>
     <li ng-repeat="screening in $ctrl.screenings">
-      <span class="movie-title">{{screening.movie_data.title}}</span>
-      <span class="movie-year">{{screening.movie_data.OMDbdata.year}}</span>
-      <span>{{screening.dateTime}}</span>
+      <p class="movie-title">{{screening.movie_data.title}}</p>
+      <p class="movie-year">{{screening.movie_data.OMDbdata.year}}</p>
+      <p>Date Time: {{screening.dateTime}}</p>
+      <p>Admissions Total: {{screening.admissionsTotal}}</p>
+      <p>Attendance Total: {{screening.attendanceTotal}}</p>
       <button ng-click="$ctrl.edit($index)">Edit</button>
     </li>
 

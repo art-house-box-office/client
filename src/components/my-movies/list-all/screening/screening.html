@@ -1,0 +1,26 @@
+<section ng-class="$ctrl.style.screening">
+  <h4>Edit Screening</h4>
+
+  <p>Movie Title: {{$ctrl.data.movie_data.title}}</p>
+  <p>Location: {{$ctrl.data.locations_data.name}}</p>
+  <p>Theater Room: {{$ctrl.data.theater_data.name}}</p>
+  <p>Date Time: {{$ctrl.data.dateTime}}</p>
+  <div>
+    <p>Admissions Total: {{$ctrl.data.admissionsTotal}}</p>
+    <p>Attendence Total: {{$ctrl.data.attendanceTotal}}</p>
+  </div>
+
+  <form ng-if="$ctrl.editing = true"
+        ng-submit="$ctrl.submitEdit()">
+    <label>Admissions Total: </label>
+    <input ng-model="$ctrl.putData.admissionsTotal">
+    <br>
+    <label>Attendance Total: </label>
+    <input ng-model="$ctrl.putData.attendanceTotal">
+    <button type="submit">
+      Done
+    </button>
+  </form>
+        
+
+</section>

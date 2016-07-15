@@ -28,10 +28,11 @@ export default function screeningService($http, apiUrl) {
         .then(r => r.data._id);
     },
     // edit screening
-    edit(screening, screeningId) {
+    edit(screeningData, screeningId) {
       return $http
-        .put(`${apiUrl}/screenings/${screeningId}`)
-        .then(r => r.data);
+        .put(`${apiUrl}/screenings/${screeningId}`, screeningData)
+        .then(r => r.data)
+        .catch(err => err);
     },
     // delete screening
     delete(screeningId) {
