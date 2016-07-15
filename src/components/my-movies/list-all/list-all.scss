@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 
     li {
-      margin: 10px 5px;
+      margin: -5px 5px;
 
       span.movie-title {
 
@@ -18,5 +18,13 @@
       }
 
     }
+  }
+
+  .numbers {
+    font-weight: bolder;
+    color: hsla(90, 70%, 40%, 1);
+  }
+  .underline {
+    color: red;
   }
 }

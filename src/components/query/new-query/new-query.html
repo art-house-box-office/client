@@ -1,12 +1,13 @@
 <div class={{$ctrl.styles.newquery}}>
   <form name="newq" ng-submit="$ctrl.addq(qobj)">
     <div>
+        <button type="submit">Submit</button>
       <div>
         <label>
           Query Name: <input ng-model="$ctrl.item.name">
         </label>
       </div>
-
+      <hr>
       <p>Optional Filters</p>
 
       <div>
@@ -68,12 +69,13 @@
         Minimum Year: <input ng-model="$ctrl.item.yearmin">
       </label>
     </div>
+    <button type="submit">Submit</button>
     <div>
       <label>
         Maximum Year: <input ng-model="$ctrl.item.yearmax">
       </label>
     </div>
     <div class="empty-return" ng-show="$ctrl.emptyReturn">Query produced 0 results</div>
-    <button type="submit">Submit</button>
+
   </form>
 </div>
