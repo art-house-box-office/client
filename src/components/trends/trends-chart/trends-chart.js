@@ -43,6 +43,15 @@ function controllerFunc($scope) {
             },
           }],
         },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+            label: function(tooltipItems, data) { // eslint-disable-line
+              return '$' + Math.floor(tooltipItems.yLabel); // eslint-disable-line
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: true,
       },
@@ -56,12 +65,12 @@ function controllerFunc($scope) {
         {
           label: `${e.name} `,
           data: [
-            e.sequence[1].avgAdm,
-            e.sequence[2].avgAdm,
-            e.sequence[3].avgAdm,
-            e.sequence[4].avgAdm,
-            e.sequence[5].avgAdm,
-            e.sequence[6].avgAdm,
+            e.sequence[1].avgAdm || 0,
+            e.sequence[2].avgAdm || 0,
+            e.sequence[3].avgAdm || 0,
+            e.sequence[4].avgAdm || 0,
+            e.sequence[5].avgAdm || 0,
+            e.sequence[6].avgAdm || 0,
           ],
           // backgroundColor: [
           //   `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
