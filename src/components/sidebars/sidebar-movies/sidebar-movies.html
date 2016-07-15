@@ -1,30 +1,30 @@
 <aside ng-class="$ctrl.style.sidebar">
   <section>
-    <h3><a ui-sref="my-movies">My Movies</a></h3>
+    <h3><a ui-sref="my-movies" ng-click="$ctrl.closeLeftSidenav()">My Movies</a></h3>
     <ul>
       <li>
-        <a ui-sref="my-movies.list-all">List All</a>
+        <a ui-sref="my-movies.list-all" ng-click="$ctrl.closeLeftSidenav()">List All</a>
       </li>
       <!-- <li>
-        <a ui-sref="my-movies.list-upcoming">List Upcoming</a>
+        <a ui-sref="my-movies.list-upcoming" ng-click="$ctrl.closeLeftSidenav()">List Upcoming</a>
       </li>
       <li>
-        <a ui-sref="my-movies.list-recent">List Recent</a>
+        <a ui-sref="my-movies.list-recent" ng-click="$ctrl.closeLeftSidenav()">List Recent</a>
       </li> -->
       <li>
-        <a ui-sref="my-movies.add-new">Add</a>
+        <a ui-sref="my-movies.add-new" ng-click="$ctrl.closeLeftSidenav()">Add</a>
         <p>New Movie Run</p>
       </li>
     </ul>
   </section>
   <section>
-    <h3><a ui-sref="about">About</a></h3>
+    <h3><a ui-sref="about" ng-click="$ctrl.closeLeftSidenav()">About</a></h3>
     <ul>
       <li>
-        <a ui-sref="about.info">Info</a>
+        <a ui-sref="about.info" ng-click="$ctrl.closeLeftSidenav()">Info</a>
       </li>
       <li>
-        <a ui-sref="about.team">Team</a>
+        <a ui-sref="about.team" ng-click="$ctrl.closeLeftSidenav()">Team</a>
       </li>
     </ul>
   </section>

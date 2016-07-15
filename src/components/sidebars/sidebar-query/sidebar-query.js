@@ -6,7 +6,11 @@ export default {
   bindings: {
     companyID: '=',
   },
-  controller() {
-    this.style = style;
-  },
+  controller: [
+    '$mdSidenav',
+    function controller($mdSidenav) {
+      this.style = style;
+      this.closeLeftSidenav = () => $mdSidenav('left').close();
+    },
+  ],
 };
