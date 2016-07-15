@@ -9,7 +9,7 @@
       <md-button ui-sref="landing" ui-sref-active="active">Art House Box Office</md-button>
     </div>
     <div class="button-text" hide show-gt-sm>
-      <md-button ng-repeat="item in $ctrl.navItems" ng-click="item.click()" ui-sref="{{item.sref}}" ui-sref-active="active">{{item.name}}</md-button>
+      <md-button ng-repeat="item in $ctrl.navItems" ng-click="item.click()" ui-sref="{{item.sref}}" ui-sref-active="{{item.click ? '' : 'active'}}">{{item.name}}</md-button>
     </div>
     <div hide-gt-sm>
       <md-menu md-position-mode="target-right target">
