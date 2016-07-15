@@ -69,7 +69,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       data: { requiresAuth: true },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarMovies' },
         main: { component: 'myMovies' },
       },
     })

@@ -1,7 +1,58 @@
 :local(.movies) {
   overflow-x: hidden;
-  
+
   h3 {
     text-align: center;
+  }
+}
+
+
+@import 'colors';
+
+$nav-color: #cfcfcf;
+$nav-hover-color: #fff;
+
+md-toolbar:local(.toolbar) {
+  background-color: #414141;
+  height: 60px;
+  min-height: 60px;
+  transition-duration: initial;
+  transition-timing-function: initial;
+  transition-property: initial;
+
+  .md-button {
+    font-size: 0.8em;
+    text-transform: none;
+    min-width: auto;
+  }
+}
+
+:local(.header) {
+  .button-text {
+    margin-top: 6px;
+
+    a {
+      color: $accent-color;
+    }
+
+    a.active:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      left: 0;
+      height: 3px;
+      background-color: $accent-color;
+    }
+  }
+
+  .button-brand a {
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+
+    &.active:after {
+      content: none;
+    }
   }
 }
