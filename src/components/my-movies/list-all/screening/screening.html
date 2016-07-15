@@ -1,25 +1,32 @@
 <section ng-class="$ctrl.style.screening">
-  <h4>Edit Screening</h4>
+  <h3>Edit Screening</h3>
 
-  <p>Movie Title: {{$ctrl.data.movie_data.title}}</p>
-  <p>Location: {{$ctrl.data.locations_data.name}}</p>
-  <p>Theater Room: {{$ctrl.data.theater_data.name}}</p>
-  <p>Date Time: {{$ctrl.data.dateTime}}</p>
-  <div>
-    <p>Admissions Total: {{$ctrl.data.admissionsTotal}}</p>
-    <p>Attendence Total: {{$ctrl.data.attendanceTotal}}</p>
-  </div>
+  <p>Movie Title: <span><strong>{{$ctrl.data.movie_data.title}}</strong></span></p>
+  <p>Location: <span>{{$ctrl.data.locations_data.name}}</span></p>
+  <p>Theater Room: <span>{{$ctrl.data.theater_data.name}}</span></p>
+  <p>Date Time: <span>{{$ctrl.data.dateTime}}</span></p>
+  <p>Admissions Total: <span>${{$ctrl.data.admissionsTotal}}</span></p>
+  <p>Attendance Total: <span>{{$ctrl.data.attendanceTotal}}</span></p>
 
-  <form ng-if="$ctrl.editing = true"
-        ng-submit="$ctrl.submitEdit()">
+
+  <form ng-submit="$ctrl.submitEdit()">
     <label>Admissions Total: </label>
-    <input ng-model="$ctrl.putData.admissionsTotal">
+    <input ng-model="$ctrl.putData.admissionsTotal"
+           type="number">
     <br>
     <label>Attendance Total: </label>
-    <input ng-model="$ctrl.putData.attendanceTotal">
-    <button type="submit">
+    <input ng-model="$ctrl.putData.attendanceTotal"
+           type="number">
+    <md-button class="md-raised" type="submit">
       Done
-    </button>
+    </md-button>
+
+    <br>
+    
+    <md-button class="md-raised delete"
+               ng-click="$ctrl.deleteScreening()">
+      Delete Screening
+    </md-button>
   </form>
         
 
