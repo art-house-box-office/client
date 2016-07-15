@@ -38,6 +38,10 @@ export default {
             name: 'Account',
           },
           {
+            sref: 'about',
+            name: 'About',
+          },
+          {
             sref: 'landing',
             name: 'Log Out',
             click: () => this.logout(),
