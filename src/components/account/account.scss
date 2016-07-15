@@ -1,4 +1,24 @@
 :local(.account) {
+  padding: 0 60px 50px 60px;
+
+  .addLoc {
+    display: block;
+    margin: 0 auto;
+  }
+
+  h3 {
+    text-align: center;
+  }
+  section.user-info {
+    text-align: center;
+    display: inline;
+  }
+  h4 {
+    text-align: center;
+  }
+
+
+
   button.delete {
     background-color: orangered;
     color: #fff;
@@ -12,6 +32,14 @@
 
   ul.location-list {
     margin: 25px 0;
+
+    li span.locName {
+      font-weight: bold;
+    }
+
+    li ul.room-list {
+      margin: 0 0 10px 50px;
+    }
 
     li div {
       margin: 35px 0;
