@@ -3,8 +3,7 @@ import style from './list-all.scss';
 
 export default {
   template,
-  controller: ['movieService', 'screeningService', 'companyService',
-  function controller(movieService, screeningService, companyService) {
+  controller: ['$mdDialog', 'screeningService', 'companyService', function ($mdDialog, screeningService, companyService) {
     this.style = style;
     this.companyId = companyService.get();
     screeningService.getByCompany(this.companyId)
@@ -15,6 +14,13 @@ export default {
     this.edit = (index) => {
       const screening = this.screenings[index];
 
+      $mdDialog.show({
+        template: '<screening data="screenData"></screening>',
+        controller: ['$scope', function controller($scope) {
+          $scope.screenData = screening;
+        }],
+        clickOutsideToClose: true,
+      });
     };
 
   }],
