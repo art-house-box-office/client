@@ -20,7 +20,10 @@
 }
 
 :local(.add-company-dialog),
-:local(.add-location-dialog) {
+:local(.add-location-dialog),
+:local(.edit-location-dialog),
+:local(.add-room-dialog),
+:local(.edit-room-dialog) {
   width: 40vw;
   max-width: none;
   max-height: none;

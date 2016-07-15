@@ -2,28 +2,42 @@
   <h1>Account Settings</h1>
   <section>
     <h2>User: {{$ctrl.currentUser}}</h2>
-    <dl>
-      <dt>Email</dt>
-      <dd>{{$ctrl.currentUserEmail}}</dd>
-    </dl>
+    <ul>
+      <li>Email: {{$ctrl.currentUserEmail}}</li>
+    </ul>
   </section>
   <section>
     <h2>Company{{$ctrl.companyName ? ': ' + $ctrl.companyName: ''}}</h2>
     <p ng-if="!$ctrl.companyName">You don't have any companies. <md-button ng-click="$ctrl.showAddCompanyDialog()">&lt;Add a company&gt;</md-button></p>
-    <div style="visibility: hidden">
+    <p ng-if="$ctrl.companyName && !$ctrl.locations.length">You don't have any locations. <md-button ng-click="$ctrl.showAddLocationDialog()">&lt;Add a location&gt;</md-button></p>
+    <ul ng-if="$ctrl.locations.length" class="location-list">
+      <li ng-repeat="location in $ctrl.locations" ng-init="parentIndex = $index">
+        {{location.name}}: {{location.address}}, {{location.city}}, {{location.state}}, {{location.zip}}, {{location.country}}
+        <md-button ng-click="$ctrl.showEditLocationDialog($index, location)">&lt;Edit Location&gt;</md-button>
+        <ul>
+          <li ng-if="!location.rooms.length">You don't have any rooms. <md-button ng-click="$ctrl.showAddRoomDialog($index, location)">&lt;Add a Room&gt;</md-button></li>
+          <li ng-if="location.rooms.length" ng-repeat="room in location.rooms">
+            {{room.name}} Seating capacity: {{room.seats}} <md-button ng-click="$ctrl.showEditRoomDialog($index, parentIndex, room)">&lt;Edit Room&gt;</md-buttom>
+          </li>
+        </ul>
+        <md-button ng-if="location.rooms.length" ng-click="$ctrl.showAddRoomDialog($index, location)">&lt;Add a Room&gt;</md-button>
+      </li>
+    </ul>
+    <md-button ng-if="$ctrl.locations.length" ng-click="$ctrl.showAddLocationDialog()">&lt;Add a Location&gt;</md-button>
+    <div ng-if="!$ctrl.companyName" style="visibility: hidden">
       <div class="md-dialog-container" id="addCompanyDialog">
         <md-dialog ng-class="$ctrl.style['add-company-dialog']">
           <md-dialog-content>
             <h2>Add a Company</h2>
             <p ng-if="$ctrl.addCompanyServerError" class="error">{{$ctrl.addCompanyServerError}}</p>
-            <form ng-submit="companyForm.$valid && $ctrl.addCompany(companyName)" name="companyForm" novalidate>
+            <form ng-submit="companyForm.$valid && $ctrl.addCompany($ctrl.companyData.name)" name="companyForm" novalidate>
               <md-input-container md-no-float class="md-block">
-                 <input ng-model="companyName" md-autofocus type="text" name="companyName" placeholder="Company Name" autocomplete="off" required>
+                 <input ng-model="$ctrl.companyData.name" md-autofocus type="text" name="companyName" placeholder="Company Name" autocomplete="off" required>
                  <ng-messages for="companyForm.companyName.$error" role="alert">
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Add Company</md-button>
+              <md-button type="submit" class="md-raised md-primary">Add</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
@@ -35,28 +49,28 @@
           <md-dialog-content>
             <h2>Add a Location</h2>
             <p ng-if="$ctrl.addLocationServerError" class="error">{{$ctrl.addLocationError}}</p>
-            <form ng-submit="locationForm.$valid && $ctrl.addLocation(locationData)" name="locationForm" novalidate>
+            <form ng-submit="locationForm.$valid && $ctrl.addLocation($ctrl.locationData)" name="locationForm" novalidate>
               <md-input-container md-no-float class="md-block">
-                 <input ng-model="locationData.name" md-autofocus type="text" name="name" placeholder="Location Name" autocomplete="off" required>
+                 <input ng-model="$ctrl.locationData.name" md-autofocus type="text" name="name" placeholder="Location Name" autocomplete="off" required>
                  <ng-messages for="locationForm.name.$error" role="alert">
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
               <md-input-container md-no-float class="md-block">
-                 <input ng-model="locationData.address" type="text" name="address" placeholder="Address" autocomplete="off" required>
+                 <input ng-model="$ctrl.locationData.address" type="text" name="address" placeholder="Address" autocomplete="off" required>
                  <ng-messages for="locationForm.address.$error" role="alert">
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
               <div layout-gt-sm="row">
                 <md-input-container md-no-float class="md-block" flex-gt-sm>
-                   <input ng-model="locationData.city" type="text" name="city" placeholder="City" autocomplete="off" required>
+                   <input ng-model="$ctrl.locationData.city" type="text" name="city" placeholder="City" autocomplete="off" required>
                    <ng-messages for="locationForm.city.$error" role="alert">
                      <ng-message when="required">This field is required.</ng-message>
                    </ng-messages>
                 </md-input-container>
                 <md-input-container md-no-float class="md-block" flex-gt-sm>
-                  <md-select ng-model="locationData.state" name="state" placeholder="States" required>
+                  <md-select ng-model="$ctrl.locationData.state" name="state" placeholder="States" required>
                     <md-option ng-repeat="state in $ctrl.states" value="{{state}}">{{state}}</md-option>
                   </md-select>
                    <ng-messages for="locationForm.state.$error" role="alert">
@@ -64,7 +78,7 @@
                    </ng-messages>
                 </md-input-container>
                 <md-input-container md-no-float class="md-block" flex-gt-sm>
-                   <input ng-model="locationData.zip" type="text" name="zip" placeholder="Zip" autocomplete="off" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                   <input ng-model="$ctrl.locationData.zip" type="text" name="zip" placeholder="Zip" autocomplete="off" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                    <ng-messages for="locationForm.zip.$error" role="alert">
                      <ng-message when="required">This field is required.</ng-message>
                      <ng-message when="pattern">Your zip doesn't look like a valid zip code.</ng-message>
@@ -73,67 +87,123 @@
                 </md-input-container>
               </div>
               <md-input-container md-no-float class="md-block">
-                 <input ng-model="locationData.country" type="text" name="country" placeholder="Country" autocomplete="off" required>
+                 <input ng-model="$ctrl.locationData.country" type="text" name="country" placeholder="Country" autocomplete="off" required>
                  <ng-messages for="locationForm.country.$error" role="alert">
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Add Location</md-button>
+              <md-button type="submit" class="md-raised md-primary">Add</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
       </div>
     </div>
-
-
-    <ul ng-if="$ctrl.locations" class="location-list">
-      <li ng-repeat="location in $ctrl.locations">
-        <!-- <div ng-if="!$ctrl.isActive($index)"> -->
-          <dl>
-            <dt>{{location.name}}</dt>
-            <dd>{{location.address}}, {{location.city}}, {{location.state}}, {{location.zip}}, {{location.country}}</d>
-          </dl>
-          <md-button ng-click="$ctrl.editLocation($index)">&lt;Edit Location&gt;</md-button>
-          <md-button ng-click="$ctrl.deleteLocation($index)">&lt;Remove Location&gt;</md-button>
-<!--
-          <p>Rooms:
-            <button ng-if="!location.rooms" ng-click="$ctrl.fetchRooms($index)">Show Rooms</button>
-          </p>
-          <div ng-repeat="room in location.rooms">
-            <p ng-if="!$ctrl.isActiveRoomEdit($index)">
-              Name: {{room.name}} - Total Seats: {{room.seats}}
-              <button ng-if="!$ctrl.isActiveRoomEdit($index)" ng-click="$ctrl.changeActiveRoomEdit($index)">Edit</button>
-              <button ng-if="!$ctrl.isActiveRoomEdit($index)" ng-click="$ctrl.deleteRoom($index, $parent.$parent.$parent.$index)" class="delete">Delete</button>
-            </p>
-            <div ng-if="$ctrl.isActiveRoomEdit($index)">
-              <input ng-model="room.name">
-              <input ng-model="room.seats">
-              <button ng-click="$ctrl.submitRoomEdit(room, $index, $parent.$parent.$index)">Done</button>
-            </div>
-          </div>
-          <form ng-if="$ctrl.isActiveRoom($index)" ng-submit="$ctrl.submitRoom($index)">
-            <input ng-model="$ctrl.newRoom.name" placeholder="Room Name (i.e. Auditorium 8)">
-            <input ng-model="$ctrl.newRoom.seats" placeholder="Number of Available Seats">
-            <button type="submit">Add Room</button>
-          </form>
-          <button ng-click="$ctrl.changeActiveRoom($index)" ng-if="!$ctrl.isActiveRoom($index)">Add New Room</button> -->
-
-        <!-- </div> -->
-
-        <!-- <form ng-if="$ctrl.isActive($index)" ng-submit="$ctrl.editLocation($index)">
-          <label>Name</label><input ng-model="location.name"><br>
-          <label>Address</label><input ng-model="location.address"><br>
-          <label>City</label><input ng-model="location.city"><br>
-          <label>State</label><input ng-model="location.state"><br>
-          <label>Zip</label><input ng-model="location.zip"><br>
-          <button type="submit">Done</button>
-          <button ng-click="$ctrl.deleteLocation($index); $ctrl.changeActive(-1)" class="delete">Remove Location</button>
-        </form> -->
-        <hr>
-      </li>
-    </ul>
-
-
-    <md-button ng-if="$ctrl.companyName" ng-click="$ctrl.showaddLocationDialog()">&lt;Add a Location&gt;</md-button>
+    <div ng-if="$ctrl.locations" style="visibility: hidden">
+      <div class="md-dialog-container" id="editLocationDialog">
+        <md-dialog ng-class="$ctrl.style['edit-location-dialog']">
+          <md-dialog-content>
+            <h2>Edit Location</h2>
+            <p ng-if="$ctrl.editLocationServerError" class="error">{{$ctrl.editLocationServerError}}</p>
+            <form ng-submit="editLocationForm.$valid && $ctrl.editLocation($ctrl.editLocationData)" name="editLocationForm" novalidate>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.editLocationData.name" ng-value="$ctrl.location.name" md-autofocus type="text" name="name" placeholder="Location Name" autocomplete="off" required>
+                 <ng-messages for="editLocationForm.name.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.editLocationData.address" ng-value="$ctrl.location.address" type="text" name="address" placeholder="Address" autocomplete="off" required>
+                 <ng-messages for="editLocationForm.address.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <div layout-gt-sm="row">
+                <md-input-container md-no-float class="md-block" flex-gt-sm>
+                   <input ng-model="$ctrl.editLocationData.city" ng-value="$ctrl.location.city" type="text" name="city" placeholder="City" autocomplete="off" required>
+                   <ng-messages for="editLocationForm.city.$error" role="alert">
+                     <ng-message when="required">This field is required.</ng-message>
+                   </ng-messages>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block" flex-gt-sm>
+                  <md-select ng-model="$ctrl.editLocationData.state" ng-value="$ctrl.location.state" name="state" placeholder="States" required>
+                    <md-option ng-repeat="state in $ctrl.states" value="{{state}}">{{state}}</md-option>
+                  </md-select>
+                   <ng-messages for="editLocationForm.state.$error" role="alert">
+                     <ng-message when="required">This field is required.</ng-message>
+                   </ng-messages>
+                </md-input-container>
+                <md-input-container md-no-float class="md-block" flex-gt-sm>
+                   <input ng-model="$ctrl.editLocationData.zip" ng-value="$ctrl.location.zip" type="text" name="zip" placeholder="Zip" autocomplete="off" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                   <ng-messages for="editLocationForm.zip.$error" role="alert">
+                     <ng-message when="required">This field is required.</ng-message>
+                     <ng-message when="pattern">Your zip doesn't look like a valid zip code.</ng-message>
+                     <ng-message when="md-maxlength">Your zip must be 5 digit number.</ng-message>
+                   </ng-messages>
+                </md-input-container>
+              </div>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.editLocationData.country" ng-value="$ctrl.location.country" type="text" name="country" placeholder="Country" autocomplete="off" required>
+                 <ng-messages for="editLocationForm.country.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-button type="submit" class="md-raised md-primary">Save</md-button>
+            </form>
+          </md-dialog-content>
+        </md-dialog>
+      </div>
+    </div>
+    <div ng-if="$ctrl.locations" style="visibility: hidden">
+      <div class="md-dialog-container" id="addRoomDialog">
+        <md-dialog ng-class="$ctrl.style['add-room-dialog']">
+          <md-dialog-content>
+            <h2>Add a Room</h2>
+            <p ng-if="$ctrl.addRoomServerError" class="error">{{$ctrl.addRoomServerError}}</p>
+            <form ng-submit="addRoomForm.$valid && $ctrl.addRoom($ctrl.location, $ctrl.addRoomData)" name="addRoomForm" novalidate>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.addRoomData.name" md-autofocus type="text" name="name" placeholder="Room Name (i.e. Auditorium 8)" autocomplete="off" required>
+                 <ng-messages for="addRoomForm.name.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.addRoomData.seats" type="number" name="seats" placeholder="Number of Available Seats" autocomplete="off" required min="1">
+                 <ng-messages for="addRoomForm.seats.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                   <ng-message when="number">This field must be a number.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-button type="submit" class="md-raised md-primary">Add</md-button>
+            </form>
+          </md-dialog-content>
+        </md-dialog>
+      </div>
+    </div>
+    <div ng-if="$ctrl.locations" style="visibility: hidden">
+      <div class="md-dialog-container" id="editRoomDialog">
+        <md-dialog ng-class="$ctrl.style['edit-room-dialog']">
+          <md-dialog-content>
+            <h2>Edit Room</h2>
+            <p ng-if="$ctrl.editRoomServerError" class="error">{{$ctrl.editRoomServerError}}</p>
+            <form ng-submit="editRoomForm.$valid && $ctrl.editRoom($ctrl.editRoomData)" name="editRoomForm" novalidate>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.editRoomData.name" md-autofocus type="text" name="name" placeholder="Room Name (i.e. Auditorium 8)" autocomplete="off" required>
+                 <ng-messages for="editRoomForm.name.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-input-container md-no-float class="md-block">
+                 <input ng-model="$ctrl.editRoomData.seats" type="number" name="seats" placeholder="Number of Available Seats" autocomplete="off" required min="1">
+                 <ng-messages for="editRoomForm.seats.$error" role="alert">
+                   <ng-message when="required">This field is required.</ng-message>
+                   <ng-message when="number">This field must be a number.</ng-message>
+                 </ng-messages>
+              </md-input-container>
+              <md-button type="submit" class="md-raised md-primary">Save</md-button>
+            </form>
+          </md-dialog-content>
+        </md-dialog>
+      </div>
+    </div>
   </section>
 </main>
