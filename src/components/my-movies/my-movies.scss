@@ -5,7 +5,6 @@
   h3 {
     text-align: center;
   }
-
   .groupX {
     font-size: 20px;
     margin: 20px 0;
@@ -15,23 +14,18 @@
     text-transform: none;
     font-weight: 400;
     min-width:100px;
-}
-.md-button.left {
-    border-radius: 10px 0 0 10px;
-}
-// .md-button.middle {
-//     border-radius: 0;
-//     border-left: 1px solid rgba(230, 230, 230, 0.96);
-//     border-right: 1px solid rgba(230, 230, 230, 0.96);
-// }
-.md-button.right {
-    border-radius: 0 10px 10px 0;
-}
-.md-button:not([disabled]):hover {
-    background-color: rgba(193, 193, 193, 0.96);
-    color: rgba(44, 65, 164, 0.96);
-    transition: 0.3s;
-}
+  }
+  .md-button.left {
+      border-radius: 10px 0 0 10px;
+  }
+  .md-button.right {
+      border-radius: 0 10px 10px 0;
+  }
+  .md-button:not([disabled]):hover {
+      background-color: rgba(193, 193, 193, 0.96);
+      color: rgb(49, 46, 46);
+      transition: 0.3s;
+  }
 }
 
 
