@@ -15,6 +15,12 @@ export default function screeningService($http, apiUrl) {
       .get(`${apiUrl}/screenings/${screeningId}`)
       .then(r => r.data);
     },
+    // All screenings based on companyId 
+    getByCompany(companyId) {
+      return $http
+        .get(`${apiUrl}/screenings/bycompany/${companyId}`)
+        .then(r => r.data);
+    },
     // add screening and updates current User field: screening
     add(screening) {
       return $http
