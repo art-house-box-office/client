@@ -65,6 +65,23 @@ function controllerFunc($scope) {
   function createDataSets(myarray) {
     const sets = [];
     myarray.forEach((e, index) => {
+      const colorArrayBG = [
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+      ];
+      const colorArrayBorder = [
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+      ];
+
       sets.push(
         {
           label: `${e.name} `,
@@ -76,22 +93,10 @@ function controllerFunc($scope) {
             e.sequence[5].avgAdm || 0,
             e.sequence[6].avgAdm || 0,
           ],
-          backgroundColor: [
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
-          ],
-          borderColor: [
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-            `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
-          ],
+          backgroundColor: colorArrayBG,
+          borderColor: colorArrayBorder,
+          pointBackgroundColor: colorArrayBG,
+          pointBorderColor: colorArrayBorder,
           fill: false,
         }
       );

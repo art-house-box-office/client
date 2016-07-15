@@ -8,8 +8,8 @@ export default {
     this.team = [
       {
         name: 'Dave Hanagan',
-        github: 'https://github.com/',
-        linkedIn: 'https://www.linkedin.com/',
+        github: 'https://github.com/billyham',
+        linkedIn: 'https://www.linkedin.com/in/davehanagan',
         bio: 'I thoroughly enjoy creative endeavors at the intersection of art and technology. ', // eslint-disable-line
       },
       {
