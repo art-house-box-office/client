@@ -17,9 +17,24 @@
   .color-5 { background-color: rgba(75, 159, 250, 0.5); }
   .color-6 { background-color: rgba(45, 159, 255, 0.5); }
 
-  button {
-    float: right;
-  }
+
+  .btn1 {
+  color : rgb(49, 46, 46);
+  background-color: lightgrey;
+  border-radius: 10px 0 0 10px;
+  font-size: 16px;
+  float: right;
+}
+.btn1:not([disabled]):hover {
+  background-color: rgba(107, 103, 91, 0.96);
+  color: white;
+  float: right;
+}
+.btn1[disabled] {
+  color : rgb(187, 187, 187);
+  background-color: rgba(230, 230, 229, 0.96);
+  float: right;
+}
 
   .titletext{
     display: inline;

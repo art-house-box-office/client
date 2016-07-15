@@ -1,14 +1,9 @@
 <main ng-class="$ctrl.style.query">
-  <!-- <md-button ng-click="$ctrl.addquery()">Query ALL</md-button>
-  <button ng-click="$ctrl.addMyQuery()" ng-show="$ctrl.companyID">Query MY screenings</button>
-  <button ng-click="$ctrl.addOtherQuery()" ng-show="$ctrl.companyID">Query OTHER screenings</button> -->
-
   <section layout="row" layout-align="center center">
     <md-button class="groupX left" ng-click="$ctrl.addquery()">Query ALL</md-button>
     <md-button class="groupX middle" ng-click="$ctrl.addMyQuery()" ng-show="$ctrl.companyID">Query MY screenings</md-button>
     <md-button class="groupX right" ng-click="$ctrl.addOtherQuery()" ng-show="$ctrl.companyID">Query OTHER screenings</md-button>
-
-</section>
+  </section>
 
   <div ng-hide="$ctrl.arrayOfQueries.length < 1">
 
