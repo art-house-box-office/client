@@ -23,6 +23,7 @@ export default function userService(tokenSvc, $http, apiUrl, $window) {
         .then(result => {
           $window.localStorage.setItem('user', result.data.username);
           $window.localStorage.setItem('userID', result.data.id);
+          $window.localStorage.setItem('userEmail', result.data.email);
           if (result.data.company) $window.localStorage.setItem('companyID', result.data.company);
           tokenSvc.set(result.data.returnedToken);
         });
