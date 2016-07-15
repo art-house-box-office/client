@@ -3,8 +3,7 @@ import style from './list-recent.scss';
 
 export default {
   template,
-  controller: ['movieService', 'screeningService', function (movieService, screeningService) {
+  controller() {
     this.style = style;
-    this.foo = 'bar';
-  }],
+  },
 };

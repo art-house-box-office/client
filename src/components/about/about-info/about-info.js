@@ -3,7 +3,7 @@ import style from './about-info.scss';
 
 export default {
   template,
-  controller: function () {
+  controller() {
     this.style = style;
 
   },

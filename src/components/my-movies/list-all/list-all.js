@@ -3,10 +3,10 @@ import style from './list-all.scss';
 
 export default {
   template,
-  controller: ['movieService', 'screeningService', function (movieService, screeningService) {
+  controller: ['movieService', function controller(movieService) {
     this.style = style;
     movieService.getAll()
       .then(movies => this.movies = movies);
-      
+
   }],
 };

@@ -3,8 +3,8 @@ import style from './add-new.scss';
 
 export default {
   template,
-  controller: ['movieService', 'accountService', '$window', 'screeningService', 
-    function (movieService, accountService, $window, screeningService) {
+  controller: ['movieService', 'accountService', '$window', 'screeningService',
+    function controller(movieService, accountService, $window, screeningService) {
       this.style = style;
       this.addingMovie = false;
       this.fetchMovies = () => {
@@ -27,7 +27,7 @@ export default {
             .then(r => this.theaters = r);
         } else this.theaters = [];
       };
-  
+
       this.submitMovie = () => {
 
         movieService.add(this.newMovie)
@@ -52,7 +52,7 @@ export default {
         this.theaters.forEach(room => {
           if (room._id === this.selectedRoom) {
             found = room.seats;
-          } 
+          }
         });
         return found;
       };
@@ -66,8 +66,8 @@ export default {
           theaterId: this.selectedRoom,
           seats: this.seatCount || this.getSeatData(this.selectedRoom),
         };
-        if (postData.startDate && postData.endDate 
-            && postData.times && postData.movieId 
+        if (postData.startDate && postData.endDate
+            && postData.times && postData.movieId
             && postData.theaterId && postData.seats) {
           screeningService.addRun(postData)
             .then(() => this.message = 'Run Successfully Added');
