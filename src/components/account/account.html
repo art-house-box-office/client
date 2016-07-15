@@ -1,29 +1,33 @@
 <main ng-class="$ctrl.style.account" ng-init="$ctrl.fetchLocations()">
-  <h1>Account Settings</h1>
-  <section>
-    <h2>User: {{$ctrl.currentUser}}</h2>
-    <ul>
-      <li>Email: {{$ctrl.currentUserEmail}}</li>
-    </ul>
+  <h3>Account Settings</h3>
+  <hr>
+  <section class="user-info">
+    <h4>User: {{$ctrl.currentUser}}</h4>
+    <h4>Email: {{$ctrl.currentUserEmail}}</h4>
   </section>
   <section>
-    <h2>Company{{$ctrl.companyName ? ': ' + $ctrl.companyName: ''}}</h2>
-    <p ng-if="!$ctrl.companyName">You don't have any companies. <md-button ng-click="$ctrl.showAddCompanyDialog()" class="md-raised md-primary">Add a company</md-button></p>
-    <p ng-if="$ctrl.companyName && !$ctrl.locations.length">You don't have any locations. <md-button ng-click="$ctrl.showAddLocationDialog()" class="md-raised md-primary">Add a location</md-button></p>
+
+    <h4>Company{{$ctrl.companyName ? ': ' + $ctrl.companyName: ''}}</h4>
+    <p ng-if="!$ctrl.companyName">You don't have any companies. <md-button ng-click="$ctrl.showAddCompanyDialog()" class="md-raised">Add a company</md-button></p>
+    <p ng-if="$ctrl.companyName && !$ctrl.locations.length">You don't have any locations. <md-button ng-click="$ctrl.showAddLocationDialog()" class="md-raised">Add a location</md-button></p>
+    <md-button ng-if="$ctrl.locations.length" ng-click="$ctrl.showAddLocationDialog()" class="md-raised addLoc">Add a Location</md-button>
+    <br>
     <ul ng-if="$ctrl.locations.length" class="location-list">
       <li ng-repeat="location in $ctrl.locations" ng-init="parentIndex = $index">
-        {{location.name}}: {{location.address}}, {{location.city}}, {{location.state}}, {{location.zip}}, {{location.country}}
-        <md-button ng-click="$ctrl.showEditLocationDialog($index, location)" class="md-raised md-primary">Edit Location</md-button>
-        <ul>
-          <li ng-if="!location.rooms.length">You don't have any rooms. <md-button ng-click="$ctrl.showAddRoomDialog($index, location)" class="md-raised md-primary">Add a Room</md-button></li>
+        <span class="locName">{{location.name}}:</span> {{location.address}}<br> {{location.city}}, {{location.state}}, {{location.zip}}, {{location.country}}
+        <br><md-button ng-click="$ctrl.showEditLocationDialog($index, location)" class="md-raised">Edit Location</md-button>
+        <h5>Rooms:</h5>
+        <ul class="room-list">
+          <li ng-if="!location.rooms.length">You don't have any rooms. <md-button ng-click="$ctrl.showAddRoomDialog($index, location)" class="md-raised">Add a Room</md-button></li>
           <li ng-if="location.rooms.length" ng-repeat="room in location.rooms">
-            {{room.name}} Seating capacity: {{room.seats}} <md-button ng-click="$ctrl.showEditRoomDialog($index, parentIndex, room)" class="md-raised md-primary">Edit Room</md-buttom>
+            {{room.name}} Seating capacity: {{room.seats}} <md-button ng-click="$ctrl.showEditRoomDialog($index, parentIndex, room)" class="md-raised">Edit Room</md-buttom>
           </li>
         </ul>
-        <md-button ng-if="location.rooms.length" ng-click="$ctrl.showAddRoomDialog($index, location)" class="md-raised md-primary">Add a Room</md-button>
+        <md-button ng-if="location.rooms.length" ng-click="$ctrl.showAddRoomDialog($index, location)" class="md-raised">Add a Room</md-button>
+        <br><br><hr><br>
       </li>
     </ul>
-    <md-button ng-if="$ctrl.locations.length" ng-click="$ctrl.showAddLocationDialog()" class="md-raised md-primary">Add a Location</md-button>
+  
     <div ng-if="!$ctrl.companyName" style="visibility: hidden">
       <div class="md-dialog-container" id="addCompanyDialog">
         <md-dialog ng-class="$ctrl.style['add-company-dialog']">
@@ -37,7 +41,7 @@
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Add</md-button>
+              <md-button type="submit" class="md-raised">Add</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
@@ -92,7 +96,7 @@
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Add</md-button>
+              <md-button type="submit" class="md-raised">Add</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
@@ -147,7 +151,7 @@
                    <ng-message when="required">This field is required.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Save</md-button>
+              <md-button type="submit" class="md-raised">Save</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
@@ -173,7 +177,7 @@
                    <ng-message when="number">This field must be a number.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Add</md-button>
+              <md-button type="submit" class="md-raised">Add</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
@@ -199,7 +203,7 @@
                    <ng-message when="number">This field must be a number.</ng-message>
                  </ng-messages>
               </md-input-container>
-              <md-button type="submit" class="md-raised md-primary">Save</md-button>
+              <md-button type="submit" class="md-raised">Save</md-button>
             </form>
           </md-dialog-content>
         </md-dialog>
