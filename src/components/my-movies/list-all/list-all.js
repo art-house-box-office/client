@@ -3,7 +3,8 @@ import style from './list-all.scss';
 
 export default {
   template,
-  controller: ['movieService', 'screeningService', 'companyService', function (movieService, screeningService, companyService) {
+  controller: ['movieService', 'screeningService', 'companyService',
+  function controller(movieService, screeningService, companyService) {
     this.style = style;
     this.companyId = companyService.get();
     screeningService.getByCompany(this.companyId)
@@ -13,7 +14,7 @@ export default {
 
     this.edit = (index) => {
       const screening = this.screenings[index];
-      
+
     };
 
   }],
