@@ -3,10 +3,19 @@ import style from './list-all.scss';
 
 export default {
   template,
-  controller: ['movieService', 'screeningService', function (movieService, screeningService) {
+  controller: ['movieService', 'screeningService', 'companyService',
+  function controller(movieService, screeningService, companyService) {
     this.style = style;
-    movieService.getAll()
-      .then(movies => this.movies = movies);
-      
+    this.companyId = companyService.get();
+    screeningService.getByCompany(this.companyId)
+      .then(screenings => {
+        this.screenings = screenings;
+      });
+
+    this.edit = (index) => {
+      const screening = this.screenings[index];
+
+    };
+
   }],
 };

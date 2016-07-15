@@ -1,4 +1,12 @@
-<h4>List-all component</h4>
-<ul>
-  <li ng-repeat="movie in $ctrl.movies">{{movie.title}}</li>
-</ul>
+<section ng-class="$ctrl.style.listAll">
+  <h4>All Screenings</h4>
+  <ul>
+    <li ng-repeat="screening in $ctrl.screenings">
+      <span class="movie-title">{{screening.movie_data.title}}</span>
+      <span class="movie-year">{{screening.movie_data.OMDbdata.year}}</span>
+      <span>{{screening.dateTime}}</span>
+      <button ng-click="$ctrl.edit($index)">Edit</button>
+    </li>
+
+  </ul>
+</section>

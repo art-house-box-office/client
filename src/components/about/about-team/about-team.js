@@ -11,6 +11,7 @@ export default {
         github: 'https://github.com/goodwid/',
         linkedIn: 'https://www.linkedin.com/in/david-goodwin-35921b4',
         bio: 'I traded in my 15 year IT career on a chance at turning my programming hobby into a new career.', // eslint-disable-line
+
       },
       {
         name: 'Yvonne Hayes',
@@ -19,13 +20,13 @@ export default {
         bio: 'I\'m an Austrian who came to Portland via Puerto Vallarta, Mexico and still thinks fondly of the time she lived in London, England. I\'m an avid reader, on again off again runner, gamer, MMORPG addict, catholic school survivor, Netflix binge-watcher and absolute dog person - who is owned by 3 cats (it\'s a long story).I am happiest when working with a team of fellow code enthusiasts hacking away on interesting projects we\'re all passionate about.', // eslint-disable-line
       },
       {
-        name: 'team',
+        name: 'Dave Hanagan',
         github: 'https://github.com/',
         linkedIn: 'https://www.linkedin.com/',
         bio: '',
       },
       {
-        name: 'team',
+        name: 'Don Chatelain',
         github: 'https://github.com/',
         linkedIn: 'https://www.linkedin.com/',
         bio: '',

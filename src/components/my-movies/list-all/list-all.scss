@@ -1,0 +1,22 @@
+:local(.listAll) {
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    li {
+      margin: 10px 5px;
+
+      span.movie-title {
+
+      }
+      span.movie-year {
+        font-size: 0.7em;
+        font-style: italic;
+      }
+
+    }
+  }
+}
