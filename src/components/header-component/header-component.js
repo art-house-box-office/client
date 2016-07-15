@@ -30,12 +30,16 @@ export default {
             name: 'Query',
           },
           {
-            sref: 'my-movies',
+            sref: 'my-movies.list-all',
             name: 'My Movies',
           },
           {
             sref: 'account',
             name: 'Account',
+          },
+          {
+            sref: 'about',
+            name: 'About',
           },
           {
             sref: 'landing',

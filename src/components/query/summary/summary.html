@@ -1,10 +1,38 @@
-<div>
-  <h3>{{$ctrl.name}}</h3>
+<div class="{{$ctrl.styles.summary}}">
+  <h4>{{$ctrl.name}} <span class="querystring">{{$ctrl.querytext}}</span></h4>
+
   <p>
-    Total Admissions: {{$ctrl.info.totals.admissions}}<br>
-    Total Attendance: {{$ctrl.info.totals.attendance}}<br>
-    Count: {{$ctrl.info.totals.count}}<br>
-    Average Admissions: {{$ctrl.info.totals.avgAdm}}<br>
-    Average Attendance: {{$ctrl.info.totals.avgAtt}}<br>
+
+    Average Admissions: $<b>{{$ctrl.info.totals.avgAdm}}</b>
+    <span ng-hide="$ctrl.index === 0"> ||
+      $<span ng-class="[{ above: $ctrl.avgAdmDiff > 0 }, { below: $ctrl.avgAdmDiff < 0 }]">
+        {{$ctrl.avgAdmDiff}}
+      </span>
+    </span><br>
+
+    Average Attendance: <b>{{$ctrl.info.totals.avgAtt}}</b>
+    <span ng-hide="$ctrl.index === 0"> ||
+      <span ng-class="[{ above: $ctrl.avgAttDiff > 0 }, { below: $ctrl.avgAttDiff < 0 }]">
+        {{$ctrl.avgAttDiff}}
+      </span>
+    </span><br>
+
+    Total Admissions: $<b>{{$ctrl.info.totals.admissions}}</b>
+    <span ng-hide="$ctrl.index === 0"> ||
+      $<span ng-class="[{ above: $ctrl.admDiff > 0 }, { below: $ctrl.admDiff < 0 }]">
+        {{$ctrl.admDiff}}
+      </span>
+    </span><br>
+
+    Total Attendance: <b>{{$ctrl.info.totals.attendance}}</b>
+    <span ng-hide="$ctrl.index === 0"> ||
+      <span ng-class="[{ above: $ctrl.attDiff > 0 }, { below: $ctrl.attDiff < 0 }]">
+        {{$ctrl.attDiff}}
+      </span>
+    </span><br>
+
+    Count: <b>{{$ctrl.info.totals.count}}</b><br>
+
   </p>
+  <hr>
 </div>

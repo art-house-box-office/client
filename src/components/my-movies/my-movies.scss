@@ -1,7 +1,85 @@
 :local(.movies) {
   overflow-x: hidden;
-  
+
   h3 {
     text-align: center;
+  }
+
+  .groupX {
+    font-size: 20px;
+    margin: 20px 0;
+    padding: 3px 15px 3px 15px;
+    color: rgb(49, 46, 46);
+    background-color: rgba(224, 224, 224, 0.96);
+    text-transform: none;
+    font-weight: 400;
+    min-width:100px;
+}
+.md-button.left {
+    border-radius: 10px 0 0 10px;
+}
+// .md-button.middle {
+//     border-radius: 0;
+//     border-left: 1px solid rgba(230, 230, 230, 0.96);
+//     border-right: 1px solid rgba(230, 230, 230, 0.96);
+// }
+.md-button.right {
+    border-radius: 0 10px 10px 0;
+}
+.md-button:not([disabled]):hover {
+    background-color: rgba(193, 193, 193, 0.96);
+    color: rgba(44, 65, 164, 0.96);
+    transition: 0.3s;
+}
+}
+
+
+@import 'colors';
+
+$nav-color: #cfcfcf;
+$nav-hover-color: #fff;
+
+md-toolbar:local(.toolbar) {
+  background-color: #414141;
+  height: 60px;
+  min-height: 60px;
+  transition-duration: initial;
+  transition-timing-function: initial;
+  transition-property: initial;
+
+  .md-button {
+    font-size: 0.8em;
+    text-transform: none;
+    min-width: auto;
+  }
+}
+
+:local(.header) {
+  .button-text {
+    margin-top: 6px;
+
+    a {
+      color: $accent-color;
+    }
+
+    a.active:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      left: 0;
+      height: 3px;
+      background-color: $accent-color;
+    }
+  }
+
+  .button-brand a {
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+
+    &.active:after {
+      content: none;
+    }
   }
 }

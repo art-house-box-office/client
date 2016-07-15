@@ -1,13 +1,14 @@
-<section ng-class="$ctrl.style.listAll">
-  <h4>All Screenings</h4>
+<section ng-class="$ctrl.style.listAll"
+         ng-init="$ctrl.fetchScreenings()">
+  <p><em>Tap row to edit</em></p>
   <ul>
-    <li ng-repeat="screening in $ctrl.screenings">
-      <p class="movie-title">{{screening.movie_data.title}}</p>
-      <p class="movie-year">{{screening.movie_data.OMDbdata.year}}</p>
-      <p>Date Time: {{screening.dateTime}}</p>
-      <p>Admissions Total: {{screening.admissionsTotal}}</p>
-      <p>Attendance Total: {{screening.attendanceTotal}}</p>
-      <button ng-click="$ctrl.edit($index)">Edit</button>
+    <li ng-repeat="screening in $ctrl.screenings" ng-click="$ctrl.edit($index)">
+      <p class="movie-title">{{screening.dateTime}} | <b>{{screening.movie_data.title}}</b> |
+        Admissions: $<span class="numbers">{{screening.admissionsTotal}}</span>
+        <span ng-hide="screening.admissionsTotal" class="underline">_____</span> |
+        Attendance: <span class="numbers">{{screening.attendanceTotal}}</span>
+        <span ng-hide="screening.attendanceTotal" class="underline">_____</span> |
+      </p>
     </li>
 
   </ul>

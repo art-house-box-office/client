@@ -7,13 +7,8 @@
   </head>
   <body layout="column">
     <ui-view name="header"></ui-view>
-    <div layout="row" flex>
-      <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" class="site-sidenav md-sidenav-left md-padding" flex>
-        <ui-view name="sidebar"></ui-view>
-      </md-sidenav>
-      <md-content class="md-padding" flex>
-        <ui-view name="main"></ui-view>
-      </md-content>
-    </div>
+    <md-content class="md-padding" flex>
+      <ui-view name="main"></ui-view>
+    </md-content>
   </body>
 </html>

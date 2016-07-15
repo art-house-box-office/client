@@ -47,6 +47,15 @@ function controllerFunc($scope) {
             },
           }],
         },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+            label: function(tooltipItems, data) { // eslint-disable-line
+              return '$' + Math.floor(tooltipItems.yLabel); // eslint-disable-line
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: true,
       },
@@ -56,34 +65,38 @@ function controllerFunc($scope) {
   function createDataSets(myarray) {
     const sets = [];
     myarray.forEach((e, index) => {
+      const colorArrayBG = [
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.5)`,
+      ];
+      const colorArrayBorder = [
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+        `rgba(${235 - index * 40}, ${50 + 150 * ((index + 2) % 2)}, ${10 + index * 40}, 0.8)`,
+      ];
+
       sets.push(
         {
           label: `${e.name} `,
           data: [
-            e.sequence[1].avgAdm,
-            e.sequence[2].avgAdm,
-            e.sequence[3].avgAdm,
-            e.sequence[4].avgAdm,
-            e.sequence[5].avgAdm,
-            e.sequence[6].avgAdm,
+            e.sequence[1].avgAdm || 0,
+            e.sequence[2].avgAdm || 0,
+            e.sequence[3].avgAdm || 0,
+            e.sequence[4].avgAdm || 0,
+            e.sequence[5].avgAdm || 0,
+            e.sequence[6].avgAdm || 0,
           ],
-          backgroundColor: [
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            `rgba(${255 - index * 30}, 159, ${100 + index * 30}, 0.5)`,
-            // 'hsla(50, 70%, 50%, 1)',
-          ],
-          borderColor: [
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-            `rgba(${255 - index * 2}, 159, ${100 + index * 2}, 0.8)`,
-          ],
+          backgroundColor: colorArrayBG,
+          borderColor: colorArrayBorder,
+          pointBackgroundColor: colorArrayBG,
+          pointBorderColor: colorArrayBorder,
           fill: false,
         }
       );

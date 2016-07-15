@@ -8,7 +8,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       data: { requiresAuth: false },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarTrends' },
         main: { component: 'landing' },
       },
     })
@@ -20,24 +19,9 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarTrends' },
         main: { component: 'trends' },
       },
     })
-    // .state('trends.current', {
-    //   url: '/current',
-    //   data: { requiresAuth: false },
-    //   views: {
-    //     trend: { component: 'trendsCurrent' },
-    //   },
-    // })
-    // .state('trends.archive', {
-    //   url: '/archive',
-    //   data: { requiresAuth: false },
-    //   views: {
-    //     trend: { component: 'trendsArchive' },
-    //   },
-    // })
     .state('query', {
       url: '/query?button',
       data: { requiresAuth: false },
@@ -48,7 +32,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarQuery' },
         main: { component: 'query' },
       },
     })
@@ -78,7 +61,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       data: { requiresAuth: true },
       views: {
         header: { component: 'headerComponent' },
-        // sidebar: { component: 'sidebarTrends' },
         main: { component: 'account' },
       },
     })
@@ -87,7 +69,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       data: { requiresAuth: true },
       views: {
         header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarMovies' },
         main: { component: 'myMovies' },
       },
     })
@@ -96,20 +77,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       data: { requiresAuth: true },
       views: {
         movies: { component: 'listAll' },
-      },
-    })
-    .state('my-movies.list-upcoming', {
-      url: '/listupcoming',
-      data: { requiresAuth: true },
-      views: {
-        movies: { component: 'listUpcoming' },
-      },
-    })
-    .state('my-movies.list-recent', {
-      url: '/listrecent',
-      data: { requiresAuth: true },
-      views: {
-        movies: { component: 'listRecent' },
       },
     })
     .state('my-movies.add-new', {
@@ -125,14 +92,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       views: {
         header: { component: 'headerComponent' },
         main: { component: 'about' },
-        sidebar: { component: 'sidebarAbout' },
-      },
-    })
-    .state('about.info', {
-      url: '/info',
-      data: { requiresAuth: false },
-      views: {
-        about: { component: 'aboutInfo' },
       },
     })
     .state('about.team', {
@@ -143,6 +102,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/trends');
 
 }

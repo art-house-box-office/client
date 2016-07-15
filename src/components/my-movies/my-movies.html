@@ -1,5 +1,8 @@
 <main ng-class="$ctrl.style.movies">
-  <h3>My Movies</h3>
+  <section layout="row" layout-align="center center">
+    <md-button ui-sref="my-movies.list-all" class="groupX left">List All</md-button>
+    <md-button ui-sref="my-movies.add-new" class="groupX right">Add new movie run</md-button>
+  </section>
   <hr>
   <ui-view name="movies"></ui-view>
 </main>

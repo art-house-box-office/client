@@ -26,6 +26,6 @@ function controller() {
   }, this);
 
   this.removeme = function removeme() {
-    this.remove(this.queryitem.name);
+    this.remove(this.queryitem.uuid);
   };
 }

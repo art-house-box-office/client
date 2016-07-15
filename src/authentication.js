@@ -15,7 +15,7 @@ export default [
             '$scope',
             function controller($scope) {
               $scope.success = () => $mdDialog.hide()
-                .then(() => $state.go(toState.name, toParams));
+                .then(() => $state.go('trends', toParams));
             },
           ],
           clickOutsideToClose: true,

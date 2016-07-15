@@ -1,12 +1,7 @@
 <md-toolbar ng-class="$ctrl.style.toolbar">
   <header ng-class="$ctrl.style.header" layout="row" layout-align="space-between center">
-    <div hide-gt-sm>
-      <md-button ng-click="$ctrl.openLeftSidenav()" class="md-icon-button" aria-label="Menu">
-         <md-icon md-font-set="material-icons">menu</md-icon>
-       </md-button>
-    </div>
     <div class="button-text button-brand">
-      <md-button ui-sref="landing" ui-sref-active="active">Art House Box Office</md-button>
+      <md-button ui-sref="about" ui-sref-active="active">Art House Box Office</md-button>
     </div>
     <div class="button-text" hide show-gt-sm>
       <md-button ng-repeat="item in $ctrl.navItems" ng-click="item.click()" ui-sref="{{item.sref}}" ui-sref-active="{{item.click ? '' : 'active'}}">{{item.name}}</md-button>
