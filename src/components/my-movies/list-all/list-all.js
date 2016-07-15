@@ -10,10 +10,13 @@ export default {
     function controller($mdDialog, screeningService, companyService) {
       this.style = style;
       this.companyId = companyService.get();
-      screeningService.getByCompany(this.companyId)
+
+      this.fetchScreenings = () => {
+        screeningService.getByCompany(this.companyId)
         .then(screenings => {
           this.screenings = screenings;
         });
+      };
 
       this.edit = (index) => {
         const screening = this.screenings[index];
@@ -27,7 +30,11 @@ export default {
             },
           ],
           clickOutsideToClose: true,
+        })
+        .then(() => {
+          this.fetchScreenings();
         });
+      
       };
     },
   ],

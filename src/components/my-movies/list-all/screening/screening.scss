@@ -1,3 +1,41 @@
 :local(.screening) {
   padding: 30px;
+  overflow: hidden;
+
+  h3 {
+    text-align: center;
+  }
+  p {
+    margin: 0 -25px;
+    padding: 15px 25px;
+
+    span {
+      font-size: 1.1em;
+      float: right;
+    }
+  }
+  p:nth-child(even) {
+    background: #f9f9f9;
+  }
+  form {
+    margin: 30px auto;
+    width: 50%;
+    text-align: center;
+
+    .md-raised {
+      width: 100%; 
+      margin: 30px auto 10px auto;
+
+      &.delete {
+        background: #ff5d5d;
+        color: #fff;
+        margin: 20px auto;
+      }
+
+       &.delete:hover {
+        background: #ff5d5d;
+        color: #fff;
+      }
+    }
+  }
 }
