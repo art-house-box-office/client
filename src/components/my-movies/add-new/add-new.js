@@ -29,7 +29,6 @@ export default {
       };
 
       this.submitMovie = () => {
-
         movieService.add(this.newMovie)
           .then((r) => {
             this.message = 'Movie Successfully Added';

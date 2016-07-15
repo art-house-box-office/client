@@ -2,11 +2,9 @@
   <h4>Create New Screening Run</h4>
   <p class="message">{{$ctrl.message}}</p>
 
-  <form ng-if="$ctrl.addingMovie"
-        ng-submit="$ctrl.submitMovie()">
+  <form ng-if="$ctrl.addingMovie" ng-submit="$ctrl.submitMovie()">
     <input ng-model="$ctrl.newMovie.title"
-           placeholder="Movie Title"
-           ng-blur="$ctrl.addingMovie = false">
+           placeholder="Movie Title">
     <button type="submit">Add Movie</button>
   </form>
 
@@ -20,7 +18,7 @@
       ng-if="!$ctrl.addingMovie">
       Or Add New Movie
     </a>
-    
+
     <br>
 
     <select ng-options="loc._id as loc.name for loc in $ctrl.locations"
@@ -64,13 +62,12 @@
 
   <br>
 
-  
 
 
-  
+
+
 
 
 
 
 </section>
-
