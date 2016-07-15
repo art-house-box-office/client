@@ -3,15 +3,15 @@ configRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function configRoutes($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('landing', {
-      url: '/',
-      data: { requiresAuth: false },
-      views: {
-        header: { component: 'headerComponent' },
-        sidebar: { component: 'sidebarTrends' },
-        main: { component: 'landing' },
-      },
-    })
+    // .state('landing', {
+    //   url: '/',
+    //   data: { requiresAuth: false },
+    //   views: {
+    //     header: { component: 'headerComponent' },
+    //     sidebar: { component: 'sidebarTrends' },
+    //     main: { component: 'landing' },
+    //   },
+    // })
     .state('trends', {
       url: '/trends',
       data: { requiresAuth: false },
@@ -143,6 +143,6 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/trends');
 
 }
