@@ -15,6 +15,9 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
     .state('trends', {
       url: '/trends',
       data: { requiresAuth: false },
+      resolve: {
+        topAdm: ['screeningService', screeningService => screeningService.topTenAdm()],
+      },
       views: {
         header: { component: 'headerComponent' },
         sidebar: { component: 'sidebarTrends' },

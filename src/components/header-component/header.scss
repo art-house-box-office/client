@@ -7,6 +7,9 @@ md-toolbar:local(.toolbar) {
   background-color: #414141;
   height: 60px;
   min-height: 60px;
+  transition-duration: initial;
+  transition-timing-function: initial;
+  transition-property: initial;
 
   .md-button {
     font-size: 0.8em;
