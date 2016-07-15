@@ -5,18 +5,39 @@
     border: none;
     padding: 2px 4px;
   }
+
   div.head {
     text-align: center;
   }
+
   ul.location-list {
     margin: 25px 0;
 
-    li {
-      
-      div {
-        margin: 35px 0;
-      }
+    li div {
+      margin: 35px 0;
     }
   }
-  
+}
+
+:local(.add-company-dialog),
+:local(.add-location-dialog),
+:local(.edit-location-dialog),
+:local(.add-room-dialog),
+:local(.edit-room-dialog) {
+  width: 40vw;
+  max-width: none;
+  max-height: none;
+
+  h2 {
+    margin: 0;
+  }
+
+  md-dialog-content {
+    padding: 20px;
+  }
+
+  .error {
+    color: rgb(221,44,0);
+    font-size: .8em;
+  }
 }

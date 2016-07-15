@@ -14,9 +14,9 @@ export default {
       },
       {
         name: 'Don Chatelain',
-        github: 'https://github.com/',
-        linkedIn: 'https://www.linkedin.com/',
-        bio: '',
+        github: 'https://github.com/DonChatelain',
+        linkedIn: 'Public Profilehttps://www.linkedin.com/in/don-chatelain-01325140',
+        bio: 'If I could mount any animal regardless of scale, I would choose a praying mantis because it can fly and can also probably take down an apache helicopter.', // eslint-disable-line
       },
       {
         name: 'Yvonne Hayes',
