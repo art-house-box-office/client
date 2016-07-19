@@ -4,6 +4,18 @@ export default function accountService($http, apiUrl, $window) {
 
   return {
 
+    // Get user email and name from localStorage id
+    getUserInfo() {
+      const id = $window.localStorage.getItem('userID');
+      return $http
+        .get(`${apiUrl}/users/${id}`)
+        .then(r => {
+          const resObj = {};
+          resObj.username = r.data.username;
+          resObj.email = r.data.email;
+          return resObj;
+        });
+    },
     // specific Company
     getCompany(companyId) {
       return $http
@@ -11,7 +23,8 @@ export default function accountService($http, apiUrl, $window) {
       .then(r => r.data);
     },
     // get company by user ID
-    getCompanyByUserId(userId) {
+    getCompanyByUserId() {
+      const userId = $window.localStorage.getItem('userID');
       return $http
         .get(`${apiUrl}/users/${userId}`)
         .then(r => r.data.company._id)
@@ -72,7 +85,8 @@ export default function accountService($http, apiUrl, $window) {
     },
 
     // Get Location by User Id
-    getLocationsByUserId(userId) {
+    getLocationsByUserId() {
+      const userId = $window.localStorage.getItem('userID');
       return $http
         .get(`${apiUrl}/users/${userId}`)
         .then(r => r.data.company._id)

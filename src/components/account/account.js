@@ -7,23 +7,27 @@ export default {
   },
   template,
   controller: [
-    '$window',
     '$mdDialog',
     'accountService',
-    function controller($window, $mdDialog, accountService) {
+    function controller($mdDialog, accountService) {
       this.style = style;
       this.addCompanyServerError = '';
       this.locations = [];
-      this.currentUser = $window.localStorage.getItem('user');
-      this.currentUserId = $window.localStorage.getItem('userID');
-      this.currentUserEmail = $window.localStorage.getItem('userEmail');
+
       this.states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']; // eslint-disable-line
 
+      // Populates User Info
+      accountService.getUserInfo()
+        .then(r => {
+          this.currentUser = r.username;
+          this.currentUserEmail = r.email;
+        });
+
       // Fetches company by current user on load
-      accountService.getCompanyByUserId(this.currentUserId)
+      accountService.getCompanyByUserId()
         .then(r => this.companyName = r);
 
-      accountService.getLocationsByUserId(this.currentUserId)
+      accountService.getLocationsByUserId()
         .then(locations => {
           // TODO: fix in route or model, or better ux
           this.locations = locations.map(location => {
@@ -128,7 +132,12 @@ export default {
         accountService.addRoom(roomData)
           .then(r => {
             roomDataCopy._id = r._id;
-            this.locations[currentLocation.index].rooms.push(roomDataCopy);
+            if (this.locations[currentLocation.index].rooms) {
+              this.locations[currentLocation.index].rooms.push(roomDataCopy);
+            } else {
+              this.locations[currentLocation.index].rooms = [];
+              this.locations[currentLocation.index].rooms.push(roomDataCopy);
+            }
             this.addRoomData = {};
             // this.addRoomForm.reset();
             $mdDialog.hide();
@@ -169,6 +178,7 @@ export default {
       //     this.locations[parentIndex].rooms.splice(index, 1);
       //   });
       // };
+      
     },
   ],
 };
