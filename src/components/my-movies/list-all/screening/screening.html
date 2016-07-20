@@ -12,22 +12,22 @@
   <form ng-submit="$ctrl.submitEdit()">
     <label>Admissions Total: </label>
     <input ng-model="$ctrl.putData.admissionsTotal"
-           type="number">
+           type="number" placeholder="$">
     <br>
     <label>Attendance Total: </label>
     <input ng-model="$ctrl.putData.attendanceTotal"
-           type="number">
-    <md-button class="md-raised" type="submit">
+           type="number" placeholder="Attendees">
+    <md-button class="md-raised done" type="submit">
       Done
     </md-button>
 
     <br>
-    
+
     <md-button class="md-raised delete"
                ng-click="$ctrl.deleteScreening()">
       Delete Screening
     </md-button>
   </form>
-        
+
 
 </section>

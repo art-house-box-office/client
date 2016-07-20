@@ -19,14 +19,23 @@
   }
   form {
     margin: 30px auto;
-    width: 50%;
+    width: 95%;
     text-align: center;
 
+    input {
+      width: 22%;
+    }
+
     .md-raised {
-      width: 100%; 
+      width: 45%;
       margin: 30px auto 10px auto;
 
+      &.done {
+        float: right;
+        margin: 20px auto;
+      }
       &.delete {
+        float: left;
         background: #ff5d5d;
         color: #fff;
         margin: 20px auto;

@@ -1,6 +1,6 @@
 <section ng-class="$ctrl.style.listAll"
          ng-init="$ctrl.fetchScreenings()">
-  <p><em>Tap row to edit</em></p>
+  <p><em><span hide show-gt-sm>click</span><span hide-gt-sm>tap</span> row to edit</em></p>
   <ul>
     <li ng-repeat="screening in $ctrl.screenings" ng-click="$ctrl.edit($index)">
       <p class="movie-title">{{screening.dateTime}} | <b>{{screening.movie_data.title}}</b> |
