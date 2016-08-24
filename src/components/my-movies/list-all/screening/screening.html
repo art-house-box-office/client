@@ -10,13 +10,16 @@
 
 
   <form ng-submit="$ctrl.submitEdit()">
-    <label>Admissions Total: </label>
-    <input ng-model="$ctrl.putData.admissionsTotal"
-           type="number" placeholder="$">
-    <br>
-    <label>Attendance Total: </label>
-    <input ng-model="$ctrl.putData.attendanceTotal"
-           type="number" placeholder="Attendees">
+    <md-input-container>
+      <label>Admissions Total: </label>
+      <input ng-model="$ctrl.putData.admissionsTotal"
+             type="number" placeholder="$">
+    </md-input-container>
+    <md-input-container>
+      <label>Attendance Total: </label>
+      <input ng-model="$ctrl.putData.attendanceTotal"
+             type="number" placeholder="Attendees">
+    </md-input-container>
     <md-button class="md-raised done" type="submit">
       Done
     </md-button>

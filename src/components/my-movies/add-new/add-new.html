@@ -3,8 +3,10 @@
   <p class="message">{{$ctrl.message}}</p>
 
   <form ng-if="$ctrl.addingMovie" ng-submit="$ctrl.submitMovie()">
-    <input ng-model="$ctrl.newMovie.title"
-           placeholder="Movie Title">
+    <md-input-container>
+      <input ng-model="$ctrl.newMovie.title"
+             placeholder="Movie Title">
+    </md-input-container>
     <button type="submit">Add Movie</button>
   </form>
 
@@ -45,15 +47,18 @@
     <br>
 
     <p>Start Time For Screenings</p>
+    <md-input-container>
     <input type="time"
            ng-model="$ctrl.startTime">
+    </md-input-container>
 
     <br>
 
     <p>Special Seat Count (optional)</p>
+    <md-input-container>
     <input type="number"
            ng-model="$ctrl.seatCount">
-
+    </md-input-container>
     <br>
 
     <button type="submit">Submit Screening Run</button>

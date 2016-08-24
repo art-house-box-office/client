@@ -1,8 +1,12 @@
 @import 'colors';
 
 :local(.addMovie) {
-  
+
   .message {
     color: $accent-color;
+  }
+
+  md-select {
+    width: 200px;
   }
 }
